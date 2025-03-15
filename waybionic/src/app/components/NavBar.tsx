@@ -1,9 +1,9 @@
-"use client"; // ← Must be the first line
+"use client"; // ← Must be at the top
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function NavBar() {
-  // State to toggle mobile menu
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -11,20 +11,15 @@ export default function NavBar() {
       className="fixed top-0 left-0 w-full z-50 bg-[var(--color-pink)]"
       style={{ height: "var(--navbar-height)" }}
     >
-      <div className="flex items-center justify-between px-10 py-4 h-full">
-        {/* Left side: purple square (logo placeholder) */}
-        <div className="w-8 h-8 bg-purple-600" />
-
+      <div className="relative flex items-center justify-between px-4 py-4 h-full">
         {/* Hamburger Button (visible on small screens) */}
         <button
           className="md:hidden p-2 text-white"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle Menu"
         >
-          {/* Simple Hamburger Icon (3 bars) */}
           <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
             {isOpen ? (
-              /* X icon (when menu is open) */
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -37,7 +32,6 @@ export default function NavBar() {
                   12 4.293 5.707a1 1 0 010-1.414z"
               />
             ) : (
-              /* 3-bar icon (when menu is closed) */
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -51,8 +45,22 @@ export default function NavBar() {
           </svg>
         </button>
 
-        {/* Right side: nav links (hidden on small screens) */}
-        <div className="hidden md:flex items-center space-x-8">
+        {/* Logo: centered on mobile, repositioned on desktop */}
+        <div
+          className="absolute left-1/2 transform -translate-x-1/2 
+                        md:relative md:ml-10 md:left-auto md:translate-x-0"
+        >
+          <Image
+            src="/images/logo.png" // Replace with your logo image path
+            alt="Logo"
+            width={70}
+            height={70}
+            className="object-contain"
+          />
+        </div>
+
+        {/* Desktop Nav Links (visible on md and up) */}
+        <div className="hidden md:flex items-center space-x-10 mr-20">
           <Link href="#about">
             <span
               className="text-2xl hover:text-gray-200 transition"
@@ -82,7 +90,7 @@ export default function NavBar() {
 
       {/* Mobile Menu (shown when isOpen = true) */}
       {isOpen && (
-        <div className="md:hidden flex flex-col items-start space-y-4 px-4 pt-4 pb-4 bg-white rounded-b-xl animate-fade-in">
+        <div className="md:hidden flex flex-col items-start space-y-4 px-4 pt-4 pb-4 bg-white rounded-b-xl mx-4 animate-fade-in">
           <Link href="#about" onClick={() => setIsOpen(false)}>
             <span
               className="text-2xl hover:text-gray-200 transition"
