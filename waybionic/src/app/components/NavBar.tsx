@@ -13,13 +13,13 @@ export default function NavBar() {
         {/* Right side: nav links */}
         <div className="flex items-center space-x-8">
           <Link href="#about">
-            <span className="text-white hover:text-gray-200 transition" style={{ color:'var(--color-dark-purple)'}} ><b>About</b></span>
+            <span className="text-xl hover:text-gray-200 transition" style={{ color:'var(--color-dark-purple)'}} ><b>About</b></span>
           </Link>
           <Link href="#contact">
-            <span className="text-white hover:text-gray-200 transition" style={{ color:'var(--color-dark-purple)'}}><b>Contact</b></span>
+            <span className="text-xl hover:text-gray-200 transition" style={{ color:'var(--color-dark-purple)'}}><b>Contact</b></span>
           </Link>
           <Link href="#join">
-            <span className="text-white hover:text-gray-200 transition" style={{ color:'var(--color-dark-purple)'}}><b>Join</b></span>
+            <span className="text-xl hover:text-gray-200 transition" style={{ color:'var(--color-dark-purple)'}}><b>Join</b></span>
           </Link>
         </div>
       </div>
