@@ -1,8 +1,15 @@
 @import "tailwindcss";
 
 :root {
+  --navbar-height: 72px;
   --background: #ffffff;
   --foreground: #171717;
+  --color-peach: #ffdca0;
+  --color-dark-purple: #443b75;
+  --color-deep-purple: #3d336a;
+  --color-pink: #fc92b0;
+  --color-light-purple: #a18fe7;
+  --color-mint: #a6e6ca;
 }
 
 @theme inline {
@@ -33,8 +40,19 @@
   font-style: normal;
 }
 
-body {
+
+html, body {
   font-family: 'Arimo', sans-serif; 
+  height: 100%;
+}
+
+section {
+  width: 100%;
+  min-height: 100vh; /* each section spans at least one viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 h1, h2, h3, h4, h5, h6 {

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Arimo } from "next/font/google";
 import "./globals.css";
+import NavBar from "./components/NavBar";
 
 const arimo = Arimo({
   variable: "--font-arimo",
@@ -22,7 +23,10 @@ export default function RootLayout({
       <body
         className={`${arimo.variable} antialiased`}
       >
-        {children}
+        <NavBar />
+        <main style={{ paddingTop: 'var(--navbar-height)' }}>
+          {children}
+        </main>
       </body>
     </html>
   );
