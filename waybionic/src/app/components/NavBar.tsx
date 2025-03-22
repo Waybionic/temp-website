@@ -48,15 +48,17 @@ export default function NavBar() {
         {/* Logo: centered on mobile, repositioned on desktop */}
         <div
           className="absolute left-1/2 transform -translate-x-1/2 
-                        md:relative md:ml-10 md:left-auto md:translate-x-0"
+                        md:relative md:ml-20 md:left-auto md:translate-x-0"
         >
-          <Image
-            src="/images/logo.png" // Replace with your logo image path
-            alt="Logo"
-            width={70}
-            height={70}
-            className="object-contain"
-          />
+          <a href="/">
+            <Image
+              src="/images/logo.png" // Replace with your logo image path
+              alt="Logo"
+              width={80}
+              height={80}
+              className="object-contain"
+            />
+          </a>
         </div>
 
         {/* Desktop Nav Links (visible on md and up) */}
