@@ -1,34 +1,27 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useState } from "react";
 
-export default function Home() {
-  const bionicArmRef = useRef<HTMLDivElement>(null);
+export default function Contact() {
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState("");
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!bionicArmRef.current) return;
-
-      const rect = bionicArmRef.current.getBoundingClientRect();
-      const bottomMiddleX = rect.left + (rect.width / 2);
-      const bottomMiddleY = rect.top + rect.height;
-
-      // Calculate the angle between bottom middle and cursor
-      const deltaX = e.clientX - bottomMiddleX;
-      const deltaY = e.clientY - bottomMiddleY;
-      const angleRad = Math.atan2(deltaY, deltaX);
-      const angleDeg = (angleRad * 180) / Math.PI;
-      
-      // Adjust angle by 90 degrees so the bottom points at cursor
-      const adjustedAngle = angleDeg + 270;
-
-      bionicArmRef.current.style.transform = `rotate(${adjustedAngle}deg)`;
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Create mailto link with pre-filled subject and body
+    const mailtoLink = `mailto:waybionics@gmail.com?subject=Contact Form Submission&body=${encodeURIComponent(message)}%0D%0A%0D%0AFrom: ${encodeURIComponent(email)}`;
+    
+    // Open default email client
+    window.location.href = mailtoLink;
+    
+    // Reset form
+    setEmail("");
+    setMessage("");
+    setStatus("Message opened in your default email client!");
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -55,28 +48,48 @@ export default function Home() {
 
       {/* Main Content */}
       <main className="flex-1 container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div>
-            <h1 className="text-4xl font-bold mb-8">
-              Changing the world, one bionic arm at a time.
-            </h1>
-          </div>
-          <div 
-            ref={bionicArmRef}
-            className="relative w-1/2 mx-auto"
-            style={{ 
-              transformOrigin: "bottom center",
-              willChange: "transform"
-            }}
-          >
-            <Image
-              src="/Bionic.png"
-              alt="Interactive Bionic Arm"
-              width={250}
-              height={250}
-              className="w-full h-auto"
-              priority
-            />
+        <div className="max-w-2xl mx-auto">
+          <h1 className="text-4xl font-bold mb-8 text-center">Contact Us</h1>
+          <div className="bg-white rounded-lg shadow-lg p-8">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  Your Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="your.email@example.com"
+                />
+              </div>
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  required
+                  rows={6}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Type your message here..."
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 transition-colors"
+              >
+                Send Message
+              </button>
+              {status && (
+                <p className="text-green-600 text-center mt-4">{status}</p>
+              )}
+            </form>
           </div>
         </div>
       </main>
@@ -151,4 +164,4 @@ export default function Home() {
       </footer>
     </div>
   );
-}
+} 
