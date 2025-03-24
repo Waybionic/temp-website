@@ -1,35 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
 
-export default function Home() {
-  const bionicArmRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!bionicArmRef.current) return;
-
-      const rect = bionicArmRef.current.getBoundingClientRect();
-      const bottomMiddleX = rect.left + (rect.width / 2);
-      const bottomMiddleY = rect.top + rect.height;
-
-      // Calculate the angle between bottom middle and cursor
-      const deltaX = e.clientX - bottomMiddleX;
-      const deltaY = e.clientY - bottomMiddleY;
-      const angleRad = Math.atan2(deltaY, deltaX);
-      const angleDeg = (angleRad * 180) / Math.PI;
-      
-      // Adjust angle by 90 degrees so the bottom points at cursor
-      const adjustedAngle = angleDeg + 270;
-
-      bionicArmRef.current.style.transform = `rotate(${adjustedAngle}deg)`;
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
+export default function Project() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
@@ -55,29 +28,17 @@ export default function Home() {
 
       {/* Main Content */}
       <main className="flex-1 container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div>
-            <h1 className="text-4xl font-bold mb-8">
-              Changing the world, one bionic arm at a time.
-            </h1>
-          </div>
-          <div 
-            ref={bionicArmRef}
-            className="relative w-1/2 mx-auto"
-            style={{ 
-              transformOrigin: "bottom center",
-              willChange: "transform"
-            }}
-          >
-            <Image
-              src="/Bionic.png"
-              alt="Interactive Bionic Arm"
-              width={250}
-              height={250}
-              className="w-full h-auto"
-              priority
-            />
-          </div>
+        <h1 className="text-4xl font-bold mb-8">Our Project</h1>
+        <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-8">
+          <p className="text-lg leading-relaxed text-gray-700 mb-6">
+            Our club is dedicated to developing a bionic arm for remote surgical applications, inspired by Dr. Sun's research on addressing medical emergencies, like collapsed lungs, in space. Her work explored performing surgeries from Earth via bionic arms to assist astronauts in orbit without needing an onboard doctor.
+          </p>
+          <p className="text-lg leading-relaxed text-gray-700 mb-6">
+            Currently, we are focused on creating and refining the arm for surgical use, with plans to eventually test in space-simulated conditions once we secure the necessary equipment and funding.
+          </p>
+          <p className="text-lg leading-relaxed text-gray-700">
+            We appreciate your interest in our club!
+          </p>
         </div>
       </main>
 
@@ -151,4 +112,4 @@ export default function Home() {
       </footer>
     </div>
   );
-}
+} 

@@ -1,35 +1,39 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
 
-export default function Home() {
-  const bionicArmRef = useRef<HTMLDivElement>(null);
+const teamMembers = [
+  {
+    role: "Club Lead",
+    name: "Lina"
+  },
+  {
+    role: "Software Lead",
+    name: "Yassin"
+  },
+  {
+    role: "Software Lead",
+    name: "Mujtaba"
+  },
+  {
+    role: "Electrical Lead",
+    name: "Yash"
+  },
+  {
+    role: "Biomedical Lead",
+    name: "Abdul Karim"
+  },
+  {
+    role: "Mechanical Lead",
+    name: "Phillip"
+  },
+  {
+    role: "Mechanical Lead",
+    name: "Zayd"
+  }
+];
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!bionicArmRef.current) return;
-
-      const rect = bionicArmRef.current.getBoundingClientRect();
-      const bottomMiddleX = rect.left + (rect.width / 2);
-      const bottomMiddleY = rect.top + rect.height;
-
-      // Calculate the angle between bottom middle and cursor
-      const deltaX = e.clientX - bottomMiddleX;
-      const deltaY = e.clientY - bottomMiddleY;
-      const angleRad = Math.atan2(deltaY, deltaX);
-      const angleDeg = (angleRad * 180) / Math.PI;
-      
-      // Adjust angle by 90 degrees so the bottom points at cursor
-      const adjustedAngle = angleDeg + 270;
-
-      bionicArmRef.current.style.transform = `rotate(${adjustedAngle}deg)`;
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
+export default function Team() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
@@ -55,29 +59,14 @@ export default function Home() {
 
       {/* Main Content */}
       <main className="flex-1 container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div>
-            <h1 className="text-4xl font-bold mb-8">
-              Changing the world, one bionic arm at a time.
-            </h1>
-          </div>
-          <div 
-            ref={bionicArmRef}
-            className="relative w-1/2 mx-auto"
-            style={{ 
-              transformOrigin: "bottom center",
-              willChange: "transform"
-            }}
-          >
-            <Image
-              src="/Bionic.png"
-              alt="Interactive Bionic Arm"
-              width={250}
-              height={250}
-              className="w-full h-auto"
-              priority
-            />
-          </div>
+        <h1 className="text-4xl font-bold mb-12 text-center">Our Team</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {teamMembers.map((member, index) => (
+            <div key={index} className="bg-white rounded-lg shadow-lg p-8 text-center">
+              <h3 className="text-xl font-semibold mb-2">{member.role}</h3>
+              <p className="text-gray-600 text-lg">{member.name}</p>
+            </div>
+          ))}
         </div>
       </main>
 
@@ -151,4 +140,4 @@ export default function Home() {
       </footer>
     </div>
   );
-}
+} 
