@@ -28,8 +28,8 @@ export default function Hero() {
         1) A "scaling container" with max-w so it doesn't become huge on large screens.
         2) px-4 adds a bit of padding on small screens.
       */}
-      <div className="relative w-full max-w-[1200px] px-4">
-        <div className="relative w-full">
+      <div className="relative w-full max-w-[95%] sm:max-w-[640px] md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1200px] px-4 flex justify-center translate-y-[-15%] sm:translate-y-0">
+        <div className="relative w-full sm:w-fit translate-x-[5%] sm:translate-x-0">
           {/*
             2) Paper note at 100% width so it scales to fill this container.
                height:auto preserves aspect ratio.
