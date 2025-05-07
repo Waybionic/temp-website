@@ -7,9 +7,11 @@ const hiring: boolean = true;
 
 export default function Join() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 py-12">
-      <div className="w-full max-w-6xl bg-white shadow-xl rounded-xl p-10 text-center">
-        <h1 className="text-5xl font-bold mb-10">Join Our Team</h1>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 py-16">
+      <div className="w-full max-w-6xl bg-white shadow-xl rounded-xl p-6 sm:p-10 text-center">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10">
+          Join Our Team
+        </h1>
 
         {hiring ? (
           <>
@@ -22,7 +24,7 @@ export default function Join() {
             >
               Loading…
             </iframe>
-            <p className="mt-6 text-sm text-gray-500">
+            <p className="mt-6 text-sm sm:text-base text-gray-500">
               If the form doesn't load,{" "}
               <a
                 href={link}
@@ -36,11 +38,9 @@ export default function Join() {
             </p>
           </>
         ) : (
-          <div className="text-xl text-gray-700">
+          <div className="text-base sm:text-lg md:text-xl text-gray-700 space-y-2">
             <p>We’re not accepting applications at the moment.</p>
-            <p className="mt-2">
-              Please check back soon or follow us for updates!
-            </p>
+            <p>Please check back soon or follow us for updates!</p>
           </div>
         )}
       </div>

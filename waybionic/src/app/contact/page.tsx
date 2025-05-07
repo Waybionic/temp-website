@@ -25,14 +25,16 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 py-12">
-      <div className="w-full max-w-3xl bg-white shadow-xl rounded-xl p-10 text-center">
-        <h1 className="text-5xl font-bold mb-10">Contact Us</h1>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 py-16">
+      <div className="w-full max-w-3xl bg-white shadow-xl rounded-xl p-6 sm:p-10 text-center">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10">
+          Contact Us
+        </h1>
         <form onSubmit={handleSubmit} className="space-y-8 text-left">
           <div>
             <label
               htmlFor="email"
-              className="block text-base font-medium text-gray-700 mb-2"
+              className="block text-sm sm:text-base font-medium text-gray-700 mb-2"
             >
               Your Email
             </label>
@@ -42,14 +44,14 @@ export default function Contact() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-base"
+              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base"
               placeholder="your.email@example.com"
             />
           </div>
           <div>
             <label
               htmlFor="message"
-              className="block text-base font-medium text-gray-700 mb-2"
+              className="block text-sm sm:text-base font-medium text-gray-700 mb-2"
             >
               Message
             </label>
@@ -59,18 +61,20 @@ export default function Contact() {
               onChange={(e) => setMessage(e.target.value)}
               required
               rows={6}
-              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-base"
+              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base"
               placeholder="Type your message here..."
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 transition-colors text-base font-medium"
+            className="w-full bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 transition-colors text-sm sm:text-base font-medium"
           >
             Send Message
           </button>
           {status && (
-            <p className="text-green-600 text-center mt-4 text-sm">{status}</p>
+            <p className="text-green-600 text-center mt-4 text-sm">
+              {status}
+            </p>
           )}
         </form>
       </div>
