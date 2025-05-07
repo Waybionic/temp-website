@@ -44,6 +44,19 @@ export default function Hero() {
           />
 
           {/*
+            3) Mascot, absolutely positioned and sized in % so it scales
+               with the container. Adjust 'left', 'top', 'w-[X%]' to taste.
+          */}
+          <Image
+            src="/images/gear-temp.svg"
+            alt="Way Bionic Mascot"
+            width={200}
+            height={200}
+            className="absolute z-11 right-[11%] bottom-[1%] w-[18%] h-auto rotate-15"
+            priority
+          />
+
+          {/*
             4) Text over the note, absolutely centered with transform.
                We also use clamp() for responsive font sizing.
           */}
