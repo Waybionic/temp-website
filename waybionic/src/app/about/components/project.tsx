@@ -4,7 +4,7 @@ export default function Project() {
   return (
     <main className="flex-1 flex justify-center items-center px-4 py-16">
       <div className="max-w-3xl w-full bg-white rounded-lg shadow-lg p-8">
-        <h1 className="text-4xl font-bold mb-8 text-center">Our Mission</h1>
+        <h1 className="text-4xl font-bold mb-8 text-center">Our Project</h1>
         <p className="text-lg leading-relaxed text-gray-700 mb-6">
           Our club is dedicated to developing a bionic arm for remote surgical
           applications, inspired by Dr. Sun's research on addressing medical
