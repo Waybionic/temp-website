@@ -4,28 +4,13 @@ import React from "react";
 export default function Hero() {
   return (
     <section
-      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden"
-      style={{ backgroundColor: "var(--color-deep-purple)" }}
+      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-no-repeat bg-cover bg-top"
+      style={{
+        backgroundImage: "url('/images/hero-bg.svg')",
+        backgroundColor: "var(--color-deep-purple)",
+      }}
       id="hero"
     >
-      {/* Decorative Blobs (you can adjust their positions/sizes as needed) */}
-      <Image
-        src="/images/blob2.svg"
-        alt="Decorative blob"
-        width={500}
-        height={500}
-        className="absolute top-[-65vh] right-[-40vw] w-[155vw] h-[155vh] object-contain"
-        priority
-      />
-      <Image
-        src="/images/blob1.svg"
-        alt="Decorative blob"
-        width={500}
-        height={500}
-        className="absolute top-[-70vh] left-[-42vw] w-[200vw] h-[200vh] object-contain"
-        priority
-      />
-
       {/*
         1) A "scaling container" with max-w so it doesn't become huge on large screens.
         2) px-4 adds a bit of padding on small screens.
