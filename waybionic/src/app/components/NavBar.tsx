@@ -63,7 +63,7 @@ export default function NavBar() {
 
         {/* Desktop Nav Links (visible on md and up) */}
         <div className="hidden md:flex items-center space-x-10 mr-20">
-          <Link href="#about">
+          <Link href="/about">
             <span
               className="text-2xl hover:text-gray-200 transition"
               style={{ color: "var(--color-dark-purple)" }}
@@ -71,7 +71,7 @@ export default function NavBar() {
               <b>About</b>
             </span>
           </Link>
-          <Link href="#contact">
+          <Link href="/contact">
             <span
               className="text-2xl hover:text-gray-200 transition"
               style={{ color: "var(--color-dark-purple)" }}
@@ -93,7 +93,7 @@ export default function NavBar() {
       {/* Mobile Menu (shown when isOpen = true) */}
       {isOpen && (
         <div className="md:hidden flex flex-col items-start space-y-4 px-4 pt-4 pb-4 bg-white rounded-b-xl mx-4 animate-fade-in">
-          <Link href="#about" onClick={() => setIsOpen(false)}>
+          <Link href="/about" onClick={() => setIsOpen(false)}>
             <span
               className="text-2xl hover:text-gray-200 transition"
               style={{ color: "var(--color-dark-purple)" }}
@@ -101,7 +101,7 @@ export default function NavBar() {
               <b>About</b>
             </span>
           </Link>
-          <Link href="#contact" onClick={() => setIsOpen(false)}>
+          <Link href="/contact" onClick={() => setIsOpen(false)}>
             <span
               className="text-2xl hover:text-gray-200 transition"
               style={{ color: "var(--color-dark-purple)" }}
