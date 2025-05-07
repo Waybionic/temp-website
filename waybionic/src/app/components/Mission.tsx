@@ -3,14 +3,21 @@ import React from "react";
 export default function Mission() {
   return (
     <section
-      className="w-full flex flex-col items-center justify-center p-8"
-      style={{ backgroundColor: "var(--color-light-purple)" }}
+      className="w-full min-h-screen flex flex-col items-center px-6 py-24 bg-pink-100"
       id="mission"
     >
-      <h2 className="text-3xl mb-4">Our Mission</h2>
-      <p className="max-w-xl text-center leading-relaxed">
-        At WayBionic, we strive to...
-      </p>
+      <div className="max-w-4xl w-full text-center">
+        <h2 className="text-6xl font-extrabold text-gray-800 mb-10">
+          Our Mission
+        </h2>
+        <p className="text-2xl text-gray-700 leading-relaxed">
+          At <strong>WayBionic</strong>, we strive to revolutionize remote
+          surgery by developing a bionic arm inspired by the challenges of
+          performing medical procedures in space. Our goal is to create
+          innovative, reliable, and precise tools that empower both astronauts
+          and doctors—whether in orbit or on Earth.
+        </p>
+      </div>
     </section>
   );
 }
