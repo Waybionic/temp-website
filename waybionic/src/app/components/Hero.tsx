@@ -15,6 +15,7 @@ export default function Hero() {
         width={500}
         height={500}
         className="absolute top-[-65vh] right-[-40vw] w-[155vw] h-[155vh] object-contain"
+        priority
       />
       <Image
         src="/images/blob1.svg"
@@ -22,6 +23,7 @@ export default function Hero() {
         width={500}
         height={500}
         className="absolute top-[-70vh] left-[-42vw] w-[200vw] h-[200vh] object-contain"
+        priority
       />
 
       {/*
@@ -53,6 +55,7 @@ export default function Hero() {
             width={300}
             height={300}
             className="absolute z-0 left-[-2%] top-[20%] w-[25%] h-auto"
+            priority
           />
 
           {/*
