@@ -70,7 +70,8 @@ export default function Hero() {
               fontSize: "clamp(2.5rem, 8vw, 6.5rem)",
             }}
           >
-            Way🗲
+            {/*Add lightning later*/}
+            Way⚡
             <br />
             Bionic
           </h1>
