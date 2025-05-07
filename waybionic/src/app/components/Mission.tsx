@@ -10,7 +10,7 @@ export default function Mission() {
         <h2 className="text-6xl font-extrabold text-gray-800 mb-10">
           Our Mission
         </h2>
-        <p className="text-2xl text-gray-700 leading-relaxed">
+        <p className="text-3xl text-gray-700 leading-relaxed">
           At <strong>WayBionic</strong>, we strive to revolutionize remote
           surgery by developing a bionic arm inspired by the challenges of
           performing medical procedures in space. Our goal is to create
