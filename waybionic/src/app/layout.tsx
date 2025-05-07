@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${arimo.variable} antialiased`}>
+      <body className={`${arimo.variable} antialiased bg-white text-gray-900`}>
         <NavBar />
         <main style={{ paddingTop: "var(--navbar-height)" }}>{children}</main>
         <Footer />
