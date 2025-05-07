@@ -67,7 +67,8 @@ export default function Contact() {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 transition-colors text-sm sm:text-base font-medium"
+            className="w-full text-white py-3 px-6 rounded-md hover:opacity-90 transition-colors text-sm sm:text-base font-medium"
+            style={{ backgroundColor: "var(--color-pink)" }}
           >
             Send Message
           </button>
@@ -78,6 +79,6 @@ export default function Contact() {
           )}
         </form>
       </div>
-    </div>
+    </div >
   );
 }
