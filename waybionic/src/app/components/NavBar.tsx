@@ -79,7 +79,7 @@ export default function NavBar() {
               <b>Contact</b>
             </span>
           </Link>
-          <Link href="#join">
+          <Link href="/join">
             <span
               className="text-2xl hover:text-gray-200 transition"
               style={{ color: "var(--color-dark-purple)" }}
@@ -109,7 +109,7 @@ export default function NavBar() {
               <b>Contact</b>
             </span>
           </Link>
-          <Link href="#join" onClick={() => setIsOpen(false)}>
+          <Link href="/join" onClick={() => setIsOpen(false)}>
             <span
               className="text-2xl hover:text-gray-200 transition"
               style={{ color: "var(--color-dark-purple)" }}
