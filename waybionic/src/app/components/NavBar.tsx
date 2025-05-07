@@ -8,7 +8,7 @@ export default function NavBar() {
 
   return (
     <nav
-      className="fixed top-0 left-0 w-full z-50 bg-[var(--color-pink)]"
+      className="fixed top-0 left-0 w-full z-50 bg-[var(--color-pink)] pt-[env(safe-area-inset-top)]"
       style={{ height: "var(--navbar-height)" }}
     >
       <div className="relative flex items-center justify-between px-4 py-4 h-full">
