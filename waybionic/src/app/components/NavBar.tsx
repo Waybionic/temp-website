@@ -46,9 +46,7 @@ export default function NavBar() {
         </button>
 
         {/* Logo: centered on mobile, repositioned on desktop */}
-        <div
-          className="absolute left-4 transform md:relative md:left-0 md:translate-x-0 flex items-center gap-2"
-        >
+        <div className="absolute left-1/2 -translate-x-1/2 md:relative md:left-0 md:translate-x-0 flex items-center gap-2">
           <a href="/" className="flex items-center gap-2">
             <Image
               src="/images/logo.png"
@@ -57,11 +55,11 @@ export default function NavBar() {
               height={80}
               className="object-contain"
             />
-            <span 
+            <span
               className="text-2xl font-bold hidden md:block"
-              style={{ 
+              style={{
                 color: "var(--color-dark-purple)",
-                fontFamily: "LemonMilk, sans-serif"
+                fontFamily: "LemonMilk, sans-serif",
               }}
             >
               Waybionic
