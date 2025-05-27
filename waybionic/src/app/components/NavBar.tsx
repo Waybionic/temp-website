@@ -45,19 +45,25 @@ export default function NavBar() {
           </svg>
         </button>
 
-        {/* Logo: centered on mobile, repositioned on desktop */}
-        <div
-          className="absolute left-1/2 transform -translate-x-1/2 
-                        md:relative md:ml-20 md:left-auto md:translate-x-0"
-        >
-          <a href="/">
+        {/* Logo and Brand Name */}
+        <div className="absolute left-4 md:relative md:left-0 flex items-center gap-2">
+          <a href="/" className="flex items-center gap-2">
             <Image
-              src="/images/logo.png" // Replace with your logo image path
+              src="/images/logo.png"
               alt="Logo"
               width={80}
               height={80}
               className="object-contain"
             />
+            <span 
+              className="text-2xl font-bold hidden md:block"
+              style={{ 
+                color: "var(--color-dark-purple)",
+                fontFamily: "LemonMilk, sans-serif"
+              }}
+            >
+              Waybionic
+            </span>
           </a>
         </div>
 
@@ -71,20 +77,20 @@ export default function NavBar() {
               <b>About</b>
             </span>
           </Link>
+          <Link href="/about#team">
+            <span
+              className="text-2xl hover:text-gray-200 transition"
+              style={{ color: "var(--color-dark-purple)" }}
+            >
+              <b>Our Team</b>
+            </span>
+          </Link>
           <Link href="/contact">
             <span
               className="text-2xl hover:text-gray-200 transition"
               style={{ color: "var(--color-dark-purple)" }}
             >
-              <b>Contact</b>
-            </span>
-          </Link>
-          <Link href="/join">
-            <span
-              className="text-2xl hover:text-gray-200 transition"
-              style={{ color: "var(--color-dark-purple)" }}
-            >
-              <b>Join</b>
+              <b>Contact Us</b>
             </span>
           </Link>
         </div>
@@ -101,20 +107,20 @@ export default function NavBar() {
               <b>About</b>
             </span>
           </Link>
+          <Link href="/about#team" onClick={() => setIsOpen(false)}>
+            <span
+              className="text-2xl hover:text-gray-200 transition"
+              style={{ color: "var(--color-dark-purple)" }}
+            >
+              <b>Our Team</b>
+            </span>
+          </Link>
           <Link href="/contact" onClick={() => setIsOpen(false)}>
             <span
               className="text-2xl hover:text-gray-200 transition"
               style={{ color: "var(--color-dark-purple)" }}
             >
-              <b>Contact</b>
-            </span>
-          </Link>
-          <Link href="/join" onClick={() => setIsOpen(false)}>
-            <span
-              className="text-2xl hover:text-gray-200 transition"
-              style={{ color: "var(--color-dark-purple)" }}
-            >
-              <b>Join</b>
+              <b>Contact Us</b>
             </span>
           </Link>
         </div>
