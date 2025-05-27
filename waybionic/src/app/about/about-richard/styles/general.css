@@ -45,7 +45,6 @@ button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
-
 .vert {
   display: flex;
   flex-direction: column;
@@ -86,4 +85,5 @@ h4, h5, h6 {
   --waybionic-pink: #FFB6C1;
   --waybionic-yellow: #FFD93D;
   --waybionic-light-purple: #9B8FCC;
+  --navbar-height: 80px;
 }
