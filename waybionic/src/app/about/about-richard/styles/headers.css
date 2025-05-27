@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #FFB6C1; /* Pink from brand */
+  height: 80px;
+  padding: 0 40px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-buttons button {
+  font-family: 'LemonMilk', 'Montserrat', sans-serif; /* Lemon Milk for headers */
+  background-color: transparent;
+  color: #4A3F7B;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  border: 2px solid #4A3F7B;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.nav-buttons button:hover {
+  background-color: #4A3F7B;
+  color: white;
+}

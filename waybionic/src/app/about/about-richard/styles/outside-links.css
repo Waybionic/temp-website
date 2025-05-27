@@ -1,0 +1,58 @@
+@font-face {
+  font-family: 'LemonMilk';
+  src: url('../fonts/LEMONMILK-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.outside-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFD93D; /* Yellow from brand */
+  width: 100%;
+  min-height: 250px;
+  padding: 40px;
+  gap: 30px;
+}
+
+.social-media-links-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-media-links {
+  font-family: 'LemonMilk', 'Montserrat', sans-serif; /* Lemon Milk for headers */
+  font-size: 28px;
+  font-weight: 700;
+  color: #4A3F7B;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.social-media-images-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.link-icons {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  filter: brightness(0) saturate(100%) invert(24%) sepia(15%) saturate(1836%) hue-rotate(223deg) brightness(91%) contrast(87%);
+}
+
+.link-icons:hover {
+  transform: scale(1.2) rotate(5deg);
+}
+
+/* Footer styling - REMOVED */
+.outside-links::after {
+  display: none;
+}

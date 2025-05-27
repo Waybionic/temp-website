@@ -1,0 +1,165 @@
+/* Font imports */
+@font-face {
+  font-family: 'TanNimbus';
+  src: url('../fonts/TanNimbus-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Timeline Section */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  background-color: #f5f5f5;
+}
+
+.timeline-header {
+  background-color: #7DDBB6; /* Mint green from brand */
+  width: 100%;
+  height: 120px;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-below {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #4A3F7B; /* Purple from brand */
+  width: 100%;
+  min-height: 400px;
+  padding: 60px 40px 40px;
+  position: relative;
+}
+
+.logo-square {
+  position: absolute;
+  top: 40px;
+  left: 60px;
+  width: 160px;
+  height: 160px;
+  z-index: 3;
+  background-color: #FFD93D; /* Yellow from brand */
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.title-section {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.club-name {
+  font-family: 'LemonMilk', 'Montserrat', sans-serif; /* Lemon Milk for headers */
+  font-size: 48px;
+  font-weight: 900;
+  color: white;
+  letter-spacing: 3px;
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+}
+
+.our-story {
+  font-family: 'TanNimbus', sans-serif; /* Tan Nimbus for subheaders */
+  font-size: 24px;
+  color: #FFB6C1; /* Pink accent */
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+/* Timeline Track */
+.timeline-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.timeline-track {
+  position: relative;
+  width: 100%;
+}
+
+.timeline-line {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.3);
+  z-index: 1;
+}
+
+.timeline-points {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.timeline-point {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  max-width: 200px;
+}
+
+.point-dot {
+  width: 40px;
+  height: 40px;
+  background-color: #FFB6C1; /* Pink from brand */
+  border: 4px solid white;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 3;
+  transition: all 0.3s ease;
+}
+
+.timeline-point.active .point-dot {
+  background-color: #FFD93D; /* Yellow for active state */
+  transform: scale(1.2);
+}
+
+.timeline-point:hover .point-dot {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.point-label {
+  font-family: 'TanNimbus', sans-serif;
+  font-size: 18px;
+  color: white;
+  line-height: 1.3;
+  font-weight: 400;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .logo-square {
+    width: 120px;
+    height: 120px;
+    left: 30px;
+    top: 30px;
+  }
+  
+  .club-name {
+    font-size: 36px;
+  }
+  
+  .timeline-points {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+  
+  .timeline-line {
+    display: none;
+  }
+}
