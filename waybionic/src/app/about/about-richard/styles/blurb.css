@@ -1,0 +1,67 @@
+.blurb{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFB6C1; /* Pink from brand */
+  width: 100%;
+  min-height: 800px;
+  padding: 100px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.blurb div{
+  position: absolute;
+  z-index: 1;
+}
+
+.ripped-page{
+  position: absolute;
+  width: 100%;
+  max-width: 1400px;
+  height: 100%;
+  min-height: 700px;
+  max-height: 1000px;
+  object-fit: contain;
+  opacity: 1;
+  z-index: 1;
+  filter: brightness(1.1) contrast(0.9);
+}
+
+.blurb-text-container{
+  position: relative;
+  z-index: 2;
+  max-width: 750px; /* Reduced to fit within paper */
+  padding: 60px 80px; /* Reduced padding */
+  /* Remove white background to show paper texture */
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  /* Center the text container */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.blurb-text{
+  font-family: 'Arimo', sans-serif;
+  font-size: 20px; /* Slightly smaller font */
+  line-height: 1.7;
+  color: #333;
+  text-align: center;
+  /* Add slight text shadow for better readability on paper */
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+  max-width: 100%;
+}
+
+.blurb-text strong {
+  color: #4A3F7B;
+  font-weight: 600;
+}
+
+/* Remove decorative elements since we have the paper as decoration */
+.blurb::before,
+.blurb::after {
+  display: none;
+}
