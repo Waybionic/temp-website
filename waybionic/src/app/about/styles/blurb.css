@@ -65,3 +65,18 @@
 .blurb::after {
   display: none;
 }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .blurb {
+    padding: 40px 20px;
+  }
+  
+  .blurb-text-container {
+    padding: 40px 30px;
+  }
+  
+  .blurb-text {
+    font-size: 18px;
+  }
+}

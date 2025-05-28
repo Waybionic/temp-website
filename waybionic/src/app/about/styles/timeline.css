@@ -1,8 +1,8 @@
 /* Font imports */
 @font-face {
   font-family: 'TanNimbus';
-  src: url('../fonts/TanNimbus-Regular.ttf') format('truetype');
-  font-weight: normal;
+  src: url('/fonts/TanNimbus-Bold.woff2') format('woff2');
+  font-weight: 400;
   font-style: normal;
 }
 

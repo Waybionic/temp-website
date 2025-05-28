@@ -1,16 +1,14 @@
 /* Font face declarations for Lemon Milk */
 @font-face {
   font-family: 'LemonMilk';
-  src: url('../fonts/LEMONMILK-Bold.otf') format('opentype'),
-       url('../fonts/LEMONMILK-Bold.ttf') format('truetype');
+  src: url('/fonts/LemonMilk-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'LemonMilk';
-  src: url('../fonts/LEMONMILK-Regular.otf') format('opentype'),
-       url('../fonts/LEMONMILK-Regular.ttf') format('truetype');
+  src: url('/fonts/LemonMilk-Bold.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
 }
