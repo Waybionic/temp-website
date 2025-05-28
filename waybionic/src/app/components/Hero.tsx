@@ -52,7 +52,7 @@ export default function Hero() {
             alt="Way Bionic Mascot"
             width={200}
             height={200}
-            className="absolute z-11 right-[11%] bottom-[1%] w-[18%] h-auto rotate-15"
+            className="absolute z-11 right-[11%] bottom-[1%] w-[18%] h-auto rotate-15 gear-rotate"
             priority
           />
 
@@ -71,8 +71,8 @@ export default function Hero() {
               fontSize: "clamp(2.5rem, 8vw, 6.5rem)",
             }}
           >
-            {/*Add lightning later*/}
-            Way⚡
+            Way
+            <span className="lightning-animate" style={{ display: 'inline-block', margin: '0 0.2em' }}>⚡</span>
             <br />
             Bionic
           </h1>

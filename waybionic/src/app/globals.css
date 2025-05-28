@@ -75,3 +75,54 @@ h1, h2, h3, h4, h5, h6 {
 .animate-fade-in {
   animation: fadeIn 0.15s ease-out forwards;
 }
+
+@keyframes lightningSurge {
+  0% {
+    filter: brightness(1.2) drop-shadow(0 0 6px #ffe066);
+    color: #ffe066;
+    opacity: 1;
+  }
+  20% {
+    filter: brightness(2) drop-shadow(0 0 16px #ffe066);
+    color: #fff700;
+    opacity: 1;
+  }
+  40% {
+    filter: brightness(1.2) drop-shadow(0 0 6px #ffe066);
+    color: #ffe066;
+    opacity: 1;
+  }
+  60% {
+    filter: brightness(1) drop-shadow(0 0 0 #ffe066);
+    color: #ffc400;
+    opacity: 0.8;
+  }
+  80% {
+    filter: brightness(1.5) drop-shadow(0 0 10px #ffe066);
+    color: #fff700;
+    opacity: 1;
+  }
+  100% {
+    filter: brightness(1.2) drop-shadow(0 0 6px #ffe066);
+    color: #ffe066;
+    opacity: 1;
+  }
+}
+
+.lightning-animate {
+  animation: lightningSurge 1.2s linear infinite;
+  will-change: filter, color, opacity;
+}
+
+@keyframes gearSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.gear-rotate {
+  animation: gearSpin 8s linear infinite;
+}
