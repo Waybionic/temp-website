@@ -34,14 +34,21 @@ export default function Hero() {
             3) Mascot, absolutely positioned and sized in % so it scales
                with the container. Adjust 'left', 'top', 'w-[X%]' to taste.
           */}
-          <Image
-            src="/images/mascot.png"
-            alt="Way Bionic Mascot"
-            width={300}
-            height={300}
-            className="absolute z-0 left-[-2%] top-[20%] w-[25%] h-auto"
-            priority
-          />
+          <div className="astronaut-animate-container absolute z-0 left-[-2%] top-[20%] w-[25%] h-auto flex flex-col items-center">
+            <Image
+              src="/images/mascot.png"
+              alt="Way Bionic Mascot"
+              width={300}
+              height={300}
+              className="w-full h-auto"
+              priority
+            />
+            <div className="astronaut-booster-flame">
+              <div className="flame-inner" />
+              <div className="flame-mid" />
+              <div className="flame-outer" />
+            </div>
+          </div>
 
           {/*
             3) Mascot, absolutely positioned and sized in % so it scales
@@ -52,7 +59,7 @@ export default function Hero() {
             alt="Way Bionic Mascot"
             width={200}
             height={200}
-            className="absolute z-11 right-[11%] bottom-[1%] w-[18%] h-auto rotate-15"
+            className="absolute z-11 right-[11%] bottom-[1%] w-[18%] h-auto rotate-15 gear-rotate"
             priority
           />
 
@@ -71,8 +78,8 @@ export default function Hero() {
               fontSize: "clamp(2.5rem, 8vw, 6.5rem)",
             }}
           >
-            {/*Add lightning later*/}
-            Way⚡
+            Way
+            <span className="lightning-animate" style={{ display: 'inline-block', margin: '0 0.2em' }}>⚡</span>
             <br />
             Bionic
           </h1>

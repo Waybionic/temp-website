@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="border-t p-8">
+    <footer className="border-t p-8" style={{ backgroundColor: "var(--color-peach)" }}>
       <div className="container mx-auto flex justify-center gap-6">
         <a
           href="https://www.instagram.com/waybionics/?hl=en"
