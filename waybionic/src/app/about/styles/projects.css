@@ -53,6 +53,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.arm:hover {
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
 }
 
 .arm img {
