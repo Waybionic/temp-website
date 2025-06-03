@@ -12,7 +12,7 @@ export default function Mission() {
           Our Mission
         </h2>
         <div className="relative flex flex-col items-center justify-center">
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 leading-relaxed max-w-[16rem] sm:max-w-sm md:max-w-2xl mx-auto px-2">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 leading-relaxed max-w-xs sm:max-w-md md:max-w-2xl mx-auto px-4">
             At <strong>WayBionic</strong>, we strive to revolutionize remote
             surgery by developing a bionic arm inspired by the challenges of
             performing medical procedures in space. Our goal is to create
