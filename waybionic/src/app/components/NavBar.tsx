@@ -90,9 +90,9 @@ export default function NavBar() {
 
       {/* Mobile Menu (shown when isOpen = true) */}
       <div
-        className={`md:hidden fixed left-0 right-0 top-[var(--navbar-height)] z-40 flex flex-col items-start space-y-4 px-6 pt-6 pb-6 bg-[var(--color-pink)] rounded-b-xl transition-all duration-500 ${
+        className={`md:hidden fixed left-0 right-0 top-[var(--navbar-height)] z-40 flex flex-col items-start space-y-4 px-6 pt-6 pb-6 bg-[var(--color-pink)] rounded-b-xl transition-opacity duration-500 ${
           isOpen
-            ? "animate-fade-in opacity-100 pointer-events-auto"
+            ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
         }`}
         style={{ width: "100vw" }}
