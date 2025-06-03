@@ -34,6 +34,7 @@ export default function About() {
           <div className="timeline-container">
             <div className="timeline-track">
               <div className="timeline-line"></div>
+              <div className="timeline-vertical-line"></div>
               <div className="timeline-points">
                 <div className="timeline-point">
                   <div className="point-dot"></div>
@@ -69,16 +70,7 @@ export default function About() {
         />
         <div className="blurb-text-container">
           <p className="blurb-text">
-            Our club is dedicated to developing a bionic arm for remote surgical applications, 
-            inspired by Dr. Sun&apos;s research on addressing medical emergencies, like collapsed 
-            lungs, in space. Her work explored performing surgeries from Earth via bionic arms 
-            to assist astronauts in orbit without needing an onboard doctor.
-            <br /><br />
-            Currently, we are focused on creating and refining the arm for surgical use, with 
-            plans to eventually test in space-simulated conditions once we secure the necessary 
-            equipment and funding.
-            <br /><br />
-            We appreciate your interest in our club!
+          Waybionic is an innovative student-led initiative engineering a remote-controlled bionic arm to perform emergency surgeries in space and extreme environments, eliminating the need for onboard surgeons and expanding access to life-saving care.
           </p>
         </div>
       </div>
@@ -98,14 +90,17 @@ export default function About() {
 
           <div className="vert project-description">
             <p className="pd">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute 
-              irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
-              pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia 
-              deserunt mollit anim id est laborum.
+              Our club is dedicated to developing a bionic arm for remote surgical applications, 
+              inspired by Dr. Sun&apos;s research on addressing medical emergencies, like collapsed 
+              lungs, in space. Her work explored performing surgeries from Earth via bionic arms 
+              to assist astronauts in orbit without needing an onboard doctor.
+              <br /><br />
+              Currently, we are focused on creating and refining the arm for surgical use, with 
+              plans to eventually test in space-simulated conditions once we secure the necessary 
+              equipment and funding.
+              <br /><br />
+              We appreciate your interest in our club!
             </p>
-
             <p>To Be Continued...</p>
           </div>
         </div>
