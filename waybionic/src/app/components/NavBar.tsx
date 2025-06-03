@@ -89,24 +89,29 @@ export default function NavBar() {
       </div>
 
       {/* Mobile Menu (shown when isOpen = true) */}
-      {isOpen && (
-        <div className="md:hidden flex flex-col items-start space-y-4 px-4 pt-4 pb-4 bg-[var(--color-pink)] rounded-b-xl mx-4 animate-fade-in">
-          {pages.map((page) => (
-            <Link
-              href={page.href}
-              key={page.name}
-              onClick={() => setIsOpen(false)}
+      <div
+        className={`md:hidden fixed left-0 right-0 top-[var(--navbar-height)] z-40 flex flex-col items-start space-y-4 px-6 pt-6 pb-6 bg-[var(--color-pink)] rounded-b-xl transition-all duration-500 ${
+          isOpen
+            ? "animate-fade-in opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+        style={{ width: "100vw" }}
+      >
+        {pages.map((page) => (
+          <Link
+            href={page.href}
+            key={page.name}
+            onClick={() => setIsOpen(false)}
+          >
+            <span
+              className="text-2xl hover:text-gray-200 transition"
+              style={{ color: "var(--color-dark-purple)" }}
             >
-              <span
-                className="text-2xl hover:text-gray-200 transition"
-                style={{ color: "var(--color-dark-purple)" }}
-              >
-                <b>{page.name}</b>
-              </span>
-            </Link>
-          ))}
-        </div>
-      )}
+              <b>{page.name}</b>
+            </span>
+          </Link>
+        ))}
+      </div>
     </nav>
   );
 }
