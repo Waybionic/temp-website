@@ -112,11 +112,11 @@
   }
 
   .blurb-text-container {
-    padding: 20px;
+    padding: 25px;
   }
 
   .blurb-text {
-    font-size: 25px;
+    font-size: 170%;
     text-align: center;
   }
 }
