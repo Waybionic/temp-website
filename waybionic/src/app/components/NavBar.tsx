@@ -3,6 +3,12 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
+const pages = [
+  { name: "About", href: "/about" },
+  { name: "Our Team", href: "/about#team" },
+  { name: "Contact Us", href: "/contact" },
+];
+
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -46,7 +52,7 @@ export default function NavBar() {
         </button>
 
         {/* Logo and Brand Name */}
-        <div className="absolute left-4 md:relative md:left-0 flex items-center gap-2">
+        <div className="absolute left-1/2 -translate-x-1/2 md:relative md:left-0 md:translate-x-0 flex items-center gap-2">
           <a href="/" className="flex items-center gap-2">
             <Image
               src="/images/logo.png"
@@ -55,11 +61,11 @@ export default function NavBar() {
               height={80}
               className="object-contain"
             />
-            <span 
+            <span
               className="text-2xl font-bold hidden md:block"
-              style={{ 
+              style={{
                 color: "var(--color-dark-purple)",
-                fontFamily: "LemonMilk, sans-serif"
+                fontFamily: "LemonMilk, sans-serif",
               }}
             >
               Waybionic
@@ -69,62 +75,43 @@ export default function NavBar() {
 
         {/* Desktop Nav Links (visible on md and up) */}
         <div className="hidden md:flex items-center space-x-10 mr-20">
-          <Link href="/about">
-            <span
-              className="text-2xl hover:text-gray-200 transition"
-              style={{ color: "var(--color-dark-purple)" }}
-            >
-              <b>About</b>
-            </span>
-          </Link>
-          <Link href="/about#team">
-            <span
-              className="text-2xl hover:text-gray-200 transition"
-              style={{ color: "var(--color-dark-purple)" }}
-            >
-              <b>Our Team</b>
-            </span>
-          </Link>
-          <Link href="/contact">
-            <span
-              className="text-2xl hover:text-gray-200 transition"
-              style={{ color: "var(--color-dark-purple)" }}
-            >
-              <b>Contact Us</b>
-            </span>
-          </Link>
+          {pages.map((page) => (
+            <Link href={page.href} key={page.name}>
+              <span
+                className="text-2xl hover:text-gray-200 transition"
+                style={{ color: "var(--color-dark-purple)" }}
+              >
+                <b>{page.name}</b>
+              </span>
+            </Link>
+          ))}
         </div>
       </div>
 
       {/* Mobile Menu (shown when isOpen = true) */}
-      {isOpen && (
-        <div className="md:hidden flex flex-col items-start space-y-4 px-4 pt-4 pb-4 bg-white rounded-b-xl mx-4 animate-fade-in">
-          <Link href="/about" onClick={() => setIsOpen(false)}>
+      <div
+        className={`md:hidden fixed left-0 right-0 top-[var(--navbar-height)] z-40 flex flex-col items-start space-y-4 px-6 pt-6 pb-6 bg-[var(--color-pink)] rounded-b-xl transition-opacity duration-500 ${
+          isOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+        style={{ width: "100vw" }}
+      >
+        {pages.map((page) => (
+          <Link
+            href={page.href}
+            key={page.name}
+            onClick={() => setIsOpen(false)}
+          >
             <span
               className="text-2xl hover:text-gray-200 transition"
               style={{ color: "var(--color-dark-purple)" }}
             >
-              <b>About</b>
+              <b>{page.name}</b>
             </span>
           </Link>
-          <Link href="/about#team" onClick={() => setIsOpen(false)}>
-            <span
-              className="text-2xl hover:text-gray-200 transition"
-              style={{ color: "var(--color-dark-purple)" }}
-            >
-              <b>Our Team</b>
-            </span>
-          </Link>
-          <Link href="/contact" onClick={() => setIsOpen(false)}>
-            <span
-              className="text-2xl hover:text-gray-200 transition"
-              style={{ color: "var(--color-dark-purple)" }}
-            >
-              <b>Contact Us</b>
-            </span>
-          </Link>
-        </div>
-      )}
+        ))}
+      </div>
     </nav>
   );
 }
