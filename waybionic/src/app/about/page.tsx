@@ -16,14 +16,8 @@ export default function About() {
       <div className="timeline">
         <div className="timeline-header"></div>
 
-        {/* yellow square logo */}
-        <Image 
-          src="/about/icons/richards_yellow_square.PNG" 
-          className="logo-square"
-          alt="Richards Yellow Square Logo"
-          width={200}
-          height={200}
-        />
+        {/* yellow square logo replaced with yellow diamond */}
+        <div className="yellow-diamond logo-square"></div>
 
         <div className="timeline-below">
           <div className="title-section">

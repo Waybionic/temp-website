@@ -16,7 +16,7 @@
 }
 
 .timeline-header {
-  background-color: #7DDBB6; /* Mint green from brand */
+  background-color: #7DDBB6; /* Green */
   width: 100%;
   height: 120px;
   position: relative;
@@ -27,11 +27,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #4A3F7B; /* Purple from brand */
+  background-color: #4A3F7B; /* Purple */
   width: 100%;
   min-height: 400px;
-  padding: 60px 40px 40px;
   position: relative;
+  padding-top: 60px;
 }
 
 .logo-square {
@@ -44,6 +44,22 @@
   background-color: #FFD93D; /* Yellow from brand */
   border-radius: 20px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.yellow-diamond.logo-square {
+  position: absolute;
+  top: 100px;
+  left: 60px;
+  width: 50px;
+  height: 50px;
+  background: #FFD93D;
+  transform: rotate(45deg);
+  border-radius: 18px;
+  box-shadow:
+    0 0 20px 7px #fff7c1,
+    0 0 40px 15px #ffe066;
+  z-index: 3;
+  display: block;
 }
 
 .title-section {
@@ -144,12 +160,25 @@
   display: none;
 }
 
+.yellow-diamond {
+  width: 50px;
+  height: 50px;
+  background: #FFD93D;
+  position: relative;
+  transform: rotate(45deg);
+  margin: 40px auto;
+  box-shadow:
+    0 0 30px 10px #fff7c1,
+    0 0 60px 20px #ffe066;
+  z-index: 2;
+}
+
 @media (max-width: 768px) {
   .logo-square {
-    width: 120px;
-    height: 120px;
+    width: 25px;
+    height: 25px;
     left: 30px;
-    top: 30px;
+    top: 40px;
   }
   
   .club-name {
@@ -176,5 +205,16 @@
     background-color: rgba(255, 255, 255, 0.3);
     z-index: 1;
     transform: translateX(-50%);
+  }
+
+  .yellow-diamond .logo-square {
+    width: 25px;
+    height: 25px;
+    top: 80px;
+    left: 30px;
+    border-radius: 10px;
+    box-shadow:
+      0 0 10px 3px #fff7c1,
+      0 0 20px 7px #ffe066;
   }
 }
