@@ -12,18 +12,19 @@ export default function Hero() {
       id="hero"
     >
       <div className="text-center space-y-4 z-10 px-4">
-        <h1 className="text-4xl sm:text-5xl font-bold bg-white text-purple-900 inline-block px-6 py-2 rounded-[10px] tracking-wider shadow-md">
+        <h1 className="text-6xl sm:text-7xl font-bold bg-white text-purple-900 inline-block px-10 py-4 rounded-[10px] tracking-wider shadow-md">
           CONTACT
         </h1>
-        <p className="text-pink-300 text-2xl font-bold tracking-wide">
+        <p className="text-pink-300 text-4xl font-bold tracking-wide">
           Need to reach us?
         </p>
-        <p className="text-green-300 text-xl font-mono">
-          waybionics<span className="text-white">@</span>gmail.com
-        </p>
+        <a href="mailto:waybionics@gmail.com" className="text-green-300 text-3xl font-mono hover:underline">
+          waybionics<span className="text-green-300">@</span>gmail.com
+        </a>
       </div>
     </section>
   );
 }
+ 
 
 
