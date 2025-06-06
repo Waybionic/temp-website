@@ -247,3 +247,10 @@ h1, h2, h3, h4, h5, h6 {
   animation: rock 2.2s cubic-bezier(0.4, 0.1, 0.6, 0.9) infinite;
   transform-origin: 60% 90%; /* bottom right-ish for a paper note effect */
 }
+
+@media (max-width: 632px) {
+  #hero {
+    background-size: 100% 100%; /* Or 'contain' if you prefer full image over stretch */
+    background-position: top center;
+  }
+}
