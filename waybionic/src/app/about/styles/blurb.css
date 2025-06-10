@@ -10,6 +10,16 @@
   overflow: hidden;
 }
 
+/* Add styling for the blurb image */
+.blurb img:first-child {
+  position: absolute;
+  width: 100%;
+  max-width: 1400px;
+  height: auto;
+  object-fit: contain;
+  z-index: 2;
+}
+
 .blurb div{
   position: absolute;
   z-index: 1;
@@ -71,6 +81,7 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .blurb {
+    min-height: 400px;
     padding: 40px 20px;
   }
   

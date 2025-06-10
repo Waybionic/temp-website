@@ -21,6 +21,12 @@ export default function About() {
 
         <div className="timeline-below">
           <div className="title-section">
+          <Image  
+          src="/about/icons/waybionic_header.PNG"
+          alt="WayBionic Header"
+          width={800}
+          height={600}
+        />
             <h1 className="club-name">WAYBIONIC</h1>
             <p className="our-story">our story</p>
           </div>
@@ -56,17 +62,12 @@ export default function About() {
 
       <div className="blurb">
         <Image 
-          className="ripped-page" 
-          src="/about/icons/ripped paper 3.PNG"
-          alt="Ripped Paper Background"
+          src="/about/icons/about_witharrows.PNG"
+          alt="About Blurb with Arrows"
           width={800}
           height={600}
         />
-        <div className="blurb-text-container">
-          <p className="blurb-text">
-          Waybionic is an innovative student-led initiative engineering a remote-controlled bionic arm to perform emergency surgeries in space and extreme environments, eliminating the need for onboard surgeons and expanding access to life-saving care.
-          </p>
-        </div>
+        
       </div>
 
       <div className="vert projects">
