@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import './styles/general.css';
-import './styles/headers.css';
 import './styles/timeline.css';
 import './styles/about-page.css';
 import './styles/blurb.css';
@@ -16,8 +15,6 @@ export default function About() {
       <div className="timeline">
         <div className="timeline-header"></div>
 
-        {/* yellow square logo replaced with yellow diamond */}
-        <div className="yellow-diamond logo-square"></div>
 
         <div className="timeline-below">
           <div className="title-section">
@@ -55,18 +52,13 @@ export default function About() {
       </div>
 
       <div className="blurb">
-        <Image 
-          className="ripped-page" 
-          src="/about/icons/ripped paper 3.PNG"
-          alt="Ripped Paper Background"
+        <img 
+          src="/about/icons/about_witharrows.PNG"
+          alt="About Blurb with Arrows"
           width={800}
           height={600}
+          style={{ objectFit: 'contain', display: 'block', margin: '0 auto', position: 'relative', zIndex: 2 }}
         />
-        <div className="blurb-text-container">
-          <p className="blurb-text">
-          Waybionic is an innovative student-led initiative engineering a remote-controlled bionic arm to perform emergency surgeries in space and extreme environments, eliminating the need for onboard surgeons and expanding access to life-saving care.
-          </p>
-        </div>
       </div>
 
       <div className="vert projects">

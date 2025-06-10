@@ -22,27 +22,7 @@ body {
   overflow-x: hidden;
 }
 
-button {
-  font-family: 'LemonMilk', 'Montserrat', sans-serif; /* Headers font */
-  font-weight: 700;
-  background-color: #FFB6C1; /* Pink from brand */
-  border: none;
-  color: #4A3F7B; /* Purple text */
-  padding: 12px 24px;
-  margin: 0 10px;
-  font-size: 16px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  cursor: pointer;
-  border-radius: 25px;
-  transition: all 0.3s ease;
-}
 
-button:hover {
-  background-color: #FFD93D; /* Yellow on hover */
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
 .vert {
   display: flex;
   flex-direction: column;
