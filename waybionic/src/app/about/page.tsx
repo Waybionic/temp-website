@@ -52,12 +52,12 @@ export default function About() {
       </div>
 
       <div className="blurb">
-        <img 
+        <Image 
           src="/about/icons/about_witharrows.PNG"
-          alt="About Blurb with Arrows"
-          width={800}
-          height={600}
-          style={{ objectFit: 'contain', display: 'block', margin: '0 auto', position: 'relative', zIndex: 2 }}
+          alt="About section with arrows"
+          width={1200}
+          height={900}
+          style={{ objectFit: 'contain', display: 'block', margin: '0 auto', position: 'relative' }}
         />
       </div>
 
