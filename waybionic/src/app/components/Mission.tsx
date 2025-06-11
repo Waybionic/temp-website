@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Mission() {
   return (
     <section
-      className="w-full min-h-screen flex flex-col items-center px-6 py-24 bg-pink-100"
+      className="w-full min-h-screen flex flex-col items-center px-6 py-24 bg-pink-100 overflow-x-hidden"
       id="mission"
     >
       <div className="max-w-4xl w-full text-center">
@@ -13,7 +13,7 @@ export default function Mission() {
           <h2 className="text-3xl font-extrabold text-gray-800 text-center absolute left-1/2 transform -translate-x-1/2">
             Our Mission
           </h2>
-          <div className="absolute right-4">
+          <div className="absolute right-1">
             <Image
               src="/images/est2024.png"
               alt="Paper Note"
