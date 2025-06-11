@@ -8,6 +8,7 @@ export default function Hero() {
       style={{
         backgroundImage: "url('/images/hero-bg.svg')",
         backgroundColor: "var(--color-deep-purple)",
+        minHeight: "calc(100vh - var(--navbar-height))",
       }}
       id="hero"
     >
@@ -16,16 +17,16 @@ export default function Hero() {
         2) px-4 adds a bit of padding on small screens.
       */}
       <div className="relative w-full max-w-[95%] sm:max-w-[640px] md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1200px] px-4 flex justify-center translate-y-[-15%] sm:translate-y-0">
-        <div className="relative w-full sm:w-fit translate-x-[5%] sm:translate-x-0">
+        <div className="relative w-full sm:w-fit flex justify-center">
           {/*
-            2) Paper note at 100% width so it scales to fill this container.
+            2) Paper note centered horizontally and scaled to fit container.
                height:auto preserves aspect ratio.
           */}
           <Image
-            src="/images/paper-note.png"
+            src="/images/waybionic_header.png"
             alt="Paper note"
-            width={1000}
-            height={1000}
+            width={650}
+            height={650}
             priority
             className="relative z-10 w-full h-auto"
           />
@@ -62,27 +63,6 @@ export default function Hero() {
             className="absolute z-11 right-[11%] bottom-[1%] w-[18%] h-auto rotate-15 gear-rotate"
             priority
           />
-
-          {/*
-            4) Text over the note, absolutely centered with transform.
-               We also use clamp() for responsive font sizing.
-          */}
-          <h1
-            className="absolute z-20 font-bold"
-            style={{
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              color: "var(--color-deep-purple)",
-              lineHeight: "1.2",
-              fontSize: "clamp(2.5rem, 8vw, 6.5rem)",
-            }}
-          >
-            Way
-            <span className="lightning-animate" style={{ display: 'inline-block', margin: '0 0.2em' }}>⚡</span>
-            <br />
-            Bionic
-          </h1>
         </div>
       </div>
     </section>
