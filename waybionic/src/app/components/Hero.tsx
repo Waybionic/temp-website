@@ -35,7 +35,7 @@ export default function Hero() {
             3) Mascot, absolutely positioned and sized in % so it scales
                with the container. Adjust 'left', 'top', 'w-[X%]' to taste.
           */}
-          <div className="astronaut-animate-container absolute z-0 left-[-2%] top-[20%] w-[25%] h-auto flex flex-col items-center">
+          <div className="astronaut-animate-container absolute z-11 left-[-6%] top-[28%] w-[25%] h-auto flex flex-col items-center">
             <Image
               src="/images/mascot.png"
               alt="Way Bionic Mascot"
@@ -60,7 +60,7 @@ export default function Hero() {
             alt="Way Bionic Mascot"
             width={200}
             height={200}
-            className="absolute z-11 right-[11%] bottom-[1%] w-[18%] h-auto rotate-15 gear-rotate"
+            className="absolute z-1 -right-[5%] bottom-[20%] w-[18%] h-auto rotate-15 gear-rotate"
             priority
           />
         </div>
