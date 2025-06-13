@@ -1,5 +1,5 @@
 "use client";
-
+ 
 export default function Project() {
   return (
     <section className="w-full flex flex-col items-center bg-gray-100 px-4 py-24">
