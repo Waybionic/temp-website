@@ -42,12 +42,14 @@ const hiring: boolean = true;
     <section
       className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-no-repeat bg-cover bg-top"
       style={{
-        backgroundColor: "#3D336A",
+        backgroundImage: "url('/images/contact_middle_bg.PNG')",
+        backgroundSize: "cover",
+        backgroundPosition: "center"
       }}
       id="contact"
     >
       <div className="min-h-screen flex flex-col w-full">
-        <main className="flex-1 container mx-auto px-4 py-16">
+        <main className="flex-1 container mx-auto px-4 py-16" style={{ marginTop: '-60px' }}>
           <div className="max-w-2xl mx-auto">
             <div className="bg-white rounded-lg shadow-lg p-8">
               <form onSubmit={handleSubmit} className="space-y-6">

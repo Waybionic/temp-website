@@ -13,9 +13,11 @@ export default function Hero() {
   
     >
       <div className="text-center space-y-4 z-10 px-4">
-        <h1 className="text-6xl sm:text-7xl font-bold bg-white text-purple-900 inline-block px-10 py-4 rounded-[10px] tracking-wider shadow-md">
-          CONTACT
-        </h1>
+        <img 
+          src="/images/contact_header.png" 
+          alt="Contact Header" 
+          className="mx-auto w-full max-w-[900px] h-auto"
+        />
         <p className="text-pink-300 text-4xl font-bold tracking-wide">
           Need to reach us?
         </p>

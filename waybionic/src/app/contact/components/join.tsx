@@ -10,12 +10,14 @@ export default function Join() {
     <section
       className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-no-repeat bg-cover bg-top"
       style={{
-        backgroundColor: "#3D336A", // purple background
+        backgroundImage: "url('/images/contact_end_bg.PNG')",
+        backgroundSize: "cover",
+        backgroundPosition: "center"
       }}
       id="join"
     >
       {/* White card */}
-      <div className="bg-white rounded-lg shadow-xl p-10 w-full max-w-3xl text-center">
+      <div className="bg-white rounded-lg shadow-xl p-10 w-full max-w-3xl text-center" style={{ marginTop: '-60px' }}>
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-6">
           Join Our Team
         </h1>
@@ -37,7 +39,7 @@ export default function Join() {
           </div>
         ) : (
           <div className="text-base sm:text-lg md:text-xl text-gray-700 space-y-2">
-            <p>We’re not accepting applications at the moment.</p>
+            <p>We're not accepting applications at the moment.</p>
             <p>Please check back soon or follow us for updates!</p>
           </div>
         )}
