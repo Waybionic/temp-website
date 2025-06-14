@@ -3,74 +3,115 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-const teams = [
+type Lead = { name: string; image: string };
+type Member = { name: string };
+
+const mascotImg = "/images/mascot.png"; // Use the attached image for all leads and members
+
+const teams: {
+	name: string;
+	icon: string;
+	image: string;
+	leads: Lead[];
+	members: Member[];
+	header?: string;
+}[] = [
+	{
+		name: "FINANCE",
+		icon: "💰",
+		image: "/images/finance.png",
+		leads: [
+			{ name: "YAHYA", image: mascotImg },
+		],
+		members: [
+			{ name: "Fatima" },
+		],
+		// header: "/images/finance_header.png"
+	},
 	{
 		name: "ELECTRICAL",
-		icon: "⚡", // Lightning bolt emoji
-		image: "/images/elect.png", // Replace with your actual image path
-		lead: "ZAYD",
+		icon: "⚡",
+		image: "/images/elect.png",
+		leads: [
+			{ name: "YASH", image: mascotImg },
+			{ name: "SAMIPYA", image: mascotImg },
+		],
 		members: [
-			{ name: "MEMBER1", image: "/images/robot.png" },
-			{ name: "MEMBER2", image: "/images/robot.png" },
-			{ name: "MEMBER3", image: "/images/robot.png" },
+			{ name: "Aly" },
+			{ name: "Arjun" },
+			{ name: "Conrad" },
+			{ name: "Daljit" },
+			{ name: "Julia" },
 		],
 	},
 	{
 		name: "SOFTWARE",
-		icon: "💻", // Laptop emoji
-		image: "/images/soft.png", // Replace with your actual image path
-		lead: "YASSIN",
+		icon: "💻",
+		image: "/images/soft.png",
+		leads: [
+			{ name: "YASSIN", image: mascotImg },
+			{ name: "MUJTABA", image: mascotImg },
+		],
 		members: [
-			{ name: "DEV1", image: "/images/laptop.png" },
-			{ name: "DEV2", image: "/images/laptop.png" },
-			{ name: "DEV3", image: "/images/laptop.png" },
+			{ name: "Alan" },
+			{ name: "Richard" },
+			{ name: "Korede" },
+			{ name: "Harold" },
+			{ name: "Grazia" },
+			{ name: "Faris" },
 		],
 	},
-  	{
+	{
 		name: "MECHANICAL",
-    icon: "⚙️", // Gear emoji
-		image: "/images/mech.png", // Replace with your actual image path
-		lead: "YASSIN",
+		icon: "⚙️",
+		image: "/images/mech.png",
+		leads: [
+			{ name: "PHILLIP", image: mascotImg },
+			{ name: "ZAYD", image: mascotImg },
+		],
 		members: [
-			{ name: "DEV1", image: "/images/laptop.png" },
-			{ name: "DEV2", image: "/images/laptop.png" },
-			{ name: "DEV3", image: "/images/laptop.png" },
+			{ name: "Humam" },
+			{ name: "Trina" },
 		],
 	},
-  	{
-		name: "FINANCE",
-    icon: "💰", // Money bag emoji
-		image: "/images/finance.png", // Replace with your actual image path
-		lead: "YAHYA",
-		members: [
-			{ name: "DEV1", image: "/images/laptop.png" },
-			{ name: "DEV2", image: "/images/laptop.png" },
-			{ name: "DEV3", image: "/images/laptop.png" },
-		],
-	},
-  	{
+	{
 		name: "MARKETING",
-    icon: "📈", // Chart increasing emoji
-		image: "/images/marketing.png", // Replace with your actual image path
-		lead: "TAYLOR",
+		icon: "📈",
+		image: "/images/marketing.png",
+		leads: [
+			{ name: "TAYLOR", image: mascotImg },
+			{ name: "ARIEL", image: mascotImg },
+		],
 		members: [
-			{ name: "DEV1", image: "/images/laptop.png" },
-			{ name: "DEV2", image: "/images/laptop.png" },
-			{ name: "DEV3", image: "/images/laptop.png" },
+			{ name: "Jaden" },
 		],
 	},
-  	{
+	{
 		name: "BIOMEDICAL",
-    icon: "🩺", // Stethoscope emoji
-		image: "/images/bio.png", // Replace with your actual image path
-		lead: "ABDUL KAREEM",
+		icon: "🩺",
+		image: "/images/bio.png",
+		leads: [
+			{ name: "ABDUL KAREEM", image: mascotImg },
+		],
 		members: [
-			{ name: "DEV1", image: "/images/laptop.png" },
-			{ name: "DEV2", image: "/images/laptop.png" },
-			{ name: "DEV3", image: "/images/laptop.png" },
+			{ name: "Ahmeel" },
+			{ name: "Bridget" },
+			{ name: "Harvir" },
+			{ name: "Mutaz" },
+			{ name: "Sana" },
 		],
 	},
 ];
+
+// Helper to get color for each team name and labels
+const teamColors: { [key: string]: string } = {
+	"FINANCE": "#B6F0E6",
+	"ELECTRICAL": "#C3B6F0",
+	"SOFTWARE": "#B6F0D6",
+	"MECHANICAL": "#F0D6B6",
+	"MARKETING": "#F0B6D6",
+	"BIOMEDICAL": "#D6F0B6",
+};
 
 export default function TeamCarousel() {
 	return (
@@ -82,10 +123,16 @@ export default function TeamCarousel() {
 				backgroundPosition: "center",
 			}}
 		>
+			<img
+				src="/images/team_header.PNG"
+				alt="Team Header"
+				className="mx-auto w-full max-w-[500px] h-auto mb-8 mt-8"
+			/>
 			<div
-				className="relative z-10 w-full max-w-xl px-4"
+				className="relative z-10 w-full max-w-2xl px-4"
 				style={{
 					background: "linear-gradient(to bottom, #443B75, transparent)",
+					marginBottom: '48px',
 				}}
 			>
 				<Carousel
@@ -148,50 +195,59 @@ export default function TeamCarousel() {
 					{teams.map((team, index) => (
 						<div key={index} className="space-y-8">
 							{/* Team Name with Icon */}
-							<div className="flex justify-center items-center gap-4">
-								<h2 className="text-5xl font-bold tracking-wider">
-									{team.name}
+							<div className="flex justify-center items-center gap-4 mt-12 max-w-full overflow-hidden">
+								<h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-wider text-center whitespace-nowrap" style={{ fontFamily: 'LemonMilk, sans-serif', color: teamColors[team.name] || '#fff' }}>
+									{team.name.toLowerCase()} team
 								</h2>
-								<span className="text-4xl lightning-animate">{team.icon}</span>
+								<span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl lightning-animate flex items-center">{team.icon}</span>
 							</div>
-
-							{/* Team Image */}
-							<div className="w-full h-96 bg-gray-800 rounded-xl flex items-center justify-center my-8 mx-auto border-2 border-gray-700 overflow-hidden">
+							{/* Finance header image for Finance team only */}
+							{team.header && (
+								<img
+									src={team.header}
+									alt="Finance Header"
+									className="mx-auto w-full max-w-[400px] h-auto mb-2"
+								/>
+							)}
+							{/* Team Image with Leads inside */}
+							<div className="w-full h-96 bg-gray-800 rounded-xl flex flex-col items-center justify-center my-8 mx-auto border-2 border-gray-700 overflow-hidden relative">
 								<img
 									src={team.image}
-									className="w-full h-full object-cover"
+									className="w-full h-full object-cover absolute top-0 left-0 z-0"
 									alt={team.name}
-									onError={(e) => {
-										(e.target as HTMLImageElement).style.display = "none";
-									}}
+									style={{ objectFit: 'cover', objectPosition: 'center' }}
 								/>
-							</div>
-
-							{/* Team Lead */}
-							<div className="space-y-2">
-								<div className="w-32 h-32 bg-gray-700 rounded-full mx-auto flex items-center justify-center text-2xl font-bold">
-									{team.lead.charAt(0)}
+								<div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
+									<span className="block font-bold" style={{ fontFamily: 'LemonMilk, sans-serif', fontSize: '2rem', marginTop: '90px', marginBottom: '24px', color: teamColors[team.name] || '#fff', textShadow: '0 2px 8px #443B75' }}>{team.leads.length === 1 ? 'lead:' : 'leads:'}</span>
+									<div className="flex flex-wrap justify-center items-center gap-6 mb-12">
+										{team.leads && team.leads.map((lead, i) => (
+											<div key={i} className="flex flex-col items-center">
+												<div className="w-20 h-20 bg-white bg-opacity-80 rounded-full flex items-center justify-center mb-2 overflow-hidden">
+													<span className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'LemonMilk, sans-serif' }}>{lead.name.charAt(0)}</span>
+												</div>
+												<span className="text-white text-base font-bold" style={{textShadow: '0 2px 8px #443B75'}}>{lead.name}</span>
+											</div>
+										))}
+									</div>
 								</div>
-								<p className="text-lg font-mono">LEAD: {team.lead}</p>
 							</div>
-
+							{/* Members label */}
+							<span className="block font-bold mb-6" style={{ fontFamily: 'LemonMilk, sans-serif', fontSize: '1.5rem', color: teamColors[team.name] || '#fff', textShadow: '0 2px 8px #443B75' }}>Members:</span>
 							{/* Members */}
 							<div className="flex justify-center gap-4 my-8 flex-wrap">
-								{team.members.map((member, i) => (
+								{team.members && team.members.map((member, i) => (
 									<div
 										key={i}
-										className="w-20 h-20 bg-gray-800 rounded-full flex flex-col items-center justify-center text-base font-mono border border-gray-600 overflow-hidden"
+										className="flex flex-col items-center"
 									>
-										<img
-											src={member.image}
-											alt={member.name}
-											className="w-full h-full object-cover rounded-full mb-1"
-											onError={e => {
-												const target = e.target as HTMLImageElement;
-												target.style.display = 'none';
-											}}
-										/>
-										<span className="text-xs mt-1">{member.name}</span>
+										<div className="w-20 h-20 bg-gray-800 rounded-full flex items-center justify-center text-base font-mono border border-gray-600 overflow-hidden">
+											<img
+												src={mascotImg}
+												alt={member.name}
+												className="w-full h-full object-cover rounded-full"
+											/>
+										</div>
+										<span className="block text-base mt-2 font-bold" style={{ color: '#fff', textShadow: '0 2px 8px #443B75', fontFamily: 'LemonMilk, sans-serif' }}>{member.name}</span>
 									</div>
 								))}
 							</div>
