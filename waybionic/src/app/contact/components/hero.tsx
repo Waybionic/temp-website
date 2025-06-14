@@ -3,18 +3,21 @@
 export default function Hero() {
   return (
     <section
-      className="relative w-full min-h-screen flex flex-col items-center justify-center text-white overflow-hidden"
+      id ="hero" className="relative w-full min-h-screen flex flex-col items-center justify-center text-white overflow-hidden"
       style={{
         backgroundImage: "url('/images/contact_stars_bg.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
+        
       }}
-      id="hero"
+  
     >
       <div className="text-center space-y-4 z-10 px-4">
-        <h1 className="text-6xl sm:text-7xl font-bold bg-white text-purple-900 inline-block px-10 py-4 rounded-[10px] tracking-wider shadow-md">
-          CONTACT
-        </h1>
+        <img 
+          src="/images/contact_header.png" 
+          alt="Contact Header" 
+          className="mx-auto w-full max-w-[900px] h-auto"
+        />
         <p className="text-pink-300 text-4xl font-bold tracking-wide">
           Need to reach us?
         </p>
