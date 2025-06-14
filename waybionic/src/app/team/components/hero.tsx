@@ -218,7 +218,7 @@ export default function TeamCarousel() {
 									style={{ objectFit: 'cover', objectPosition: 'center' }}
 								/>
 								<div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
-									<span className="block font-bold" style={{ fontFamily: 'LemonMilk, sans-serif', fontSize: '2rem', marginTop: '90px', marginBottom: '24px', color: teamColors[team.name] || '#fff', textShadow: '0 2px 8px #443B75' }}>{team.leads.length === 1 ? 'lead:' : 'leads:'}</span>
+									<span className="block font-bold mt-36 sm:mt-[90px]" style={{ fontFamily: 'LemonMilk, sans-serif', fontSize: '2rem', marginBottom: '24px', color: teamColors[team.name] || '#fff', textShadow: '0 2px 8px #443B75' }}>{team.leads.length === 1 ? 'lead:' : 'leads:'}</span>
 									<div className="flex flex-wrap justify-center items-center gap-6 mb-12">
 										{team.leads && team.leads.map((lead, i) => (
 											<div key={i} className="flex flex-col items-center">
