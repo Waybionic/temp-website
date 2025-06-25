@@ -142,6 +142,8 @@ export default function TeamCarousel() {
 					autoPlay={false}
 					emulateTouch
 					swipeable
+					swipeScrollTolerance={30}
+					preventMovementUntilSwipeScrollTolerance={true}
 					className="text-center"
 					renderArrowPrev={(onClickHandler, hasPrev, label) =>
 						hasPrev && (
