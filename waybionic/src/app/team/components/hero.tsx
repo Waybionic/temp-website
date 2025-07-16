@@ -25,6 +25,7 @@ const teams: {
 		],
 		members: [
 			{ name: "Fatima" },
+			{ name: "Aryaan" },
 		],
 		// header: "/images/finance_header.png"
 	},
@@ -37,10 +38,11 @@ const teams: {
 			{ name: "SAMIPYA", image: mascotImg },
 		],
 		members: [
-			{ name: "Aly" },
 			{ name: "Arjun" },
+			{ name: "Aryaan" },
 			{ name: "Conrad" },
 			{ name: "Daljit" },
+			{ name: "Ghassan" },
 			{ name: "Julia" },
 		],
 	},
@@ -55,10 +57,10 @@ const teams: {
 		members: [
 			{ name: "Alan" },
 			{ name: "Richard" },
+			{ name: "Farha" },
 			{ name: "Korede" },
 			{ name: "Harold" },
-			{ name: "Grazia" },
-			{ name: "Faris" },
+			{ name: "Hamza" },
 		],
 	},
 	{
@@ -72,6 +74,7 @@ const teams: {
 		members: [
 			{ name: "Humam" },
 			{ name: "Trina" },
+			{ name: "Abdul Qadeer" },
 		],
 	},
 	{
@@ -83,7 +86,7 @@ const teams: {
 			{ name: "ARIEL", image: mascotImg },
 		],
 		members: [
-			{ name: "Jaden" },
+			{ name: "Mariyah" },
 		],
 	},
 	{
