@@ -217,7 +217,11 @@ export default function TeamCarousel() {
 							{/* Team Name with Icon */}
 							<div className="flex justify-center items-center gap-4 mt-12 max-w-full overflow-hidden">
 								<h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-wider text-center whitespace-nowrap" style={{ fontFamily: 'LemonMilk, sans-serif', color: teamColors[team.name] || '#fff' }}>
-									{team.name === "EXECUTIVE TEAM" ? "executive team ⭐" : team.name.toLowerCase() + " team"}
+									{team.name === "EXECUTIVE TEAM" ? (
+										<>
+											executive team <span className="lightning-animate">⭐</span>
+										</>
+									) : team.name.toLowerCase() + " team"}
 								</h2>
 								{team.name !== "EXECUTIVE TEAM" && (
 									<span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl lightning-animate flex items-center">{team.icon}</span>

@@ -257,3 +257,17 @@ h1, h2, h3, h4, h5, h6 {
     background-position: top center;
   }
 }
+
+.glow-emoji {
+  filter: drop-shadow(0 0 8px #fff200) drop-shadow(0 0 16px #fff200);
+  animation: glow-pulse 1.5s infinite alternate;
+}
+
+@keyframes glow-pulse {
+  0% {
+    filter: drop-shadow(0 0 8px #fff200) drop-shadow(0 0 16px #fff200);
+  }
+  100% {
+    filter: drop-shadow(0 0 16px #fff200) drop-shadow(0 0 32px #fff200);
+  }
+}
