@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className="border-t p-8" style={{ backgroundColor: "var(--color-peach)" }}>
       <div className="container mx-auto flex justify-center gap-6">
         <a
-          href="https://www.instagram.com/waybionics/?hl=en"
+          href="https://www.instagram.com/waybionic/?hl=en"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
