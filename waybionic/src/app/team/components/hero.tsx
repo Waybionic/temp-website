@@ -87,8 +87,8 @@ const teams: {
 			{ name: "ZAYD", image: mascotImg },
 		],
 		members: [
-			{ name: "Humam" },
-			{ name: "Trina" },
+			{ name: "Hailey" },
+			{ name: "Kristina" },
 			{ name: "Abdul Qadeer" },
 		],
 	},
@@ -149,7 +149,7 @@ export default function TeamCarousel() {
 			<div
 				className="relative z-10 w-full max-w-2xl px-4"
 				style={{
-					background: "linear-gradient(to bottom, #443B75, transparent)",
+					background: "linear-gradient(to bottom, #564b89, transparent)",
 					marginBottom: '48px',
 				}}
 			>

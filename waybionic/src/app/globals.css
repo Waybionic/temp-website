@@ -253,8 +253,9 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 632px) {
   #hero {
-    background-size: 100% 100%; /* Or 'contain' if you prefer full image over stretch */
-    background-position: top center;
+    background-size: auto 100% !important;
+    background-repeat: repeat-x !important;
+    background-position: top center !important;
   }
 }
 
