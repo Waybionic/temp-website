@@ -18,7 +18,7 @@ export default function Hero() {
             <img
                 src="/images/contact_header.png"
                 alt="Contact Header"
-                className="mx-auto w-full max-w-[900px] xl:max-w-[700px] h-auto -mt-60 sm:-mt-100 md:-mt-20"
+                className="mx-auto w-full max-w-[900px] xl:max-w-[700px] 2xl:max-w-[900px] h-auto -mt-60 sm:-mt-100 md:-mt-20"
             />
             <p className="text-2xl md:text-4xl font-bold tracking-wide" style={{color: '#fc92b0'}}>
                 Need to reach us?
