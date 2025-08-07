@@ -8,7 +8,7 @@ const hiring: boolean = true;
 export default function Join() {
   return (
     <section
-        className="relative w-full flex justify-start bg-no-repeat bg-cover bg-top py-16 mt-60 md:-mt-40 lg:-mt-140 xl:mt-60 z-10 2xl:-mt-60"
+        className="relative w-full flex justify-start bg-no-repeat bg-cover bg-top py-16 mt-60 md:-mt-40 lg:-mt-140 xl:mt-60 z-10"
       style={{
         backgroundImage: "url('/images/contact_end_bg.PNG')",
         backgroundSize: "cover",
