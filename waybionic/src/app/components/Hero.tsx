@@ -16,7 +16,7 @@ export default function Hero() {
         1) A "scaling container" with max-w so it doesn't become huge on large screens.
         2) px-4 adds a bit of padding on small screens.
       */}
-      <div className="relative w-full max-w-[95%] sm:max-w-[640px] md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1200px] px-4 flex justify-center translate-y-[-15%] sm:translate-y-0">
+      <div className="relative w-full max-w-[95%] sm:max-w-[640px] md:max-w-[768px] lg:max-w-[1200px] xl:max-w-[1400px] 2xl:max-w-[1600px] px-4 flex justify-center translate-y-[-15%] sm:translate-y-0">
         <div className="relative w-full sm:w-fit flex justify-center">
           {/*
             2) Paper note centered horizontally and scaled to fit container.
@@ -25,10 +25,10 @@ export default function Hero() {
           <Image
             src="/images/waybionic_header.png"
             alt="Paper note"
-            width={650}
-            height={650}
+            width={5120}
+            height={5120}
             priority
-            className="relative z-10 w-full h-auto"
+            className="relative z-10 w-full sm:w-[600px] md:w-[700px] lg:w-[1000px] xl:w-[1296px] 2xl:w-[1200px] h-auto"
           />
 
           {/*
@@ -39,8 +39,8 @@ export default function Hero() {
             <Image
               src="/images/mascot.png"
               alt="Way Bionic Mascot"
-              width={300}
-              height={300}
+              width={900}
+              height={900}
               className="w-full h-auto"
               priority
             />
@@ -57,7 +57,7 @@ export default function Hero() {
           */}
           <Image
             src="/images/gear-temp.svg"
-            alt="Way Bionic Mascot"
+            alt="Gear"
             width={200}
             height={200}
             className="absolute z-1 -right-[5%] bottom-[20%] w-[18%] h-auto rotate-15 gear-rotate"
