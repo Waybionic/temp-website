@@ -39,7 +39,7 @@ export default function About() {
                     you<br />are<br />here!
                   </div>
                 </div>
-                <div className="timeline-point">
+                <div className="timeline-point secondary">
                   <div className="point-dot"></div>
                   <div className="point-label">
                     ...and<br />what&apos;s<br />next?

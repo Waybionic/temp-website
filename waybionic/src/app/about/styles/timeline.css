@@ -141,6 +141,11 @@
   transform: scale(1.2);
 }
 
+.timeline-point.secondary .point-dot {
+  background-color: #AAE9CD; /* trying out blue for third dot */
+  transform: scale(1.2);
+}
+
 .timeline-point:hover .point-dot {
   transform: scale(1.1);
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
