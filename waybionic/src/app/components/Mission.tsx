@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Mission() {
   return (
       <section
-          className="w-full min-h-screen flex items-center px-6 py-24 bg-pink-100 overflow-x-hidden overflow-y-hidden"
+          className="w-full flex flex-col items-center px-6 py-24 -pb-400 sm:pb-0 lg:pb-48 bg-pink-100 overflow-x-hidden"
           id="mission"
       >
         {/* made container a little bigger for larger screens */}
