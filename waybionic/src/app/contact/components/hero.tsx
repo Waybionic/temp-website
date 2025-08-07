@@ -3,9 +3,7 @@
 export default function Hero() {
   return (
     <section
-      id ="hero" className="relative w-full flex flex-col items-center justify-center text-white overflow-hidden -mt-0 sm:"
-
-        // -mt-32 sm:-mt-40 md:-mt-48 lg:-mt-56
+      id ="hero" className="relative w-full flex flex-col items-center justify-center text-white overflow-hidden -mt-0"
 
 
       style={{
@@ -20,7 +18,7 @@ export default function Hero() {
             <img
                 src="/images/contact_header.png"
                 alt="Contact Header"
-                className="mx-auto w-full max-w-[900px] h-auto -mt-60 sm:-mt-100 md:-mt-20"
+                className="mx-auto w-full max-w-[900px] xl:max-w-[700px] h-auto -mt-60 sm:-mt-100 md:-mt-20"
             />
             <p className="text-2xl md:text-4xl font-bold tracking-wide" style={{color: '#fc92b0'}}>
                 Need to reach us?
