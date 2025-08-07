@@ -2,6 +2,7 @@
 
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import React from "react";
 
 type Lead = { name: string; image: string };
 type Member = { name: string };
@@ -146,6 +147,22 @@ export default function TeamCarousel() {
 				alt="Team Header"
 				className="mx-auto w-full max-w-[500px] h-auto mb-8 mt-8"
 			/>
+
+
+			{/* Team */}
+			<div className="relative z-10 w-full h-full flex items-center justify-center px-8 mb-16">
+				<div className="relative flex flex-col items-center justify-center">
+					<p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-700 leading-relaxed max-w-sm sm:max-w-lg md:max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto px-4 text-center"
+					   style={{color: '#F5F7FD', fontFamily: 'Arimo, sans-serif'}}>
+
+						Since 2024, <strong>WayBionic</strong> has been driven by passionate innovators pushing boundaries in technology and medicine.
+						We're always looking for curious, driven individuals ready to make an impact. Explore our teams -- we're confident
+						there's a place for you here!
+					</p>
+				</div>
+			</div>
+
+
 			<div
 				className="relative z-10 w-full max-w-2xl px-4"
 				style={{
@@ -170,7 +187,7 @@ export default function TeamCarousel() {
 								onClick={onClickHandler}
 								title={label}
 								className="absolute left-0 top-1/3 -translate-y-1/2 bg-transparent text-white w-20 h-20 z-20 flex items-center justify-center hover:text-purple-400"
-								style={{ boxShadow: "none" }}
+								style={{boxShadow: "none"}}
 							>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
@@ -194,7 +211,7 @@ export default function TeamCarousel() {
 								onClick={onClickHandler}
 								title={label}
 								className="absolute right-0 top-1/3 -translate-y-1/2 bg-transparent text-white w-20 h-20 z-20 flex items-center justify-center hover:text-purple-400"
-								style={{ boxShadow: "none" }}
+								style={{boxShadow: "none"}}
 							>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
@@ -216,7 +233,11 @@ export default function TeamCarousel() {
 						<div key={index} className="space-y-8">
 							{/* Team Name with Icon */}
 							<div className="flex justify-center items-center gap-4 mt-12 max-w-full overflow-hidden">
-								<h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-wider text-center whitespace-nowrap" style={{ fontFamily: 'LemonMilk, sans-serif', color: teamColors[team.name] || '#fff' }}>
+								<h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-wider text-center whitespace-nowrap"
+									style={{
+										fontFamily: 'LemonMilk, sans-serif',
+										color: teamColors[team.name] || '#fff'
+									}}>
 									{team.name === "EXECUTIVE TEAM" ? (
 										<>
 											executive team <span className="lightning-animate">⭐</span>
@@ -224,46 +245,73 @@ export default function TeamCarousel() {
 									) : team.name.toLowerCase() + " team"}
 								</h2>
 								{team.name !== "EXECUTIVE TEAM" && (
-									<span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl lightning-animate flex items-center">{team.icon}</span>
+									<span
+										className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl lightning-animate flex items-center">{team.icon}</span>
 								)}
 							</div>
 							{/* Executive team header image for Executive team only */}
 							{team.name === "EXECUTIVE TEAM" && (
-								<div className="w-full h-96 bg-gray-800 rounded-xl flex flex-col items-center justify-center my-8 mx-auto border-2 border-gray-700 overflow-hidden relative">
+								<div
+									className="w-full h-96 bg-gray-800 rounded-xl flex flex-col items-center justify-center my-8 mx-auto overflow-hidden relative"
+									style={{
+										border: '2px solid #3c346c',
+										outline: 'none'
+									}}
+								>
 									<img
 										src={team.image}
 										className="w-full h-full object-cover absolute top-0 left-0 z-0"
 										alt="Executive Team Header"
-										style={{ objectFit: 'cover', objectPosition: 'center' }}
+										style={{objectFit: 'cover', objectPosition: 'center'}}
 									/>
-									<div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
+									<div
+										className="relative z-10 flex flex-col items-center justify-center w-full h-full">
 										<div className="flex flex-col items-center mb-12 mt-36 sm:mt-[90px]">
-											<div className="w-20 h-20 bg-white bg-opacity-80 rounded-full flex items-center justify-center mb-2 overflow-hidden">
-												<span className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'LemonMilk, sans-serif' }}>L</span>
+											<div
+												className="w-20 h-20 bg-white bg-opacity-80 rounded-full flex items-center justify-center mb-2 overflow-hidden">
+												<span className="text-4xl font-bold text-gray-900"
+													  style={{fontFamily: 'LemonMilk, sans-serif'}}>L</span>
 											</div>
-											<span className="text-white text-base font-bold" style={{textShadow: '0 2px 8px #443B75'}}>Lina</span>
+											<span className="text-white text-base font-bold"
+												  style={{textShadow: '0 2px 8px #443B75'}}>Lina</span>
 										</div>
 									</div>
 								</div>
 							)}
 							{/* Team Image with Leads inside */}
 							{team.name !== "EXECUTIVE TEAM" && (
-								<div className="w-full h-96 bg-gray-800 rounded-xl flex flex-col items-center justify-center my-8 mx-auto border-2 border-gray-700 overflow-hidden relative">
+								<div
+									className="w-full h-96 bg-gray-800 rounded-xl flex flex-col items-center justify-center my-8 mx-auto overflow-hidden relative"
+									style={{
+										border: '2px solid #3c346c',
+										outline: 'none'
+									}}
+								>
 									<img
 										src={team.image}
 										className="w-full h-full object-cover absolute top-0 left-0 z-0"
 										alt={team.name}
-										style={{ objectFit: 'cover', objectPosition: 'center' }}
+										style={{objectFit: 'cover', objectPosition: 'center'}}
 									/>
-									<div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
-										<span className="block font-bold mt-36 sm:mt-[90px]" style={{ fontFamily: 'LemonMilk, sans-serif', fontSize: '2rem', marginBottom: '24px', color: teamColors[team.name] || '#fff', textShadow: '0 2px 8px #443B75' }}>{team.leads.length === 1 ? 'lead:' : 'leads:'}</span>
+									<div
+										className="relative z-10 flex flex-col items-center justify-center w-full h-full">
+										<span className="block font-bold mt-36 sm:mt-[90px]" style={{
+											fontFamily: 'LemonMilk, sans-serif',
+											fontSize: '2rem',
+											marginBottom: '24px',
+											color: teamColors[team.name] || '#fff',
+											textShadow: '0 2px 8px #443B75'
+										}}>{team.leads.length === 1 ? 'lead:' : 'leads:'}</span>
 										<div className="flex flex-wrap justify-center items-center gap-6 mb-12">
 											{team.leads && team.leads.map((lead, i) => (
 												<div key={i} className="flex flex-col items-center">
-													<div className="w-20 h-20 bg-white bg-opacity-80 rounded-full flex items-center justify-center mb-2 overflow-hidden">
-														<span className="text-4xl font-bold text-gray-900" style={{ fontFamily: 'LemonMilk, sans-serif' }}>{lead.name.charAt(0)}</span>
+													<div
+														className="w-20 h-20 bg-white bg-opacity-80 rounded-full flex items-center justify-center mb-2 overflow-hidden">
+														<span className="text-4xl font-bold text-gray-900"
+															  style={{fontFamily: 'LemonMilk, sans-serif'}}>{lead.name.charAt(0)}</span>
 													</div>
-													<span className="text-white text-base font-bold" style={{textShadow: '0 2px 8px #443B75'}}>{lead.name}</span>
+													<span className="text-white text-base font-bold"
+														  style={{textShadow: '0 2px 8px #443B75'}}>{lead.name}</span>
 												</div>
 											))}
 										</div>
@@ -271,7 +319,12 @@ export default function TeamCarousel() {
 								</div>
 							)}
 							{/* Vice Presidents label for Executive team, Members for others */}
-							<span className="block font-bold mb-6" style={{ fontFamily: 'LemonMilk, sans-serif', fontSize: '1.5rem', color: teamColors[team.name] || '#fff', textShadow: '0 2px 8px #443B75' }}>{team.name === "EXECUTIVE TEAM" ? 'Vice Presidents:' : 'Members:'}</span>
+							<span className="block font-bold mb-6" style={{
+								fontFamily: 'LemonMilk, sans-serif',
+								fontSize: '1.5rem',
+								color: teamColors[team.name] || '#fff',
+								textShadow: '0 2px 8px #443B75'
+							}}>{team.name === "EXECUTIVE TEAM" ? 'Vice Presidents:' : 'Members:'}</span>
 							{/* Vice Presidents or Members */}
 							<div className="flex justify-center gap-4 my-8 flex-wrap">
 								{team.members && team.members.map((member, i) => (
@@ -279,14 +332,19 @@ export default function TeamCarousel() {
 										key={i}
 										className="flex flex-col items-center"
 									>
-										<div className="w-20 h-20 bg-gray-800 rounded-full flex items-center justify-center text-base font-mono border border-gray-600 overflow-hidden">
+										<div
+											className="w-20 h-20 bg-gray-800 rounded-full flex items-center justify-center text-base font-mono border border-gray-600 overflow-hidden">
 											<img
 												src={mascotImg}
 												alt={member.name}
 												className="w-full h-full object-cover rounded-full"
 											/>
 										</div>
-										<span className="block text-base mt-2 font-bold" style={{ color: '#fff', textShadow: '0 2px 8px #443B75', fontFamily: 'LemonMilk, sans-serif' }}>{member.name}</span>
+										<span className="block text-base mt-2 font-bold" style={{
+											color: '#fff',
+											textShadow: '0 2px 8px #443B75',
+											fontFamily: 'LemonMilk, sans-serif'
+										}}>{member.name}</span>
 									</div>
 								))}
 							</div>
