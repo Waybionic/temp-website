@@ -40,7 +40,7 @@ const hiring: boolean = true;
 
   return (
     <section
-        className="relative w-full flex items-center justify-center overflow-hidden bg-no-repeat bg-cover bg-top py-16 -mt-90 sm:-mt-110 md:-mt-100 lg:-mt-100 xl:-mt-85"
+        className="relative w-full flex items-center justify-center overflow-hidden bg-no-repeat bg-cover bg-top py-16 -mt-90 sm:-mt-110 md:-mt-100 lg:-mt-100 xl:-mt-50"
 
       style={{
         backgroundImage: "url('/images/contact_middle_bg.PNG')",
