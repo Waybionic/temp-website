@@ -100,6 +100,7 @@ const teams: {
 		leads: [
 			{ name: "TAYLOR", image: mascotImg },
 			{ name: "ARIEL", image: mascotImg },
+			{ name: "ARWA", image: mascotImg },
 		],
 		members: [
 			{ name: "Mariyah" },
@@ -110,7 +111,7 @@ const teams: {
 		icon: "🩺",
 		image: "/images/bio.png",
 		leads: [
-			{ name: "ABDUL KAREEM", image: mascotImg },
+			{ name: "ABDUL KARIM", image: mascotImg },
 		],
 		members: [
 			{ name: "Ahmeel" },
