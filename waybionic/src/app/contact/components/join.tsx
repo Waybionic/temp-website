@@ -1,7 +1,7 @@
 "use client";
 
 const link: string =
-  "https://docs.google.com/forms/d/e/1FAIpQLSeS5s4Gzfai64ZODzWHte9fWxVwGhGhLW_A4QkwAIlnImgWQQ/viewform";
+  "https://docs.google.com/forms/d/e/1FAIpQLSfgEDFG3pK_Or54qx5k961Fqo1ZVYrlkG5mX9f-uSUbF6k62Q/viewform";
 
 const hiring: boolean = true;
 
