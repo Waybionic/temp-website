@@ -1,31 +1,71 @@
 "use client";
 
+import { Yesteryear } from "next/font/google";
 import { useState } from "react";
+import Student from "./Student";
+import NonStudent from "./NonStudent";
 
 export default function Contact() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [typeOfContact, setTypeOfContact] = useState("Student");
+  const [yearOfStudy, setYearOfStudy] = useState("1st");
+  const [fieldOfStudy, setFieldOfStudy] = useState("Electrical Engineering");
+  const [clubInfo, setClubInfo] = useState("");
+  const [businessInfo, setBusinessInfo] = useState("");
+  const [professionInfo, setProfessionInfo] = useState("");
+  const [sponsershipInfo, setSponsershipInfo] = useState("");
+  const [partnershipInfo, setPartnershipInfo] = useState("");
+  const [otherInfo, setOtherInfo] = useState("");
   const [subject, setSubject] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState("");
 
-
   const link: string =
-  "https://docs.google.com/forms/d/e/1FAIpQLSfh3q89PTxHesr0P7nelygxXIYYP24kRp_27Yb5mSbyxfiJCQ/viewform?usp=header";
+    "https://docs.google.com/forms/d/e/1FAIpQLSfh3q89PTxHesr0P7nelygxXIYYP24kRp_27Yb5mSbyxfiJCQ/viewform?usp=header";
 
-const hiring: boolean = true;
+  const hiring: boolean = true;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const fullName = `${firstName} ${lastName}`.trim();
+    const fullInfo = `${firstName} ${lastName} - ${typeOfContact}${typeOfContact === "Student" ? (` - ${yearOfStudy} Year - ${fieldOfStudy} (Field Of Study / Field of Interest)`) : ``}`;
 
+    let messageDirect;
 
+    switch(typeOfContact) {
+      case "Business":
+        messageDirect = businessInfo;
+        break;
+      case "Club":
+        messageDirect = clubInfo;
+        break;
+      case "Industry Professional":
+        messageDirect = professionInfo;
+        break;
+      case "Professor":
+        messageDirect = professionInfo;
+        break;
+      case "Partnership":
+        messageDirect = partnershipInfo;
+        break;
+      case "Sponsorship":
+        messageDirect = sponsershipInfo;
+        break;
+      case "Other":
+        messageDirect = otherInfo;
+        break;
+      case "Student":
+      default:
+        messageDirect = message;
+        break;
+    }
+    
     const mailtoLink = `mailto:waybionics@gmail.com?subject=${encodeURIComponent(
-      subject || "Contact Form Submission"
-    )}&body=${encodeURIComponent(message)}%0D%0A%0D%0AFrom: ${encodeURIComponent(
-      fullName
+      (`${subject} - ${fullInfo}`) || "Contact Form Submission"
+    )}&body=${encodeURIComponent(messageDirect)}%0D%0A%0D%0AFrom: ${encodeURIComponent(
+      fullInfo
     )} (${encodeURIComponent(email)})`;
 
     window.location.href = mailtoLink;
@@ -36,11 +76,20 @@ const hiring: boolean = true;
     setEmail("");
     setMessage("");
     setStatus("Message opened in your default email client!");
+    setTypeOfContact("Student");
+    setYearOfStudy("1st");
+    setFieldOfStudy("Electrical Engineering");
+    setClubInfo("");
+    setBusinessInfo("");
+    setProfessionInfo("");
+    setSponsershipInfo("");
+    setPartnershipInfo("");
+    setOtherInfo("");
   };
 
   return (
     <section
-        className="relative w-full flex items-center justify-center overflow-hidden bg-no-repeat bg-cover bg-top py-16 -mt-90 sm:-mt-110 md:-mt-100 lg:-mt-100 xl:-mt-50"
+      className="relative w-full flex items-center justify-center overflow-hidden bg-no-repeat bg-cover bg-top py-16 -mt-90 sm:-mt-110 md:-mt-100 lg:-mt-100 xl:-mt-50"
 
       style={{
         backgroundImage: "url('/images/contact_middle_bg.PNG')",
@@ -90,21 +139,31 @@ const hiring: boolean = true;
                 </div>
                 <div>
                   <label
-                    htmlFor="subject"
+                    htmlFor="typeOfContact"
                     className="block text-sm font-medium text-gray-700 mb-2"
                   >
-                    Subject
+                    Type Of Contact
                   </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    value={subject}
-                    onChange={(e) => setSubject(e.target.value)}
+                  <select
+                    id="typeOfContact"
+                    value={typeOfContact}
+                    onChange={(e) => (setTypeOfContact(e.target.value))}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Subject of email"
-                  />
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 "
+                  >
+                    <option value="Student" className="text-gray-700 mb-2">Student</option>
+                    <option value="Club" className="text-gray-700 mb-2">Club</option>
+                    <option value="Business" className="text-gray-700 mb-2">Business</option>
+                    <option value="Industry Professional" className="text-gray-700 mb-2">Industry Professional</option>
+                    <option value="Professor" className="text-gray-700 mb-2">Professor</option>
+                    <option value="Partnership" className="text-gray-700 mb-2">Partnership</option>
+                    <option value="Sponsorship" className="text-gray-700 mb-2">Sponsorship</option>
+                    <option value="Other" className="text-gray-700 mb-2">Other</option>
+                  </select>
                 </div>
+
+                {typeOfContact === "Student" ? (<Student yearOfStudy={yearOfStudy} setYearOfStudy={setYearOfStudy} fieldOfStudy={fieldOfStudy} setFieldOfStudy={setFieldOfStudy} />) : (<></>)}
+
                 <div>
                   <label
                     htmlFor="email"
@@ -122,23 +181,44 @@ const hiring: boolean = true;
                     placeholder="your.email@example.com"
                   />
                 </div>
+
                 <div>
                   <label
-                    htmlFor="message"
+                    htmlFor="subject"
                     className="block text-sm font-medium text-gray-700 mb-2"
                   >
-                    Message
+                    Subject
                   </label>
-                  <textarea
-                    id="message"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
+                  <input
+                    type="text"
+                    id="subject"
+                    value={subject}
+                    onChange={(e) => setSubject(e.target.value)}
                     required
-                    rows={6}
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Type your message here..."
+                    placeholder="Subject of email"
                   />
                 </div>
+                {typeOfContact === "Student" ? (
+                  <div>
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      Please leave your student message
+                    </label>
+                    <textarea
+                      id="message"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      required
+                      rows={6}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      placeholder="Type your message here..."
+                    />
+                  </div>
+                ) : <></>}
+                {(typeOfContact !== "Student" && typeOfContact) ? (<NonStudent typeOfContact={typeOfContact} setClubInfo={setClubInfo} setBusinessInfo={setBusinessInfo} setProfessionInfo={setProfessionInfo} setSponsershipInfo={setSponsershipInfo} setPartnershipInfo={setPartnershipInfo} clubInfo={clubInfo} businessInfo={businessInfo} professionInfo={professionInfo} sponsershipInfo={sponsershipInfo} partnershipInfo={partnershipInfo} otherInfo={otherInfo} message={message} setMessage={setMessage} setOtherInfo={setOtherInfo} />) : (<></>)}
                 <button
                   type="submit"
                   style={{ backgroundColor: "var(--color-pink)" }}
