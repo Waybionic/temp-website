@@ -1,6 +1,7 @@
 import React from 'react'
 import NonStudentMessage from './NonStudentMessage'
 import NonStudentInput from './NonStudentInput'
+import emailjs from "@emailjs/browser";
 
 const NonStudent = ({ typeOfContact, setClubInfo, setBusinessInfo, setProfessionInfo, setSponsershipInfo, setPartnershipInfo, setOtherInfo, clubInfo, businessInfo, professionInfo, sponsershipInfo, partnershipInfo, message, setMessage, otherInfo }) => {
   const getStateValue = () => {
