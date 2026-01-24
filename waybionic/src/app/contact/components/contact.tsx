@@ -29,8 +29,7 @@ export default function Contact() {
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState("");
 
-  const link: string =
-    "https://docs.google.com/forms/d/e/1FAIpQLSfh3q89PTxHesr0P7nelygxXIYYP24kRp_27Yb5mSbyxfiJCQ/viewform?usp=header";
+  const link = process.env.NEXT_PUBLIC_GOOGLE_FORM;
 
   const hiring: boolean = true;
 
@@ -38,7 +37,7 @@ export default function Contact() {
 
     e.preventDefault();
 
-    const fullInfo = `${firstName} ${lastName} - ${typeOfContact}${typeOfContact === "Student" ? (` - ${yearOfStudy} Year - ${fieldOfStudy} (Field Of Study / Field of Interest)`) : ``}`;
+    const fullInfo = `${firstName} ${lastName} - ${typeOfContact}${typeOfContact === "Student" ? (` - ${yearOfStudy} Year - ${fieldOfStudy}`) : ``}`;
 
     let messageDirect;
 
