@@ -18,7 +18,7 @@ export default function NavBar() {
       className="fixed top-0 left-0 w-full z-50 bg-white pt-[env(safe-area-inset-top)]"
       style={{ height: "var(--navbar-height)" }}
     >
-      <div className="relative flex items-center justify-between px-4 py-4 h-full">
+      <div className="relative flex items-center justify-between px-4 py-2 h-full">
         {/* Hamburger Button (visible on small screens) */}
         <button
           className="md:hidden p-2"
@@ -26,7 +26,7 @@ export default function NavBar() {
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle Menu"
         >
-          <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+          <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
             {isOpen ? (
               <path
                 fillRule="evenodd"
@@ -54,7 +54,7 @@ export default function NavBar() {
         </button>
 
         {/* Logo and Brand Name */}
-        <div className="absolute left-1/2 -translate-x-1/2 md:relative md:left-0 md:translate-x-0 flex items-center gap-2">
+        <div className="absolute left-1/2 -translate-x-1/2 md:relative md:left-0 md:translate-x-0 md:ml-2 flex items-center gap-2">
           <a href="/" className="flex items-center gap-2">
             <Image
               src="/images/logo.png"
@@ -78,7 +78,7 @@ export default function NavBar() {
         </div>
 
         {/* Desktop Nav Links (visible on md and up) */}
-        <div className="hidden md:flex items-center space-x-10 mr-20">
+        <div className="hidden md:flex items-center space-x-8 mr-12">
           {pages.map((page) => (
             <Link href={page.href} key={page.name}>
               <span

@@ -7,7 +7,7 @@
   --color-peach: #ffdca0;
   --color-dark-purple: #443b75;
   --color-deep-purple: #3d336a;
-  --color-pink: #fc92b0;
+  --color-pink: #f3b5c5;
   --color-light-purple: #a18fe7;
   --color-mint: #a6e6ca;
 }
@@ -22,7 +22,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #ffffff;
   }
 }
 
@@ -55,7 +55,7 @@ body::-webkit-scrollbar {
 
 section {
   width: 100%;
-  min-height: 100vh; /* each section spans at least one viewport height */
+  min-height: 90vh; /* each section spans at least one viewport height */
   display: flex;
   flex-direction: column;
   justify-content: center;
