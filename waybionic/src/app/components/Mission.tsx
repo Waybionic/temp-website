@@ -1,77 +1,82 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import dynamic from 'next/dynamic';
+
+const CADViewer = dynamic(() => import('./CADViewer'), { ssr: false });
 
 export default function Mission() {
   return (
       <section
-          className="w-full flex flex-col items-center px-6 py-24 -pb-400 sm:pb-0 lg:pb-48 bg-pink-100 overflow-x-hidden"
+          className="w-full flex flex-col items-center py-24 -pb-400 sm:pb-12 lg:pb-24 bg-pink-100 overflow-x-hidden px-6 sm:px-0"
           id="mission"
       >
-        {/* made container a little bigger for larger screens */}
-        <div className="max-w-4xl lg:max-w-5xl xl:max-w-6xl w-full text-center">
-          {/* Mobile layout: header with est2024 image positioned to the right */}
-          <div className="relative flex items-center justify-center h-24 mb-8 sm:hidden">
+        <div className="w-full sm:max-w-none max-w-4xl">
+          {/* Mobile layout: header */}
+          <div className="relative flex items-center justify-center h-24 mb-8 sm:hidden px-6">
             <h2 className="text-3xl font-extrabold text-gray-800 text-center absolute left-1/2 transform -translate-x-1/2"  style={{ color: '#3c356c' }}>
               Our Mission
             </h2>
-            <div className="absolute right-1">
-              <Image
-                  src="/images/est2024.png"
-                  alt="Paper Note"
-                  width={1000}
-                  height={160}
-                  className="w-28 h-28 object-contain drop-shadow-lg animate-rock"
-                  unoptimized
-              />
-            </div>
           </div>
 
-
-          <h2 className="hidden sm:block text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-extrabold mb-8 text-[#3c356c]"  style={{ color: '#3c356c' }}>
-            Our Mission
-          </h2>
-
-          <div className="relative flex flex-col items-center justify-center">
-            <p className="text-[#292448] text-base  sm:text-lg md:text-xl lg:text-2xl xl:text-3xl leading-relaxed max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto px-4"  style={{ color: '#292448' }}>
+          <div className="sm:hidden relative rounded-3xl p-6 mx-6 max-w-xs" style={{ backgroundColor: '#F3BECD' }}>
+            <Image
+                src="/images/est2024.png"
+                alt="Paper Note"
+                width={1000}
+                height={160}
+                className="w-20 h-20 object-contain drop-shadow-lg animate-rock absolute -top-10 -left-6 z-10"
+                unoptimized
+            />
+            
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed text-center" style={{ color: '#292448' }}>
               At <strong>WayBionic</strong>, we strive to revolutionize remote
               surgery by developing a bionic arm inspired by the challenges of
               performing medical procedures in space. Our goal is to create
               innovative, reliable, and precise tools that empower both astronauts
               and doctors, whether in orbit or on Earth.
             </p>
+          </div>
 
-            {/* Pencilbionic image for mobile: below and to the right of text */}
-            <div className="relative w-full flex justify-end -mt-3 sm:hidden">
-              <Image
-                  src="/images/pencilbionic.png"
-                  alt="WayBionic Mascot with Pencil"
-                  width={500}
-                  height={500}
-                  className="w-26 h-26 object-contain drop-shadow-lg"
-                  priority
-              />
+          <div className="hidden sm:flex sm:justify-between sm:items-center sm:gap-12 lg:gap-16 sm:pl-8 sm:pr-16 md:pl-10 md:pr-20 lg:pl-12 lg:pr-24 xl:pl-14 xl:pr-28">
+            <div className="flex-1 h-96 md:h-[500px] lg:h-[600px] flex items-center justify-center max-w-lg -mt-4 md:-mt-6 lg:-mt-8">
+              <CADViewer modelPath="/models/zi.glb" />
             </div>
+            
+            <div className="flex-shrink-0 sm:-mt-8 md:-mt-12 lg:-mt-16 xl:-mt-20">
+              <div className="relative rounded-3xl p-8 md:p-10 lg:p-12 xl:p-14 max-w-xl md:max-w-2xl lg:max-w-3xl shadow-lg" style={{ backgroundColor: '#F3BECD' }}>
+                <Image
+                    src="/images/est2024.png"
+                    alt="Paper Note"
+                    width={608}
+                    height={608}
+                    className="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-52 lg:h-52 xl:w-60 xl:h-60 object-contain drop-shadow-lg absolute -top-16 -left-12 md:-top-20 md:-left-16 lg:-top-24 lg:-left-20 animate-rock z-10"
+                    priority
+                />
+                
+                <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-6 text-center" style={{ color: '#3c356c' }}>
+                  Our Mission
+                </h2>
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed text-center" style={{ color: '#292448' }}>
+                  At <strong>WayBionic</strong>, we strive to revolutionize remote
+                  surgery by developing a bionic arm inspired by the challenges of
+                  performing medical procedures in space. Our goal is to create
+                  innovative, reliable, and precise tools that empower both astronauts
+                  and doctors—whether in orbit or on Earth.
+                </p>
 
-            {/* Est2024 image */}
-            <Image
-                src="/images/est2024.png"
-                alt="Paper Note"
-                width={608}
-                height={608}
-                className="hidden sm:block w-28 h-28 sm:w-45 sm:h-45 md:w-57 md:h-57 lg:w-68 lg:h-68 xl:w-76 xl:h-76 object-contain drop-shadow-lg absolute -right-8 bottom-16 -translate-y-1/3 animate-rock lg:bottom-0 lg:-translate-y-1/2"
-                priority
-            />
-
-            {/* Pencilbionic image*/}
-            <Image
-                src="/images/pencilbionic.png"
-                alt="WayBionic Mascot with Pencil"
-                width={500}
-                height={500}
-                className="hidden sm:block sm:w-40 sm:h-40 md:w-52 md:h-52 lg:w-62 lg:h-62 xl:w-76 xl:h-76 object-contain drop-shadow-lg absolute right-2 bottom-8 translate-y-1/3 lg:bottom-4 lg:translate-y-3/4"
-                style={{transform: 'translateX(-12px)' }}
-                priority
-            />
+                {/* Pencilbionic image*/}
+                <Image
+                    src="/images/pencilbionicnew.png"
+                    alt="WayBionic Mascot with Pencil"
+                    width={500}
+                    height={500}
+                    className="sm:w-50 sm:h-50 md:w-44 md:h-44 lg:w-52 lg:h-52 xl:w-60 xl:h-60 object-contain drop-shadow-lg absolute sm:-bottom-20 md:-bottom-24 lg:-bottom-28 xl:-bottom-32 sm:-right-16 md:-right-20 lg:-right-24 xl:-right-28 z-10"
+                    priority
+                /> 
+              </div>
+            </div>
           </div>
         </div>
       </section>
