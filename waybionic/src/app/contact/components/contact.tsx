@@ -9,6 +9,8 @@ export default function Contact() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState("");
+  const [statusType, setStatusType] = useState<"success" | "error" | "">("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
 
   const link: string =
@@ -16,26 +18,52 @@ export default function Contact() {
 
 const hiring: boolean = true;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const fullName = `${firstName} ${lastName}`.trim();
+    setIsSubmitting(true);
+    setStatus("");
+    setStatusType("");
 
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          fullName,
+          subject,
+          email,
+          message
+        })
+      });
 
-    const mailtoLink = `mailto:waybionics@gmail.com?subject=${encodeURIComponent(
-      subject || "Contact Form Submission"
-    )}&body=${encodeURIComponent(message)}%0D%0A%0D%0AFrom: ${encodeURIComponent(
-      fullName
-    )} (${encodeURIComponent(email)})`;
+      if (!response.ok) {
+        const payload = await response.json().catch(() => null);
+        setStatusType("error");
+        setStatus(payload?.error || "Something went wrong. Please try again.");
+        return;
+      }
 
-    window.location.href = mailtoLink;
-
-    setFirstName("");
-    setLastName("");
-    setSubject("");
-    setEmail("");
-    setMessage("");
-    setStatus("Message opened in your default email client!");
+      setFirstName("");
+      setLastName("");
+      setSubject("");
+      setEmail("");
+      setMessage("");
+      setStatusType("success");
+      setStatus(
+        "Thanks for reaching out. Your message is on its way to the Waybionic team."
+      );
+    } catch (error) {
+      setStatusType("error");
+      setStatus("Unable to send right now. Please try again in a moment.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -142,12 +170,20 @@ const hiring: boolean = true;
                 <button
                   type="submit"
                   style={{ backgroundColor: "var(--color-pink)" }}
-                  className="w-full text-white py-3 px-6 rounded-md hover:opacity-90 transition-colors"
+                  disabled={isSubmitting}
+                  className="w-full text-white py-3 px-6 rounded-md hover:opacity-90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Send Message
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </button>
                 {status && (
-                  <p className="text-green-600 text-center mt-4">{status}</p>
+                  <p
+                    className={`text-center mt-4 ${
+                      statusType === "error" ? "text-red-600" : "text-green-600"
+                    }`}
+                    aria-live="polite"
+                  >
+                    {status}
+                  </p>
                 )}
               </form>
             </div>
