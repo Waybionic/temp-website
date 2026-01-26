@@ -1,65 +1,101 @@
-import React from 'react'
-import NonStudentMessage from './NonStudentMessage'
-import NonStudentInput from './NonStudentInput'
-import emailjs from "@emailjs/browser";
+import React from "react";
+import NonStudentMessage from "./NonStudentMessage";
+import NonStudentInput from "./NonStudentInput";
 
-const NonStudent = ({ typeOfContact, setClubInfo, setBusinessInfo, setProfessionInfo, setSponsorshipInfo, setPartnershipInfo, setOtherInfo, clubInfo, businessInfo, professionInfo, sponsorshipInfo, partnershipInfo, otherInfo, professorInfo, setProfessorInfo }) => {
+type NonStudentProps = {
+  typeOfContact: string;
+  setClubInfo: React.Dispatch<React.SetStateAction<string>>;
+  setBusinessInfo: React.Dispatch<React.SetStateAction<string>>;
+  setProfessionInfo: React.Dispatch<React.SetStateAction<string>>;
+  setSponsorshipInfo: React.Dispatch<React.SetStateAction<string>>;
+  setPartnershipInfo: React.Dispatch<React.SetStateAction<string>>;
+  setOtherInfo: React.Dispatch<React.SetStateAction<string>>;
+  clubInfo: string;
+  businessInfo: string;
+  professionInfo: string;
+  sponsorshipInfo: string;
+  partnershipInfo: string;
+  otherInfo: string;
+  professorInfo: string;
+  setProfessorInfo: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const NonStudent = ({
+  typeOfContact,
+  setClubInfo,
+  setBusinessInfo,
+  setProfessionInfo,
+  setSponsorshipInfo,
+  setPartnershipInfo,
+  setOtherInfo,
+  clubInfo,
+  businessInfo,
+  professionInfo,
+  sponsorshipInfo,
+  partnershipInfo,
+  otherInfo,
+  professorInfo,
+  setProfessorInfo
+}: NonStudentProps) => {
   const getStateValue = () => {
-    switch(typeOfContact) {
+    switch (typeOfContact) {
       case "Club":
-        return clubInfo
+        return clubInfo;
       case "Business":
-        return businessInfo
+        return businessInfo;
       case "Industry Professional":
-        return professionInfo
+        return professionInfo;
       case "Sponsorship":
-        return sponsorshipInfo
+        return sponsorshipInfo;
       case "Partnership":
-        return partnershipInfo
+        return partnershipInfo;
       case "Professor":
-        return professorInfo
+        return professorInfo;
       default:
-        return otherInfo
+        return otherInfo;
     }
-  }
+  };
 
   const setStateValue = (value: string) => {
-    switch(typeOfContact) {
+    switch (typeOfContact) {
       case "Club":
-        setClubInfo(value)
-        break
+        setClubInfo(value);
+        break;
       case "Business":
-        setBusinessInfo(value)
-        break
+        setBusinessInfo(value);
+        break;
       case "Industry Professional":
-        setProfessionInfo(value)
-        break
+        setProfessionInfo(value);
+        break;
       case "Sponsorship":
-        setSponsorshipInfo(value)
-        break
+        setSponsorshipInfo(value);
+        break;
       case "Partnership":
-        setPartnershipInfo(value)
-        break
+        setPartnershipInfo(value);
+        break;
       case "Professor":
-        setProfessorInfo(value)
-        break
+        setProfessorInfo(value);
+        break;
       default:
-        setOtherInfo(value)
-    } 
-  }
+        setOtherInfo(value);
+    }
+  };
 
   if (typeOfContact && typeOfContact !== "Student") {
     return (
       <>
         <div>
           <NonStudentMessage typeOfContact={typeOfContact} />
-          <NonStudentInput getStateValue={getStateValue} setStateValue={setStateValue} />
+          <NonStudentInput
+            getStateValue={getStateValue}
+            setStateValue={setStateValue}
+          />
         </div>
       </>
-    )
+    );
   }
 
-  return null
-}
+  return null;
+};
 
-export default NonStudent
+export default NonStudent;

@@ -1,6 +1,18 @@
-import React from 'react'
+import React from "react";
 
-const Student = ({yearOfStudy, setYearOfStudy, fieldOfStudy, setFieldOfStudy}) => {
+type StudentProps = {
+  yearOfStudy: string;
+  setYearOfStudy: React.Dispatch<React.SetStateAction<string>>;
+  fieldOfStudy: string;
+  setFieldOfStudy: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const Student = ({
+  yearOfStudy,
+  setYearOfStudy,
+  fieldOfStudy,
+  setFieldOfStudy
+}: StudentProps) => {
   return (
     <>
       <div>
@@ -13,7 +25,7 @@ const Student = ({yearOfStudy, setYearOfStudy, fieldOfStudy, setFieldOfStudy}) =
         <select
           id="yearOfStudy"
           value={yearOfStudy}
-          onChange={(e) => (setYearOfStudy(e.target.value))}
+          onChange={(e) => setYearOfStudy(e.target.value)}
           required
           className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 "
         >
@@ -33,7 +45,7 @@ const Student = ({yearOfStudy, setYearOfStudy, fieldOfStudy, setFieldOfStudy}) =
         <select
           id="fieldOfStudy"
           value={fieldOfStudy}
-          onChange={(e) => (setFieldOfStudy(e.target.value))}
+          onChange={(e) => setFieldOfStudy(e.target.value)}
           required
           className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 "
         >
@@ -48,7 +60,7 @@ const Student = ({yearOfStudy, setYearOfStudy, fieldOfStudy, setFieldOfStudy}) =
         </select>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default Student;

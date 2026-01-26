@@ -94,7 +94,7 @@ export async function POST(request: Request) {
   const rules: Record<string, { value: string | null | undefined; error: string }> = {
     "Club": { value: clubInfo, error: "Please complete all required club fields." },
     "Business": { value: businessInfo, error: "Please complete all required business fields." },
-    "Profession": { value: professionInfo, error: "Please complete all required profession fields." },
+    "Industry Professional": { value: professionInfo, error: "Please complete all required profession fields." },
     "Sponsorship": { value: sponsorshipInfo, error: "Please complete all required sponsorship fields." },
     "Partnership": { value: partnershipInfo, error: "Please complete all required partnership fields." },
     "Professor": { value: professorInfo, error: "Please complete all required professor fields." },
@@ -155,7 +155,7 @@ export async function POST(request: Request) {
   const safeProfessorInfo = escapeHtml(professorInfo);
   const safeOtherInfo = escapeHtml(otherInfo);
 
-  const messageLinks = {
+  const messageLinks: Record<string, string> = {
     "Student": safeMessage,
     "Club": safeClubInfo,
     "Business": safeBusinessInfo,
@@ -164,7 +164,9 @@ export async function POST(request: Request) {
     "Partnership": safePartnershipInfo,
     "Sponsorship": safeSponsorshipInfo,
     "Other": safeOtherInfo
-  }
+  };
+
+  const messageBody = messageLinks[typeOfContact] || safeMessage;
 
   const textBody = [
     "New Contact Request",
@@ -177,7 +179,7 @@ export async function POST(request: Request) {
     `Submitted: ${submittedAt}`,
     "",
     "Message:",
-    messageLinks[typeOfContact]
+    messageBody
   ].join("\n");
 
   const htmlBody = `

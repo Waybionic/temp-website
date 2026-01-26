@@ -1,6 +1,14 @@
-import React from 'react'
+import React from "react";
 
-const NonStudentInput = ({ getStateValue, setStateValue}) => {
+type NonStudentInputProps = {
+  getStateValue: () => string;
+  setStateValue: (value: string) => void;
+};
+
+const NonStudentInput = ({
+  getStateValue,
+  setStateValue
+}: NonStudentInputProps) => {
   return (
     <>
       <textarea
@@ -13,7 +21,7 @@ const NonStudentInput = ({ getStateValue, setStateValue}) => {
         placeholder="Type your message here..."
       />
     </>
-  )
-}
+  );
+};
 
-export default NonStudentInput
+export default NonStudentInput;
