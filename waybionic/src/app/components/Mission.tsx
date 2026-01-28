@@ -37,7 +37,7 @@ export default function Mission() {
               surgery by developing a bionic arm inspired by the challenges of
               performing medical procedures in space. Our goal is to create
               innovative, reliable, and precise tools that empower both astronauts
-              and doctors—whether in orbit or on Earth.
+              and doctors, whether in orbit or on Earth.
             </p>
 
             {/* Pencilbionic image for mobile: below and to the right of text */}
