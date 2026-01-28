@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Student from "./Student";
+import NonStudent from "./NonStudent";
 
 export default function Contact() {
   const [firstName, setFirstName] = useState("");
@@ -9,38 +11,107 @@ export default function Contact() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState("");
+  const [statusType, setStatusType] = useState<"success" | "error" | "">("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [typeOfContact, setTypeOfContact] = useState("Student");
+  const [yearOfStudy, setYearOfStudy] = useState("1st");
+  const [fieldOfStudy, setFieldOfStudy] = useState("Electrical Engineering");
+  const [clubInfo, setClubInfo] = useState("");
+  const [businessInfo, setBusinessInfo] = useState("");
+  const [professionInfo, setProfessionInfo] = useState("");
+  const [sponsorshipInfo, setSponsorshipInfo] = useState("");
+  const [partnershipInfo, setPartnershipInfo] = useState("");
+  const [professorInfo, setProfessorInfo] = useState("");
+  const [otherInfo, setOtherInfo] = useState("");
 
+  // const hiring: boolean = true;
 
-  const link: string =
-  "https://docs.google.com/forms/d/e/1FAIpQLSfh3q89PTxHesr0P7nelygxXIYYP24kRp_27Yb5mSbyxfiJCQ/viewform?usp=header";
-
-const hiring: boolean = true;
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const fullName = `${firstName} ${lastName}`.trim();
+    setIsSubmitting(true);
+    setStatus("");
+    setStatusType("");
 
+    // This is where the contact is being sent
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          fullName,
+          subject,
+          email,
+          message,
+          typeOfContact,
+          yearOfStudy,
+          fieldOfStudy,
+          clubInfo,
+          businessInfo,
+          professionInfo,
+          sponsorshipInfo,
+          partnershipInfo,
+          professorInfo,
+          otherInfo
+        })
+      });
 
-    const mailtoLink = `mailto:waybionics@gmail.com?subject=${encodeURIComponent(
-      subject || "Contact Form Submission"
-    )}&body=${encodeURIComponent(message)}%0D%0A%0D%0AFrom: ${encodeURIComponent(
-      fullName
-    )} (${encodeURIComponent(email)})`;
+      if (!response.ok) {
+        const responseText = await response.text().catch(() => "");
+        let payload: any = null;
+        if (responseText) {
+          try {
+            payload = JSON.parse(responseText);
+          } catch {
+            // Non-JSON response; payload remains null.
+          }
+        }
+        console.error("Contact form submission failed", {
+          status: response.status,
+          statusText: response.statusText,
+          body: responseText
+        });
+        setStatusType("error");
+        setStatus(payload?.error || "Something went wrong. Please try again.");
+        return;
+      }
 
-    window.location.href = mailtoLink;
+      setFirstName("");
+      setLastName("");
+      setSubject("");
+      setEmail("");
+      setMessage("");
+      setTypeOfContact("Student");
+      setYearOfStudy("1st");
+      setFieldOfStudy("Electrical Engineering");
+      setClubInfo("");
+      setBusinessInfo("");
+      setProfessionInfo("");
+      setSponsorshipInfo("");
+      setPartnershipInfo("");
+      setProfessorInfo("");
+      setOtherInfo("");
 
-    setFirstName("");
-    setLastName("");
-    setSubject("");
-    setEmail("");
-    setMessage("");
-    setStatus("Message opened in your default email client!");
+      setStatusType("success");
+      setStatus(
+        "Thanks for reaching out. Your message is on its way to the Waybionic team."
+      );
+    } catch (error) {
+      setStatusType("error");
+      setStatus("Unable to send right now. Please try again in a moment.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <section
-        className="relative w-full flex items-center justify-center overflow-hidden bg-no-repeat bg-cover bg-top py-16 -mt-90 sm:-mt-110 md:-mt-100 lg:-mt-100 xl:-mt-50"
+      className="relative w-full flex items-center justify-center overflow-hidden bg-no-repeat bg-cover bg-top py-16 -mt-90 sm:-mt-110 md:-mt-100 lg:-mt-100 xl:-mt-50"
 
       style={{
         backgroundImage: "url('/images/contact_middle_bg.PNG')",
@@ -90,6 +161,33 @@ const hiring: boolean = true;
                 </div>
                 <div>
                   <label
+                    htmlFor="typeOfContact"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
+                    Type Of Contact
+                  </label>
+                  <select
+                    id="typeOfContact"
+                    value={typeOfContact}
+                    onChange={(e) => setTypeOfContact(e.target.value)}
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 "
+                  >
+                    <option value="Student" className="text-gray-700 mb-2">Student</option>
+                    <option value="Club" className="text-gray-700 mb-2">Club</option>
+                    <option value="Business" className="text-gray-700 mb-2">Business</option>
+                    <option value="Industry Professional" className="text-gray-700 mb-2">Industry Professional</option>
+                    <option value="Professor" className="text-gray-700 mb-2">Professor</option>
+                    <option value="Partnership" className="text-gray-700 mb-2">Partnership</option>
+                    <option value="Sponsorship" className="text-gray-700 mb-2">Sponsorship</option>
+                    <option value="Other" className="text-gray-700 mb-2">Other</option>
+                  </select>
+                </div>
+
+                {typeOfContact === "Student" ? (<Student yearOfStudy={yearOfStudy} setYearOfStudy={setYearOfStudy} fieldOfStudy={fieldOfStudy} setFieldOfStudy={setFieldOfStudy} />) : (<></>)}
+
+                <div>
+                  <label
                     htmlFor="subject"
                     className="block text-sm font-medium text-gray-700 mb-2"
                   >
@@ -122,32 +220,60 @@ const hiring: boolean = true;
                     placeholder="your.email@example.com"
                   />
                 </div>
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    required
-                    rows={6}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Type your message here..."
-                  />
-                </div>
+
+                {typeOfContact === "Student" ? (
+                  <div>
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      Please leave your student message
+                    </label>
+                    <textarea
+                      id="message"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      required
+                      rows={6}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      placeholder="Type your message here..."
+                    />
+                  </div>
+                ) : ((typeOfContact !== "Student" && typeOfContact) ? (
+                <NonStudent 
+                  typeOfContact={typeOfContact} 
+                  setClubInfo={setClubInfo} 
+                  setBusinessInfo={setBusinessInfo} 
+                  setProfessionInfo={setProfessionInfo} 
+                  setSponsorshipInfo={setSponsorshipInfo} 
+                  setPartnershipInfo={setPartnershipInfo} 
+                  clubInfo={clubInfo} 
+                  businessInfo={businessInfo} 
+                  professionInfo={professionInfo} 
+                  sponsorshipInfo={sponsorshipInfo} 
+                  partnershipInfo={partnershipInfo} 
+                  otherInfo={otherInfo} 
+                  setOtherInfo={setOtherInfo}
+                  professorInfo={professorInfo}
+                  setProfessorInfo={setProfessorInfo}
+                />) : (<></>))}
+
                 <button
                   type="submit"
                   style={{ backgroundColor: "var(--color-pink)" }}
-                  className="w-full text-white py-3 px-6 rounded-md hover:opacity-90 transition-colors"
+                  disabled={isSubmitting}
+                  className="w-full text-white py-3 px-6 rounded-md hover:opacity-90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Send Message
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </button>
                 {status && (
-                  <p className="text-green-600 text-center mt-4">{status}</p>
+                  <p
+                    className={`text-center mt-4 ${statusType === "error" ? "text-red-600" : "text-green-600"
+                      }`}
+                    aria-live="polite"
+                  >
+                    {status}
+                  </p>
                 )}
               </form>
             </div>
