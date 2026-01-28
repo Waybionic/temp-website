@@ -62,7 +62,20 @@ export default function Contact() {
       });
 
       if (!response.ok) {
-        const payload = await response.json().catch(() => null);
+        const responseText = await response.text().catch(() => "");
+        let payload: any = null;
+        if (responseText) {
+          try {
+            payload = JSON.parse(responseText);
+          } catch {
+            // Non-JSON response; payload remains null.
+          }
+        }
+        console.error("Contact form submission failed", {
+          status: response.status,
+          statusText: response.statusText,
+          body: responseText
+        });
         setStatusType("error");
         setStatus(payload?.error || "Something went wrong. Please try again.");
         return;
