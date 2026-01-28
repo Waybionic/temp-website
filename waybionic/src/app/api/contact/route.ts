@@ -26,7 +26,7 @@ type ContactPayload = {
 // Regex for checking email
 const emailPattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
-// Remove standard characters w/ internet chracters so that it appears normal in the email
+// Remove standard characters w/ internet characters so that it appears normal in the email
 function escapeHtml(value: string) {
   return value
     .replace(/&/g, "&amp;")
@@ -42,6 +42,10 @@ function normalize(value?: string) {
 }
 
 export async function POST(request: Request) {
+  // NOTE: This endpoint currently has no rate limiting or abuse prevention.
+  // Consider implementing rate limiting (e.g., by IP address) or CAPTCHA
+  // protection before deploying to production to prevent spam attacks.
+  
   // creates an instance of ContactPayload
   let payload: ContactPayload;
 
@@ -82,7 +86,45 @@ export async function POST(request: Request) {
     );
   }
 
-  if (typeOfContact === "Student" && (!yearOfStudy || !fieldOfStudy)) {
+  // Maximum length validation
+  const maxLengths = {
+    firstName: 100,
+    lastName: 100,
+    subject: 200,
+    email: 254,
+    message: 5000,
+    info: 5000
+  };
+
+  if (firstName.length > maxLengths.firstName || lastName.length > maxLengths.lastName) {
+    return NextResponse.json(
+      { error: "Name is too long." },
+      { status: 400 }
+    );
+  }
+
+  if (subject.length > maxLengths.subject) {
+    return NextResponse.json(
+      { error: "Subject is too long." },
+      { status: 400 }
+    );
+  }
+
+  if (email.length > maxLengths.email) {
+    return NextResponse.json(
+      { error: "Email is too long." },
+      { status: 400 }
+    );
+  }
+
+  if (message.length > maxLengths.message) {
+    return NextResponse.json(
+      { error: "Message is too long." },
+      { status: 400 }
+    );
+  }
+
+  if (typeOfContact === "Student" && (!yearOfStudy || !fieldOfStudy || !message)) {
     return NextResponse.json(
       { error: "Please complete all required student fields." },
       { status: 400 }
@@ -103,8 +145,15 @@ export async function POST(request: Request) {
   if (typeOfContact !== "Student" && rules[typeOfContact]) {
     const { value, error } = rules[typeOfContact];
 
-    if (!value) {
+    if (value == null || value.trim() === "") {
       return NextResponse.json({ error }, { status: 400 });
+    }
+
+    if (value.length > maxLengths.info) {
+      return NextResponse.json(
+        { error: "Message is too long." },
+        { status: 400 }
+      );
     }
   }
 
@@ -121,8 +170,11 @@ export async function POST(request: Request) {
   const smtpPort = Number(process.env.SMTP_PORT || "");
   const smtpUser = process.env.SMTP_USER;
   const smtpPass = process.env.SMTP_PASS;
+  const smtpSecureEnv = process.env.SMTP_SECURE;
   const smtpSecure =
-    process.env.SMTP_SECURE === "true" || smtpPort === 465;
+    smtpSecureEnv != null
+      ? smtpSecureEnv === "true"
+      : smtpPort === 465;
 
   if (!smtpHost || !smtpPort || !smtpUser || !smtpPass) {
     console.error("Contact email missing SMTP config.", {
@@ -154,7 +206,7 @@ export async function POST(request: Request) {
   const safeProfessorInfo = escapeHtml(professorInfo);
   const safeOtherInfo = escapeHtml(otherInfo);
 
-  const messageLinks: Record<string, string> = {
+  const messageLinksHtml: Record<string, string> = {
     "Student": safeMessage,
     "Club": safeClubInfo,
     "Business": safeBusinessInfo,
@@ -165,20 +217,32 @@ export async function POST(request: Request) {
     "Other": safeOtherInfo
   };
 
-  const messageBody = messageLinks[typeOfContact] || safeMessage;
+  const messageLinksText: Record<string, string> = {
+    "Student": message,
+    "Club": clubInfo,
+    "Business": businessInfo,
+    "Industry Professional": professionInfo,
+    "Professor": professorInfo,
+    "Partnership": partnershipInfo,
+    "Sponsorship": sponsorshipInfo,
+    "Other": otherInfo
+  };
+
+  const messageBodyHtml = messageLinksHtml[typeOfContact] || safeMessage;
+  const messageBodyText = messageLinksText[typeOfContact] || message;
 
   const textBody = [
     "New Contact Request",
     "",
     `Name: ${fullName || "Website Visitor"}`,
     `Type of Contact: ${typeOfContact}`,
-    ...(typeOfContact === "Student" ? [`Year: ${yearOfStudy}`] : []),
+    ...(typeOfContact === "Student" ? [`Year: ${yearOfStudy}`, `Field of Study: ${fieldOfStudy}`] : []),
     `Email: ${email}`,
     `Subject: ${subject}`,
     `Submitted: ${submittedAt}`,
     "",
     "Message:",
-    messageBody
+    messageBodyText
   ].join("\n");
 
   const htmlBody = `
@@ -221,7 +285,7 @@ export async function POST(request: Request) {
       </table>
       <div style="font-weight: 600; margin-bottom: 6px;">Message</div>
       <div style="white-space: pre-wrap; border: 1px solid #e5e7eb; padding: 12px; border-radius: 6px; background: #f9fafb;">
-        ${messageLinks[typeOfContact]}
+        ${messageBodyHtml}
       </div>
       <p style="margin-top: 16px; font-size: 12px; color: #6b7280;">
         Submitted from the Waybionic website contact form.

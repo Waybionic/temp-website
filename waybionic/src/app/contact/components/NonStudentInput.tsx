@@ -1,26 +1,24 @@
 import React from "react";
 
 type NonStudentInputProps = {
-  getStateValue: () => string;
+  value: string;
   setStateValue: (value: string) => void;
 };
 
 const NonStudentInput = ({
-  getStateValue,
+  value,
   setStateValue
 }: NonStudentInputProps) => {
   return (
-    <>
-      <textarea
-        id="message"
-        value={getStateValue()}
-        onChange={(e) => setStateValue(e.target.value)}
-        required
-        rows={6}
-        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-        placeholder="Type your message here..."
-      />
-    </>
+    <textarea
+      id="message"
+      value={value}
+      onChange={(e) => setStateValue(e.target.value)}
+      required
+      rows={6}
+      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+      placeholder="Type your message here..."
+    />
   );
 };
 

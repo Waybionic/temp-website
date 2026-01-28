@@ -81,21 +81,15 @@ const NonStudent = ({
     }
   };
 
-  if (typeOfContact && typeOfContact !== "Student") {
-    return (
-      <>
-        <div>
-          <NonStudentMessage typeOfContact={typeOfContact} />
-          <NonStudentInput
-            getStateValue={getStateValue}
-            setStateValue={setStateValue}
-          />
-        </div>
-      </>
-    );
-  }
-
-  return null;
+  return (
+    <div>
+      <NonStudentMessage typeOfContact={typeOfContact} />
+      <NonStudentInput
+        value={getStateValue()}
+        setStateValue={setStateValue}
+      />
+    </div>
+  );
 };
 
 export default NonStudent;

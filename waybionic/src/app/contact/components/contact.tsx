@@ -184,7 +184,7 @@ export default function Contact() {
                   </select>
                 </div>
 
-                {typeOfContact === "Student" ? (<Student yearOfStudy={yearOfStudy} setYearOfStudy={setYearOfStudy} fieldOfStudy={fieldOfStudy} setFieldOfStudy={setFieldOfStudy} />) : (<></>)}
+                {typeOfContact === "Student" ? (<Student yearOfStudy={yearOfStudy} setYearOfStudy={setYearOfStudy} fieldOfStudy={fieldOfStudy} setFieldOfStudy={setFieldOfStudy} />) : null}
 
                 <div>
                   <label
@@ -239,7 +239,7 @@ export default function Contact() {
                       placeholder="Type your message here..."
                     />
                   </div>
-                ) : ((typeOfContact !== "Student" && typeOfContact) ? (
+                ) : (typeOfContact !== "Student" ? (
                 <NonStudent 
                   typeOfContact={typeOfContact} 
                   setClubInfo={setClubInfo} 
@@ -256,7 +256,7 @@ export default function Contact() {
                   setOtherInfo={setOtherInfo}
                   professorInfo={professorInfo}
                   setProfessorInfo={setProfessorInfo}
-                />) : (<></>))}
+                />) : null)}
 
                 <button
                   type="submit"

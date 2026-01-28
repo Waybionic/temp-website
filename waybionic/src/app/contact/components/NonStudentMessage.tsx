@@ -16,13 +16,11 @@ const messageDictionary: Record<string, string> = {
 
 const NonStudentMessage = ({ typeOfContact }: NonStudentMessageProps) => {
   return (
-    <>
-      <label
-        className="block text-sm font-medium text-gray-700 mb-2"
-      >
-        {messageDictionary[typeOfContact] || "Please enter additional information"}
-      </label>
-    </>
+    <label
+      className="block text-sm font-medium text-gray-700 mb-2"
+    >
+      {messageDictionary[typeOfContact] || "Please enter additional information"}
+    </label>
   );
 };
 
