@@ -3,7 +3,7 @@ import nodemailer from "nodemailer";
 
 export const runtime = "nodejs";
 
-// Gets all the information from the form, and puts it in a pyaload
+// Gets all the information from the form, and puts it in a payload
 type ContactPayload = {
   firstName?: string;
   lastName?: string;
