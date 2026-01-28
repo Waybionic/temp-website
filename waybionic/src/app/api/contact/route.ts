@@ -82,7 +82,6 @@ export async function POST(request: Request) {
     );
   }
 
-  console.log(typeOfContact);
   if (typeOfContact === "Student" && (!yearOfStudy || !fieldOfStudy)) {
     return NextResponse.json(
       { error: "Please complete all required student fields." },
