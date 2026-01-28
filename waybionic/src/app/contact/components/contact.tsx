@@ -156,7 +156,7 @@ export default function Contact() {
                   <select
                     id="typeOfContact"
                     value={typeOfContact}
-                    onChange={(e) => (setTypeOfContact(e.target.value))}
+                    onChange={(e) => setTypeOfContact(e.target.value)}
                     required
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 "
                   >
