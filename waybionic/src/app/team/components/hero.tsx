@@ -86,18 +86,6 @@ const teams: {
 		],
 	},
 	{
-		name: "MARKETING",
-		icon: "📈",
-		image: "/images/marketing.png",
-		leads: [
-			{ name: "TAYLOR", image: mascotImg },
-			{ name: "ARIEL", image: mascotImg },
-			{ name: "ARWA", image: mascotImg },
-		],
-		members: [
-		],
-	},
-	{
 		name: "BIOMEDICAL",
 		icon: "🩺",
 		image: "/images/bio.png",
