@@ -29,22 +29,11 @@ const teams: {
 			{ name: "Ariel" },
 			{ name: "Taylor" },
 			{ name: "Yahya" },
+			{ name: "Philip" },
 		],
 		header: undefined,
 	},
-	{
-		name: "FINANCE",
-		icon: "💰",
-		image: "/images/finance.png",
-		leads: [
-			{ name: "YAHYA", image: mascotImg },
-		],
-		members: [
-			{ name: "Fatima" },
-			{ name: "Aryaan" },
-		],
-		// header: "/images/finance_header.png"
-	},
+
 	{
 		name: "ELECTRICAL",
 		icon: "⚡",
@@ -54,12 +43,15 @@ const teams: {
 			{ name: "SAMIPYA", image: mascotImg },
 		],
 		members: [
+			{ name: "Ahmad" },
 			{ name: "Arjun" },
-			{ name: "Aryaan" },
 			{ name: "Conrad" },
 			{ name: "Daljit" },
-			{ name: "Ghassan" },
 			{ name: "Julia" },
+			{ name: "Abdul Wasse" },
+			{ name: "Alvi" },
+			{ name: "Rashveer" },
+			{ name: "Mahavir" },
 		],
 	},
 	{
@@ -73,10 +65,11 @@ const teams: {
 		members: [
 			{ name: "Alan" },
 			{ name: "Richard" },
-			{ name: "Farha" },
+			{ name: "Talha" },
 			{ name: "Korede" },
 			{ name: "Harold" },
-			{ name: "Hamza" },
+			{ name: "Arham" },
+			{ name: "Tanvi" },
 		],
 	},
 	{
@@ -84,13 +77,12 @@ const teams: {
 		icon: "⚙️",
 		image: "/images/mech.png",
 		leads: [
-			{ name: "PHILLIP", image: mascotImg },
+			{ name: "ABDUL QADEER", image: mascotImg },
 			{ name: "ZAYD", image: mascotImg },
 		],
 		members: [
 			{ name: "Hailey" },
-			{ name: "Kristina" },
-			{ name: "Abdul Qadeer" },
+			{ name: "Meagan" },
 		],
 	},
 	{
@@ -103,7 +95,6 @@ const teams: {
 			{ name: "ARWA", image: mascotImg },
 		],
 		members: [
-			{ name: "Mariyah" },
 		],
 	},
 	{
@@ -112,13 +103,11 @@ const teams: {
 		image: "/images/bio.png",
 		leads: [
 			{ name: "ABDUL KARIM", image: mascotImg },
+			{ name: "AHMEEL", image: mascotImg },
 		],
 		members: [
-			{ name: "Ahmeel" },
 			{ name: "Bridget" },
-			{ name: "Harvir" },
-			{ name: "Mutaz" },
-			{ name: "Sana" },
+			{ name: "Hannah" },
 		],
 	},
 ];
