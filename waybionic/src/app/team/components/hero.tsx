@@ -48,7 +48,7 @@ const teams: {
 			{ name: "Conrad" },
 			{ name: "Daljit" },
 			{ name: "Julia" },
-			{ name: "Abdul Wasse" },
+			{ name: "Abdul Waase" },
 			{ name: "Alvi" },
 			{ name: "Rashveer" },
 			{ name: "Mahavir" },
