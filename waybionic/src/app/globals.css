@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --navbar-height: 95px;
+  --navbar-height: 80px;
   --background: #ffffff;
   --foreground: #171717;
   --color-peach: #ffdca0;
@@ -42,8 +42,15 @@
 
 
 html, body {
-  font-family: 'Arimo', sans-serif; 
+  font-family: 'Arimo', sans-serif;
   height: 100%;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
 }
 
 section {
@@ -256,6 +263,105 @@ h1, h2, h3, h4, h5, h6 {
     background-size: auto 100% !important;
     background-repeat: repeat-x !important;
     background-position: top center !important;
+  }
+}
+
+/* ── team page hero responsive ── */
+
+@media (max-width: 1024px) {
+  .team-hero-container {
+    min-height: unset !important;
+  }
+}
+
+.team-stats-grid {
+  display: grid;
+  gap: 10px;
+  z-index: 10;
+  grid-template-columns: 339px 339px;
+  grid-template-rows: 133px 133px 133px;
+}
+
+@media (max-width: 1024px) {
+  .team-stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(3, 110px);
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .team-stat-number {
+    font-size: 44px !important;
+  }
+
+  .team-stat-label {
+    font-size: 15px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .team-stats-grid {
+    max-width: 100%;
+    grid-template-rows: repeat(3, 96px);
+  }
+
+  .team-stat-number {
+    font-size: 36px !important;
+  }
+
+  .team-stat-label {
+    font-size: 10px !important;
+    letter-spacing: 0.01em !important;
+    margin-top: 4px !important;
+  }
+}
+
+/* ── contact page responsive ── */
+
+/* moon: centered on desktop */
+.contact-moon {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 63%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* moon: centered at horizontal line on mobile */
+@media (max-width: 768px) {
+  .contact-moon {
+    width: 92%;
+    bottom: auto;
+    top: 50vh;
+    transform: translateX(-50%) translateY(-100%);
+  }
+
+  /* hero */
+  .contact-hero-content {
+    padding: 48px 28px 56px !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    text-align: center !important;
+  }
+
+  .contact-hero-content p {
+    max-width: 100% !important;
+    text-align: center !important;
+  }
+
+  /*form */
+  .contact-form-wrapper {
+    padding: 48px 24px 36px !important;
+  }
+
+  .contact-name-row {
+    flex-direction: column !important;
+  }
+
+  .contact-submit-row {
+    justify-content: center !important;
   }
 }
 
