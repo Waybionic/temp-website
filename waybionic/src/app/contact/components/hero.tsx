@@ -2,40 +2,85 @@
 
 export default function Hero() {
   return (
-    <section
-      id ="hero" className="relative w-full flex flex-col items-center justify-center text-white overflow-hidden -mt-0"
+    <div className="contact-hero-content" style={{ padding: "160px 48px 48px 110px", display: "flex", flexDirection: "column", height: "100%", position: "relative", zIndex: 10 }}>
+      {/* sparkle decos */}
+      <div className="absolute top-8 right-10 text-white/60 text-2xl select-none">✦</div>
+      <div className="absolute top-14 right-20 text-white/30 text-sm select-none">✦</div>
+      <div className="hidden md:block absolute bottom-40 left-6 text-white/70 text-3xl select-none">✦</div>
+      <div className="hidden md:block absolute bottom-32 left-16 text-white/30 text-xs select-none">✦</div>
 
+      {/* + contact bubble */}
+      <div
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          backgroundColor: "rgba(255,255,255,0.18)",
+          border: "1px solid rgba(255,255,255,0.35)",
+          borderRadius: "999px",
+          padding: "4px 14px",
+          marginBottom: "28px",
+          width: "fit-content",
+          fontSize: "11px",
+          letterSpacing: "0.05em",
+          color: "white",
+          fontFamily: "var(--font-dm-sans), sans-serif",
+        }}
+      >
+        + CONTACT
+      </div>
 
-      style={{
-        backgroundImage: "url('/images/contact_stars_bg.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        
-      }}
-  
-    >
-        <div className="text-center space-y-4 z-10 px-4">
-            <img
-                src="/images/contact_header.png"
-                alt="Contact Header"
-                className="mx-auto w-full max-w-[900px] xl:max-w-[700px] h-auto -mt-60 sm:-mt-100 md:-mt-20"
-            />
-            <p className="text-2xl md:text-4xl font-bold tracking-wide" style={{color: '#fc92b0'}}>
-                Need to reach us?
-            </p>
-            <p className="text-green-300 text-xl md:text-3xl font-mono -mt-3 " style={{color: '#f4f7fe', marginBottom: '0px'}} >
-                To connect, shoot us a message at
-            </p>
-            <>
-                <a href="mailto:waybionics@gmail.com" className="text-green-300 text-xl md:text-3xl font-mono hover:underline">
-                    waybionics<span className="text-green-300">@</span>gmail.com
-                </a>
-                <span className="text-white text-3xl font-mono">!</span>
-            </>
-        </div>
-    </section>
+      {/* heading (epilogue NOT lemon milk) */}
+      <h1
+        style={{
+          fontFamily: "var(--font-epilogue), sans-serif",
+          fontWeight: 900,
+          color: "white",
+          lineHeight: 1.05,
+          margin: 0,
+          fontSize: "clamp(3rem, 5.5vw, 6rem)",
+        }}
+      >
+        Need to
+      </h1>
+      <h1
+        style={{
+          fontFamily: "var(--font-epilogue), sans-serif",
+          fontWeight: 900,
+          lineHeight: 1.05,
+          margin: 0,
+          marginBottom: "12px",
+          fontSize: "clamp(3rem, 5.5vw, 6rem)",
+          background: "linear-gradient(to right, #A4C4C8, #c284ff)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+        }}
+      >
+        Reach Out?
+      </h1>
+
+      {/* description */}
+      <p
+        style={{
+          fontFamily: "var(--font-dm-sans), sans-serif",
+          fontWeight: 600,
+          fontSize: "18px",
+          color: "rgba(255,255,255,0.85)",
+          lineHeight: 1.6,
+          maxWidth: "370px",
+          margin: 0,
+        }}
+      >
+        We&apos;d love to connect! Shoot us a message at{" "}
+        <a
+          href="mailto:waybionics@gmail.com"
+          style={{ color: "#F399BA" }}
+          className="hover:underline"
+        >
+          waybionics@gmail.com
+        </a>
+        {" "}-- we&apos;ll get back to you as soon as possible.
+      </p>
+    </div>
   );
 }
- 
-
-

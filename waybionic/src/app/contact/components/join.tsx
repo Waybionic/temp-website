@@ -3,47 +3,41 @@
 const link: string =
   "https://docs.google.com/forms/d/e/1FAIpQLScLPGuKsBGBgKoTObkYkLFlaQoTd_rzHu_lrWrDQG13nmq0Pg/viewform";
 
-const hiring: boolean = true;
+const hiring: boolean = false;
 
 export default function Join() {
   return (
     <section
-        className="relative w-full flex justify-start bg-no-repeat bg-cover bg-top py-16 mt-60 md:-mt-40 lg:-mt-140 xl:mt-60 z-10"
+      className="w-full flex justify-center items-center py-20 px-6"
       style={{
-        backgroundImage: "url('/images/contact_end_bg.PNG')",
-        backgroundSize: "cover",
-        backgroundPosition: "center"
-
+        background: "linear-gradient(135deg, #e8c4d8 0%, #d4c8f0 100%)",
       }}
       id="join"
     >
-      {/* White card */}
-      <div className="bg-white rounded-lg shadow-xl p-10 w-full max-w-3xl text-center justify-start"
-           style={{ marginTop: '-1000px' }}>
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-6" style={{color: '#3a326b'}}>
+      <div className="bg-white rounded-3xl shadow-lg p-10 w-full max-w-xl text-center">
+        <h2 className="text-3xl font-bold mb-4" style={{ color: "#25223b" }}>
           Join Our Team
-        </h1>
+        </h2>
 
         {hiring ? (
-          <div className="space-y-6">
-            <p className="text-base sm:text-lg md:text-xl" style={{color: '#25223b'}}>
-              We're currently accepting applications. Click below to apply!
+          <div className="space-y-12">
+            <p className="text-base" style={{ color: "#25223b" }}>
+              We&apos;re currently accepting applications. Click below to apply!
             </p>
             <a
               href={link}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block text-white text-sm sm:text-base md:text-lg px-6 py-3 rounded-md hover:opacity-90 transition"
-              style={{ backgroundColor: '#a693ec' }}
+              className="inline-block text-white text-sm px-8 py-3 rounded-full hover:opacity-90 transition"
+              style={{ backgroundColor: "#3d316e", marginTop: "32px" }}
             >
               Apply Now
             </a>
           </div>
         ) : (
-          <div className="text-base sm:text-lg md:text-xl text-gray-700 space-y-2">
-            <p>We're not accepting applications at the moment.</p>
-            <p>Please check back soon or follow us for updates!</p>
-          </div>
+          <p className="text-base leading-relaxed" style={{ color: "#25223b" }}>
+            While we&apos;re not currently accepting applications, we encourage you to keep up with our socials to be notified as soon as recruitment opens!
+          </p>
         )}
       </div>
     </section>
