@@ -17,6 +17,10 @@ type Person = {
 type Team = {
   id: string;
   name: string;
+  /** symbol rendered inside the icon square in the card header */
+  icon?: string;
+  /** font-weight override for the icon symbol (default 400) */
+  iconWeight?: number;
   /** color used for the icon square in the card header */
   iconColor: string;
   /** lighter tint used for lead circles
@@ -40,6 +44,7 @@ const teams: Team[] = [
   {
     id: "executive",
     name: "Executive Team",
+    icon: "★",
     iconColor: "#B9AFD2",
     leadCircleColor: "#b9afd2",
     memberCircleColor: "#d0c8e8",
@@ -47,7 +52,7 @@ const teams: Team[] = [
       { name: "Lina Dahou", role: "FOUNDER & PRESIDENT", image: "" },
     ],
     vps: [
-      { name: "Taylor Le",       role: "VP EXTERNAL &\n OPERATIONS",    image: "" },
+      { name: "Taylor Le",       role: "VP EXTERNAL &\n OPERATIONS",    image: "/images/team/taylor-le.jpg" },
       { name: "Ariel Lee",       role: "VP INTERNAL &\n ACQUISITION",   image: "" },
       { name: "Arwa Almousawi",  role: "VP BRAND &\nSOFTWARE",        image: "" },
       { name: "Phillip Quimson", role: "VP MARKETING &\n FINANCE",     image: "/images/team/phillip-quimson.jpg" },
@@ -58,12 +63,14 @@ const teams: Team[] = [
   {
     id: "mechanical",
     name: "Mechanical Team",
+    icon: "⚙︎",
+    iconWeight: 900,
     iconColor: "#FBB6C9",
     leadCircleColor: "#FBB6C9",
     memberCircleColor: "#B9AFD2",
     leads: [
-      { name: "Abdul Tinwala",  role: "TEAM LEAD", image: "" },
-      { name: "Zayd Charanek", role: "TEAM LEAD", image: "" },
+      { name: "Abdul Tinwala",  role: "TEAM LEAD", image: "/images/team/abdul-tinwala.jpg" },
+      { name: "Zayd Charanek", role: "TEAM LEAD", image: "/images/team/zayd-charanek.jpg" },
     ],
     jrLeads: [
       { name: "Noah Fischer", role: "JR. LEAD", image: "/images/team/noah-fischer.jpg" },
@@ -75,7 +82,7 @@ const teams: Team[] = [
       { name: "Ahmad Sawalha",        image: "" },
       { name: "Meagan Zimmel", image: "" },
       { name: "Hady Fouda",        image: "" },
-      { name: "Humam Hameed",        image: "" },
+      { name: "Humam Hameed",        image: "/images/team/humam-hameed.jpg" },
       { name: "Zara Daudi",        image: "" },
       { name: "Shahmeen Sarmad",        image: "" },
       { name: "Md Samiu",       image: "/images/team/md-samiu.jpg" },
@@ -84,6 +91,8 @@ const teams: Team[] = [
   {
     id: "electrical",
     name: "Electrical Team",
+    icon: "⚡︎",
+    iconWeight: 900,
     iconColor: "#FBD896",
     leadCircleColor: "#FBD896",
     memberCircleColor: "#B9AFD2",
@@ -114,6 +123,7 @@ const teams: Team[] = [
   {
     id: "biomedical",
     name: "Biomedical Team",
+    icon: "☘︎",
     iconColor: "#BEDBAC",
     leadCircleColor: "#BEDBAC",
     memberCircleColor: "#B9AFD2",
@@ -126,7 +136,7 @@ const teams: Team[] = [
       { name: "Maaz Saleh",     role: "JR. LEAD", image: "" },
     ],
     members: [
-      { name: "Bridget Benedek-Koteles",  image: "" },
+      { name: "Bridget Benedek-Koteles",  image: "/images/team/bridget-benedek-koteles.jpeg" },
       { name: "Abdul Waase Qureshi",      image: "" },
       { name: "Julie Guirguis",  image: "" },
       { name: "Hannah Nguyen",           image: "" },
@@ -135,6 +145,7 @@ const teams: Team[] = [
   {
     id: "software",
     name: "Software Team",
+    icon: "♫",
     iconColor: "#A4C5C7",
     leadCircleColor: "#A4C5C7",
     memberCircleColor: "#B9AFD2",
@@ -154,17 +165,18 @@ const teams: Team[] = [
       { name: "Tanvi Mahalwar",      image: "" },
       { name: "Fatma Alzubaidi",   image: "" },
       { name: "Arham Tahir",             image: "" },
-      { name: "Khuzaymah Haris",             image: "" }
+      { name: "Khuzaymah Haris",             image: "/images/team/khuzaymah-haris.png" }
     ],
   },
   {
     id: "finance",
     name: "Finance & Marketing Team",
+    icon: "୭˚",
     iconColor: "#6E6C78",
     leadCircleColor: "#6E6C78",
     memberCircleColor: "#B9AFD2",
     leads: [
-      { name: "Taylor Le", role: "TEAM LEAD", image: "" },
+      { name: "Taylor Le", role: "TEAM LEAD", image: "/images/team/taylor-le.jpg" },
     ],
     members: [
       { name: "Jade Cosmilla",         image: "" },
@@ -300,9 +312,15 @@ function TeamCard({ team }: { team: Team }) {
         style={{ background: "#1D0F33", height: 84 }}
       >
         <div
-          className="w-10 h-10 flex-shrink-0"
+          className="w-10 h-10 flex-shrink-0 flex items-center justify-center"
           style={{ borderRadius: 13, background: team.iconColor }}
-        />
+        >
+          {team.icon && (
+            <span style={{ color: "white", fontSize: 24, lineHeight: 1, userSelect: "none", fontWeight: team.iconWeight ?? 400 }}>
+              {team.icon}
+            </span>
+          )}
+        </div>
         <span
           className="text-white"
           style={{ fontFamily: "var(--font-epilogue), sans-serif", fontSize: 22, fontWeight: 600 }}
