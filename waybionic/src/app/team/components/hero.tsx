@@ -1,335 +1,577 @@
 "use client";
 
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import React from "react";
+import React, { useState } from "react";
 
-type Lead = { name: string; image: string };
-type Member = { name: string };
+//─── TYPES ────────────────────────────────────────────────────────────────
 
-const mascotImg = "/images/mascot.png"; // Use the attached image for all leads and members
-
-const teams: {
-	name: string;
-	icon: string;
-	image: string;
-	leads: Lead[];
-	members: Member[];
-	header?: string;
-}[] = [
-	{
-		name: "EXECUTIVE TEAM",
-		icon: "⭐",
-		image: "/images/president header.jpg",
-		leads: [
-			{ name: "Lina", image: mascotImg },
-		],
-		members: [
-			{ name: "Arwa" },
-			{ name: "Ariel" },
-			{ name: "Taylor" },
-			{ name: "Yahya" },
-			{ name: "Philip" },
-		],
-		header: undefined,
-	},
-
-	{
-		name: "ELECTRICAL",
-		icon: "⚡",
-		image: "/images/elect.png",
-		leads: [
-			{ name: "YASH", image: mascotImg },
-			{ name: "SAMIPYA", image: mascotImg },
-		],
-		members: [
-			{ name: "Ahmad" },
-			{ name: "Arjun" },
-			{ name: "Conrad" },
-			{ name: "Daljit" },
-			{ name: "Julia" },
-			{ name: "Abdul Waase" },
-			{ name: "Alvi" },
-			{ name: "Rashveer" },
-			{ name: "Mahavir" },
-		],
-	},
-	{
-		name: "SOFTWARE",
-		icon: "💻",
-		image: "/images/soft.png",
-		leads: [
-			{ name: "YASSIN", image: mascotImg },
-			{ name: "MUJTABA", image: mascotImg },
-		],
-		members: [
-			{ name: "Alan" },
-			{ name: "Richard" },
-			{ name: "Talha" },
-			{ name: "Korede" },
-			{ name: "Harold" },
-			{ name: "Arham" },
-			{ name: "Tanvi" },
-		],
-	},
-	{
-		name: "MECHANICAL",
-		icon: "⚙️",
-		image: "/images/mech.png",
-		leads: [
-			{ name: "ABDUL QADEER", image: mascotImg },
-			{ name: "ZAYD", image: mascotImg },
-		],
-		members: [
-			{ name: "Hailey" },
-			{ name: "Meagan" },
-		],
-	},
-	{
-		name: "BIOMEDICAL",
-		icon: "🩺",
-		image: "/images/bio.png",
-		leads: [
-			{ name: "ABDUL KARIM", image: mascotImg },
-			{ name: "AHMEEL", image: mascotImg },
-		],
-		members: [
-			{ name: "Bridget" },
-			{ name: "Hannah" },
-		],
-	},
-];
-
-// Helper to get color for each team name and labels
-const teamColors: { [key: string]: string } = {
-	"FINANCE": "#B6F0E6",
-	"ELECTRICAL": "#C3B6F0",
-	"SOFTWARE": "#B6F0D6",
-	"MECHANICAL": "#F0D6B6",
-	"MARKETING": "#F0B6D6",
-	"BIOMEDICAL": "#D6F0B6",
+type Person = {
+  name: string;
+  role?: string;
+  /**
+   * path to photo relative to /public  e.g. "/images/team/lina-dahou.jpg"
+   * if empty, it'll default to initials instead
+   */
+  image?: string;
 };
 
-export default function TeamCarousel() {
-	return (
-		<section
-			className="w-full min-h-screen bg-black text-white flex flex-col items-center justify-center relative overflow-hidden"
-			style={{
-				backgroundImage: "url('/images/team_bg.png')",
-				backgroundSize: "cover",
-				backgroundPosition: "center",
-			}}
-		>
-			<img
-				src="/images/team_header.PNG"
-				alt="Team Header"
-				className="mx-auto w-full max-w-[500px] h-auto mb-8 mt-8"
-			/>
+type Team = {
+  id: string;
+  name: string;
+  /** color used for the icon square in the card header */
+  iconColor: string;
+  /** lighter tint used for lead circles
+   * or maybe the same color? idk yet
+   */
+  leadCircleColor: string;
+  /** color used for regular member circles*/
+  memberCircleColor: string;
+  president?: Person[];
+  vps?: Person[];
+  leads?: Person[];
+  jrLeads?: Person[];
+  members: Person[];
+};
 
+// ─── TEAM & MEMBER DATA ────────────────────────────────────────────────────────────────
+// to add/update photos, set their 'image' field to the file path
+// stored in /public  (e.g. "/images/team/lina-dahou.jpg").
+// the empty field will show initials instead
+const teams: Team[] = [
+  {
+    id: "executive",
+    name: "Executive Team",
+    iconColor: "#B9AFD2",
+    leadCircleColor: "#b9afd2",
+    memberCircleColor: "#d0c8e8",
+    president: [
+      { name: "Lina Dahou", role: "FOUNDER & PRESIDENT", image: "" },
+    ],
+    vps: [
+      { name: "Taylor Le",       role: "VP EXTERNAL &\n OPERATIONS",    image: "" },
+      { name: "Ariel Lee",       role: "VP INTERNAL &\n ACQUISITION",   image: "" },
+      { name: "Arwa Almousawi",  role: "VP BRAND &\nSOFTWARE",        image: "" },
+      { name: "Phillip Quimson", role: "VP MARKETING &\n FINANCE",     image: "/images/team/phillip-quimson.jpg" },
+      { name: "Yahya Elmadhoun", role: "VP MECHANICAL &\n BIOMEDICAL",  image: "/images/team/yahya-elmadhoun.jpg" },
+    ],
+    members: [],
+  },
+  {
+    id: "mechanical",
+    name: "Mechanical Team",
+    iconColor: "#FBB6C9",
+    leadCircleColor: "#FBB6C9",
+    memberCircleColor: "#B9AFD2",
+    leads: [
+      { name: "Abdul Tinwala",  role: "TEAM LEAD", image: "" },
+      { name: "Zayd Charanek", role: "TEAM LEAD", image: "" },
+    ],
+    jrLeads: [
+      { name: "Noah Fischer", role: "JR. LEAD", image: "/images/team/noah-fischer.jpg" },
+      { name: "David Caranay",      role: "JR. LEAD", image: "/images/team/david-caranay.jpg" },
 
-			{/* Team */}
-			<div className="relative z-10 w-full h-full flex items-center justify-center px-8 mb-16">
-				<div className="relative flex flex-col items-center justify-center">
-					<p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-700 leading-relaxed max-w-sm sm:max-w-lg md:max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto px-4 text-center"
-					   style={{color: '#F5F7FD', fontFamily: 'Arimo, sans-serif'}}>
+    ],
+    members: [
+      { name: "Hailey Tran",        image: "" },
+      { name: "Ahmad Sawalha",        image: "" },
+      { name: "Meagan Zimmel", image: "" },
+      { name: "Hady Fouda",        image: "" },
+      { name: "Humam Hameed",        image: "" },
+      { name: "Zara Daudi",        image: "" },
+      { name: "Shahmeen Sarmad",        image: "" },
+      { name: "Md Samiu",       image: "/images/team/md-samiu.jpg" },
+    ],
+  },
+  {
+    id: "electrical",
+    name: "Electrical Team",
+    iconColor: "#FBD896",
+    leadCircleColor: "#FBD896",
+    memberCircleColor: "#B9AFD2",
+    leads: [
+      { name: "Yash Dhillon",    role: "TEAM LEAD", image: "" },
+      { name: "Samipya Rijal", role: "TEAM LEAD", image: "" },
+    ],
+    jrLeads: [
+      { name: "Conrad Brabec", role: "JR. LEAD", image: "" },
+      { name: "Daljit Nijjar",      role: "JR. LEAD", image: "" },
 
-						Since 2024, <strong>WayBionic</strong> has been driven by passionate innovators pushing boundaries in technology and medicine.
-						We're always looking for curious, driven individuals ready to make an impact. Explore our teams -- we're confident
-						there's a place for you here!
-					</p>
-				</div>
-			</div>
+    ],
+    members: [
+      { name: "Ahmad Kohistani",  image: "" },
+      { name: "Julia Tran",            image: "" },
+      { name: "Arjun Mannan",            image: "" },
+      { name: "Rashveer Sandhu",  image: "" },
+      { name: "Mahavir Desai",          image: "" },
+      { name: "Utsav Ojha",          image: "" },
+      { name: "Haziq Munir",          image: "" },
+      { name: "Khanh Mai Le",          image: "" },
+      { name: "Jad Wehbi",          image: "" },
+      { name: "Saad Subhani",          image: "" },
+      { name: "Gebrael Gebrael",          image: "" },
+      { name: "Arsalan Khan",          image: "" },
+    ],
+  },
+  {
+    id: "biomedical",
+    name: "Biomedical Team",
+    iconColor: "#BEDBAC",
+    leadCircleColor: "#BEDBAC",
+    memberCircleColor: "#B9AFD2",
+    leads: [
+      { name: "Abdul Karim Qureshi",  role: "TEAM LEAD", image: "" },
+      { name: "Ahmeel Pablo", role: "TEAM LEAD", image: "" },
+    ],
+    jrLeads: [
+      { name: "Moumita Murshed", role: "JR. LEAD", image: "" },
+      { name: "Maaz Saleh",     role: "JR. LEAD", image: "" },
+    ],
+    members: [
+      { name: "Bridget Benedek-Koteles",  image: "" },
+      { name: "Abdul Waase Qureshi",      image: "" },
+      { name: "Julie Guirguis",  image: "" },
+      { name: "Hannah Nguyen",           image: "" },
+    ],
+  },
+  {
+    id: "software",
+    name: "Software Team",
+    iconColor: "#A4C5C7",
+    leadCircleColor: "#A4C5C7",
+    memberCircleColor: "#B9AFD2",
+    leads: [
+      { name: "Yassin Soliman", role: "TEAM LEAD", image: "" },
+      { name: "Mujtaba Zia",   role: "TEAM LEAD", image: "" },
+    ],
+    jrLeads: [
+      { name: "Talha Zafar", role: "JR. LEAD", image: "" },
+      { name: "Gianna Kong", role: "JR. LEAD", image: "/images/team/gianna-kong.jpg" },
+    ],
+    members: [
+      { name: "Alan Bach",   image: "" },
+      { name: "Richard Nguyen",    image: "" },
+      { name: "Harold Kim",        image: "/images/team/harold-kim.jpg" },
+      { name: "Adekorede Odebode", image: "" },
+      { name: "Tanvi Mahalwar",      image: "" },
+      { name: "Fatma Alzubaidi",   image: "" },
+      { name: "Arham Tahir",             image: "" },
+      { name: "Khuzaymah Haris",             image: "" }
+    ],
+  },
+  {
+    id: "finance",
+    name: "Finance & Marketing Team",
+    iconColor: "#6E6C78",
+    leadCircleColor: "#6E6C78",
+    memberCircleColor: "#B9AFD2",
+    leads: [
+      { name: "Taylor Le", role: "TEAM LEAD", image: "" },
+    ],
+    members: [
+      { name: "Jade Cosmilla",         image: "" },
+      { name: "Noor Ali", image: "/images/team/noor-ali.jpg" },
+      { name: "Abnoor Chattha", image: "" },
+      { name: "Cris Wen", image: "/images/team/cris-wen.jpg" },
+    ],
+  },
+];
 
+// stats shown in the hero (i hope these are right..)
+const stats = [
+  { count: "8",   label: "BIOMEDICAL",          filled: false, targetId: "biomedical" },
+  { count: "11",  label: "MECHANICAL",          filled: true,  targetId: "mechanical" },
+  { count: "16",  label: "ELECTRICAL",          filled: true,  targetId: "electrical" },
+  { count: "12",  label: "SOFTWARE",            filled: false, targetId: "software"   },
+  { count: "5",   label: "MARKETING & FINANCE", filled: false, targetId: "finance"    },
+  { count: "55+", label: "MEMBERS",             filled: true,  targetId: ""           },
+];
 
-			<div
-				className="relative z-10 w-full max-w-2xl px-4"
-				style={{
-					background: "linear-gradient(to bottom, #564b89, transparent)",
-					marginBottom: '48px',
-				}}
-			>
-				<Carousel
-					showThumbs={false}
-					showStatus={false}
-					infiniteLoop
-					autoPlay={false}
-					emulateTouch
-					swipeable
-					swipeScrollTolerance={30}
-					preventMovementUntilSwipeScrollTolerance={true}
-					className="text-center"
-					renderArrowPrev={(onClickHandler, hasPrev, label) =>
-						hasPrev && (
-							<button
-								type="button"
-								onClick={onClickHandler}
-								title={label}
-								className="absolute left-0 top-1/3 -translate-y-1/2 bg-transparent text-white w-20 h-20 z-20 flex items-center justify-center hover:text-purple-400"
-								style={{boxShadow: "none"}}
-							>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="48"
-									height="48"
-									fill="currentColor"
-									viewBox="0 0 16 16"
-								>
-									<path
-										fillRule="evenodd"
-										d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"
-									/>
-								</svg>
-							</button>
-						)
-					}
-					renderArrowNext={(onClickHandler, hasNext, label) =>
-						hasNext && (
-							<button
-								type="button"
-								onClick={onClickHandler}
-								title={label}
-								className="absolute right-0 top-1/3 -translate-y-1/2 bg-transparent text-white w-20 h-20 z-20 flex items-center justify-center hover:text-purple-400"
-								style={{boxShadow: "none"}}
-							>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="48"
-									height="48"
-									fill="currentColor"
-									viewBox="0 0 16 16"
-								>
-									<path
-										fillRule="evenodd"
-										d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"
-									/>
-								</svg>
-							</button>
-						)
-					}
-				>
-					{teams.map((team, index) => (
-						<div key={index} className="space-y-8">
-							{/* Team Name with Icon */}
-							<div className="flex justify-center items-center gap-4 mt-12 max-w-full overflow-hidden">
-								<h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-wider text-center whitespace-nowrap"
-									style={{
-										fontFamily: 'LemonMilk, sans-serif',
-										color: teamColors[team.name] || '#fff'
-									}}>
-									{team.name === "EXECUTIVE TEAM" ? (
-										<>
-											executive team <span className="lightning-animate">⭐</span>
-										</>
-									) : team.name.toLowerCase() + " team"}
-								</h2>
-								{team.name !== "EXECUTIVE TEAM" && (
-									<span
-										className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl lightning-animate flex items-center">{team.icon}</span>
-								)}
-							</div>
-							{/* Executive team header image for Executive team only */}
-							{team.name === "EXECUTIVE TEAM" && (
-								<div
-									className="w-full h-96 bg-gray-800 rounded-xl flex flex-col items-center justify-center my-8 mx-auto overflow-hidden relative"
-									style={{
-										border: '2px solid #3c346c',
-										outline: 'none'
-									}}
-								>
-									<img
-										src={team.image}
-										className="w-full h-full object-cover absolute top-0 left-0 z-0"
-										alt="Executive Team Header"
-										style={{objectFit: 'cover', objectPosition: 'center'}}
-									/>
-									<div
-										className="relative z-10 flex flex-col items-center justify-center w-full h-full">
-										<div className="flex flex-col items-center mb-12 mt-36 sm:mt-[90px]">
-											<div
-												className="w-20 h-20 bg-white bg-opacity-80 rounded-full flex items-center justify-center mb-2 overflow-hidden">
-												<span className="text-4xl font-bold text-gray-900"
-													  style={{fontFamily: 'LemonMilk, sans-serif'}}>L</span>
-											</div>
-											<span className="text-white text-base font-bold"
-												  style={{textShadow: '0 2px 8px #443B75'}}>Lina</span>
-										</div>
-									</div>
-								</div>
-							)}
-							{/* Team Image with Leads inside */}
-							{team.name !== "EXECUTIVE TEAM" && (
-								<div
-									className="w-full h-96 bg-gray-800 rounded-xl flex flex-col items-center justify-center my-8 mx-auto overflow-hidden relative"
-									style={{
-										border: '2px solid #3c346c',
-										outline: 'none'
-									}}
-								>
-									<img
-										src={team.image}
-										className="w-full h-full object-cover absolute top-0 left-0 z-0"
-										alt={team.name}
-										style={{objectFit: 'cover', objectPosition: 'center'}}
-									/>
-									<div
-										className="relative z-10 flex flex-col items-center justify-center w-full h-full">
-										<span className="block font-bold mt-36 sm:mt-[90px]" style={{
-											fontFamily: 'LemonMilk, sans-serif',
-											fontSize: '2rem',
-											marginBottom: '24px',
-											color: teamColors[team.name] || '#fff',
-											textShadow: '0 2px 8px #443B75'
-										}}>{team.leads.length === 1 ? 'lead:' : 'leads:'}</span>
-										<div className="flex flex-wrap justify-center items-center gap-6 mb-12">
-											{team.leads && team.leads.map((lead, i) => (
-												<div key={i} className="flex flex-col items-center">
-													<div
-														className="w-20 h-20 bg-white bg-opacity-80 rounded-full flex items-center justify-center mb-2 overflow-hidden">
-														<span className="text-4xl font-bold text-gray-900"
-															  style={{fontFamily: 'LemonMilk, sans-serif'}}>{lead.name.charAt(0)}</span>
-													</div>
-													<span className="text-white text-base font-bold"
-														  style={{textShadow: '0 2px 8px #443B75'}}>{lead.name}</span>
-												</div>
-											))}
-										</div>
-									</div>
-								</div>
-							)}
-							{/* Vice Presidents label for Executive team, Members for others */}
-							<span className="block font-bold mb-6" style={{
-								fontFamily: 'LemonMilk, sans-serif',
-								fontSize: '1.5rem',
-								color: teamColors[team.name] || '#fff',
-								textShadow: '0 2px 8px #443B75'
-							}}>{team.name === "EXECUTIVE TEAM" ? 'Vice Presidents:' : 'Members:'}</span>
-							{/* Vice Presidents or Members */}
-							<div className="flex justify-center gap-4 my-8 flex-wrap">
-								{team.members && team.members.map((member, i) => (
-									<div
-										key={i}
-										className="flex flex-col items-center"
-									>
-										<div
-											className="w-20 h-20 bg-gray-800 rounded-full flex items-center justify-center text-base font-mono border border-gray-600 overflow-hidden">
-											<img
-												src={mascotImg}
-												alt={member.name}
-												className="w-full h-full object-cover rounded-full"
-											/>
-										</div>
-										<span className="block text-base mt-2 font-bold" style={{
-											color: '#fff',
-											textShadow: '0 2px 8px #443B75',
-											fontFamily: 'LemonMilk, sans-serif'
-										}}>{member.name}</span>
-									</div>
-								))}
-							</div>
-						</div>
-					))}
-				</Carousel>
-			</div>
-		</section>
-	);
+// ─── HELPERS ─────────────────────────────────────────────────────────────────
+
+function getInitials(name: string): string {
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+}
+
+// ─── COMPONENTS ──────────────────────────────────────────────────────────────
+
+function PersonCard({
+  person,
+  circleColor,
+  large = false,
+}: {
+  person: Person;
+  circleColor: string;
+  large?: boolean;
+}) {
+  return (
+    <div className="flex flex-col items-center rounded-xl p-3 gap-2" style={{ background: "#ffffff", border: "1px solid #e5e7eb" }}>
+      <div
+        className="w-[88px] h-[88px] rounded-full flex items-center justify-center overflow-hidden flex-shrink-0"
+        style={{ background: circleColor }}
+      >
+        {person.image ? (
+          <img
+            src={person.image}
+            alt={person.name}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <span
+            className="font-bold text-white text-xs"
+            style={{ fontFamily: "LemonMilk, sans-serif" }}
+          >
+            {getInitials(person.name)}
+          </span>
+        )}
+      </div>
+      <div className="text-center w-full">
+        <p className="text-[10px] font-semibold text-gray-800 leading-tight break-words">
+          {person.name}
+        </p>
+        {person.role && (
+          <p className="text-[9px] text-gray-400 mt-0.5 uppercase tracking-wide leading-tight break-words" style={{ whiteSpace: "pre-line" }}>
+            {person.role}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function SectionRow({
+  label,
+  people,
+  circleColor,
+  large = false,
+  useGrid = false,
+}: {
+  label: string;
+  people: Person[];
+  circleColor: string;
+  large?: boolean;
+  useGrid?: boolean;
+}) {
+  if (!people || people.length === 0) return null;
+  return (
+    <div>
+      <p
+        className="text-[10px] font-bold tracking-widest uppercase mb-2"
+        style={{ color: "#8878a8", fontFamily: "Arimo, sans-serif" }}
+      >
+        {label}
+      </p>
+      {useGrid ? (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))", gap: "10px" }}>
+          {people.map((p, i) => (
+            <PersonCard key={i} person={p} circleColor={circleColor} large={large} />
+          ))}
+        </div>
+      ) : (
+        <div className="flex flex-wrap gap-2 sm:gap-3">
+          {people.map((p, i) => (
+            <PersonCard key={i} person={p} circleColor={circleColor} large={large} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function TeamCard({ team }: { team: Team }) {
+  const totalCount =
+    (team.president?.length ?? 0) +
+    (team.vps?.length ?? 0) +
+    (team.leads?.length ?? 0) +
+    (team.jrLeads?.length ?? 0) +
+    team.members.length;
+
+  const hasLeads   = (team.leads?.length ?? 0)   > 0;
+  const hasJrLeads = (team.jrLeads?.length ?? 0) > 0;
+
+  return (
+    <div id={team.id} className="rounded-2xl overflow-hidden shadow-md mb-10 bg-white">
+      {/* ── card header ── */}
+      <div
+        className="flex items-center gap-3 px-4 sm:px-5"
+        style={{ background: "#1D0F33", height: 84 }}
+      >
+        <div
+          className="w-10 h-10 flex-shrink-0"
+          style={{ borderRadius: 13, background: team.iconColor }}
+        />
+        <span
+          className="text-white"
+          style={{ fontFamily: "var(--font-epilogue), sans-serif", fontSize: 22, fontWeight: 600 }}
+        >
+          {team.name}
+        </span>
+        <span
+          className="ml-auto text-xs font-semibold px-3 py-1 rounded-full whitespace-nowrap"
+          style={{
+            background: "#3E2F56",
+            color: "#B8B2C0",
+            fontFamily: "Arimo, sans-serif",
+          }}
+        >
+          {totalCount} members
+        </span>
+      </div>
+
+      {/* ── card body ── */}
+      <div className="p-4 sm:p-5 flex flex-col gap-5">
+        {/* pres */}
+        {(team.president?.length ?? 0) > 0 && (
+          <SectionRow
+            label="President"
+            people={team.president!}
+            circleColor={team.leadCircleColor}
+            large
+          />
+        )}
+
+        {/* vps */}
+        {(team.vps?.length ?? 0) > 0 && (
+          <SectionRow
+            label="Vice Presidents"
+            people={team.vps!}
+            circleColor={team.leadCircleColor}
+            useGrid
+          />
+        )}
+
+        {/* team & jr leads */}
+        {(hasLeads || hasJrLeads) && (
+          <div className="flex flex-col sm:flex-row gap-6">
+            {hasLeads && (
+              <div className="min-w-[260px]">
+                <SectionRow
+                  label="Team Leads"
+                  people={team.leads!}
+                  circleColor={team.leadCircleColor}
+                  useGrid
+                />
+              </div>
+            )}
+            {hasJrLeads && (
+              <div className="min-w-[260px]">
+                <SectionRow
+                  label="Jr. Leads"
+                  people={team.jrLeads!}
+                  circleColor={team.leadCircleColor}
+                  useGrid
+                />
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* team members */}
+        {team.members.length > 0 && (
+          <SectionRow
+            label="Team Members"
+            people={team.members}
+            circleColor={team.memberCircleColor}
+            useGrid
+          />
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ─── PAGE ─────────────────────────────────────────────────────────────────────
+
+function getCardTransform(i: number, hoveredIndex: number | null): string {
+  if (hoveredIndex === null || i === hoveredIndex) return "scale(1)";
+  const hRow = Math.floor(hoveredIndex / 2);
+  const hCol = hoveredIndex % 2;
+  const iRow = Math.floor(i / 2);
+  const iCol = i % 2;
+  let dx = 0, dy = 0;
+  if (iRow === hRow) dx = iCol > hCol ? 7 : -7;
+  if (iCol === hCol) dy = iRow > hRow ? 7 : -7;
+  return `translate(${dx}px, ${dy}px)`;
+}
+
+export default function Hero() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  return (
+    <>
+      {/* hero */}
+      <section
+        className="relative w-full overflow-hidden"
+        style={{
+          minHeight: "calc(100vh - var(--navbar-height))",
+          backgroundImage: "url('/images/starrybackground.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        {/* moon (bot right) */}
+        <img
+          src="/Moon1.png"
+          alt=""
+          aria-hidden="true"
+          className="absolute bottom-0 right-0 w-[180px] sm:w-[280px] lg:w-[420px] h-auto object-contain pointer-events-none select-none"
+        />
+
+        {/* sparkle decorations */}
+        <span className="absolute top-[12%] left-[8%]  text-3xl select-none pointer-events-none" style={{ color: "#e0b8ff", opacity: 0.9, transform: "translate(4px, -20px)" }}>✦</span>
+        <span className="absolute top-[18%] left-[38%] text-base select-none pointer-events-none" style={{ color: "#ffffff", opacity: 0.5 }}>✦</span>
+        <span className="absolute top-[55%] left-[5%]  text-5xl select-none pointer-events-none" style={{ color: "#a0c8ff", opacity: 0.7 }}>✦</span>
+        <span className="absolute top-[70%] left-[28%] text-sm  select-none pointer-events-none" style={{ color: "#ffffff", opacity: 0.4 }}>✦</span>
+        <span className="absolute top-[8%]  right-[32%] text-xl select-none pointer-events-none" style={{ color: "#ffffff", opacity: 0.35 }}>✦</span>
+        <span className="absolute top-[40%] right-[8%] text-2xl select-none pointer-events-none" style={{ color: "#ffffff", opacity: 0.3 }}>✦</span>
+
+        <div
+          className="team-hero-container relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-12 flex flex-col lg:flex-row items-center gap-10 lg:gap-8"
+          style={{ minHeight: "calc(100vh - var(--navbar-height))", paddingTop: "5vh", paddingBottom: "5vh" }}
+        >
+          {/* title + description */}
+          <div className="lg:flex-1 text-white text-center lg:text-left lg:max-w-[460px]">
+            {/* our people */}
+            <div
+              className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 mb-6 text-[11px] font-semibold tracking-widest uppercase"
+              style={{
+                background: "rgba(255,255,255,0.1)",
+                border: "1px solid rgba(255,255,255,0.18)",
+                color: "rgba(220,210,245,0.85)",
+                fontFamily: "var(--font-dm-sans), sans-serif",
+              }}
+            >
+              <span style={{ fontSize: 9 }}>✦</span> Our People
+            </div>
+
+            <h1
+              className="leading-[1.05] text-white"
+              style={{ fontFamily: "var(--font-epilogue), sans-serif", fontSize: "clamp(3.2rem, 6.5vw, 5.5rem)", fontWeight: 900 }}
+            >
+              Meet the
+            </h1>
+            <h1
+              className="leading-[1.05] mb-6"
+              style={{
+                fontFamily: "var(--font-epilogue), sans-serif",
+                fontSize: "clamp(3.2rem, 6.5vw, 5.5rem)",
+                fontWeight: 900,
+                background: "linear-gradient(to right, #fea2be, #c996ff)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Team.
+            </h1>
+
+            <p
+              className="text-sm leading-relaxed font-semibold"
+              style={{ color: "#DAD4E3", fontFamily: "var(--font-dm-sans), sans-serif", maxWidth: 340 }}
+            >
+              Since 2024, WayBionic has been driven by passionate innovators
+              pushing boundaries in tech and medicine. We&apos;re always looking
+              for curious, driven people ready to make an impact.
+            </p>
+          </div>
+
+          {/* stats grid + moon */}
+          <div className="flex items-center justify-center lg:justify-end relative py-[5vh]">
+            <div className="team-stats-grid">
+              {stats.map((s, i) => (
+                <div
+                  key={i}
+                  className="relative overflow-hidden flex flex-col justify-end cursor-pointer"
+                  onMouseEnter={() => setHoveredIndex(i)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                  onClick={() => {
+                    const el = document.getElementById(s.targetId);
+                    if (!el) return;
+                    const top = el.getBoundingClientRect().top + window.scrollY - (window.innerHeight / 2 - el.offsetHeight / 2);
+                    window.scrollTo({ top, behavior: "smooth" });
+                  }}
+                  style={{
+                    background: "rgba(255,255,255,0.13)",
+                    border: "3px solid rgba(255,255,255,0.38)",
+                    borderRadius: 18,
+                    padding: "14px 20px",
+                    backdropFilter: "blur(12px)",
+                    WebkitBackdropFilter: "blur(12px)",
+                    transition: "transform 0.2s ease-out, filter 0.2s ease-out",
+                    transform: hoveredIndex === i
+                      ? "scale(1.04)"
+                      : getCardTransform(i, hoveredIndex),
+                    filter: hoveredIndex === i ? "brightness(1.25)" : "brightness(1)",
+                  }}
+                >
+                  {/* gradient overlay (white -> transparent) */}
+                  <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background: "linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 60%)",
+                    }}
+                  />
+                  <p
+                    className="team-stat-number relative leading-none"
+                    style={{
+                      fontFamily: "var(--font-dm-sans), sans-serif",
+                      fontWeight: 900,
+                      fontSize: "65px",
+                      color: s.filled ? "rgba(255,255,255,0.4)" : "transparent",
+                      WebkitTextStroke: s.filled ? "none" : "1px #CCC7D6",
+                    }}
+                  >
+                    {s.count}
+                  </p>
+                  <p
+                    className="team-stat-label relative uppercase mt-2"
+                    style={{
+                      fontSize: "21px",
+                      letterSpacing: "0.04em",
+                      color: "rgba(255,255,255,0.65)",
+                      fontFamily: "var(--font-dm-sans), sans-serif",
+                      fontWeight: 900,
+                    }}
+                  >
+                    {s.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* team directory */}
+      <div
+        id="directory"
+        className="w-full flex flex-col items-center"
+        style={{ background: "#f0ebf8" }}
+      >
+        <div className="w-full max-w-6xl px-4 sm:px-8 py-14">
+
+          {/* section label */}
+          <div className="flex items-center gap-4 mb-10">
+            <div className="flex-1 h-px" style={{ background: "#c8b8d8" }} />
+            <p
+              className="text-[10px] font-bold tracking-[0.3em] uppercase whitespace-nowrap"
+              style={{ color: "#9080c0", fontFamily: "Arimo, sans-serif" }}
+            >
+              Team Directory
+            </p>
+            <div className="flex-1 h-px" style={{ background: "#c8b8d8" }} />
+          </div>
+
+          {teams.map((team) => (
+            <TeamCard key={team.id} team={team} />
+          ))}
+
+        </div>
+      </div>
+    </>
+  );
 }
