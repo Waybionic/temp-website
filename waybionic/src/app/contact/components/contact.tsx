@@ -58,7 +58,7 @@ export default function Contact() {
           body: responseText
         });
         setStatusType("error");
-        setStatus(payload?.error || "Something went wrong. Please try again.");
+        setStatus(payload?.error || "Something went wrong. Try again.");
         return;
       }
 
@@ -68,12 +68,10 @@ export default function Contact() {
       setMessage("");
 
       setStatusType("success");
-      setStatus(
-        "Thanks for reaching out. Your message is on its way to the Waybionic team."
-      );
+      setStatus("Message sent!");
     } catch (error) {
       setStatusType("error");
-      setStatus("Unable to send right now. Please try again in a moment.");
+      setStatus("Something went wrong. Try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -158,8 +156,22 @@ export default function Contact() {
           />
         </div>
 
-        {/* submit button */}
-        <div className="contact-submit-row flex justify-end">
+        {/* submit button + status */}
+        <div className="contact-submit-row flex items-center justify-end gap-4">
+          {status && (
+            <p
+              aria-live="polite"
+              style={{
+                margin: 0,
+                fontFamily: "var(--font-dm-sans), sans-serif",
+                fontWeight: 600,
+                fontSize: "14px",
+                color: statusType === "error" ? "#e53e3e" : "#7c6fad",
+              }}
+            >
+              {status}
+            </p>
+          )}
           <button
             type="submit"
             disabled={isSubmitting}
@@ -174,20 +186,12 @@ export default function Contact() {
               fontSize: "15px",
               cursor: isSubmitting ? "not-allowed" : "pointer",
               opacity: isSubmitting ? 0.6 : 1,
+              flexShrink: 0,
             }}
           >
             {isSubmitting ? "sending..." : "send message"}
           </button>
         </div>
-
-        {status && (
-          <p
-            className={`text-center ${statusType === "error" ? "text-red-600" : "text-green-600"}`}
-            aria-live="polite"
-          >
-            {status}
-          </p>
-        )}
       </form>
     </div>
   );
