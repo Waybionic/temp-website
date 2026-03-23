@@ -84,7 +84,7 @@ const teams: Team[] = [
       { name: "Hady Fouda",        image: "" },
       { name: "Humam Hameed",        image: "/images/team/humam-hameed.jpg" },
       { name: "Zara Daudi",        image: "" },
-      { name: "Shahmeen Sarmad",        image: "" },
+      { name: "Shahmeen Sarmad",        image: "/images/team/shahmeen-sarmad.png" },
       { name: "Md Samiu",       image: "/images/team/md-samiu.jpg" },
     ],
   },
