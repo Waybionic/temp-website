@@ -8,10 +8,10 @@ export default function ContactPage() {
             <div className="relative w-full">
 
                 {/* background halves */}
-                <div className="absolute inset-0 flex flex-col md:flex-row" style={{ zIndex: 0 }}>
+                <div className="absolute inset-0 flex flex-col lg:flex-row" style={{ zIndex: 0 }}>
                     {/* dark purple lhs */}
                     <div
-                        className="w-full md:w-1/2 h-[50vh] md:h-full relative overflow-hidden"
+                        className="w-full lg:w-1/2 h-[50vh] lg:h-full relative overflow-hidden"
                         style={{ background: "linear-gradient(145deg, #1e1a4e 0%, #2d2568 50%, #3d316e 100%)" }}
                     >
                         <img
@@ -26,7 +26,7 @@ export default function ContactPage() {
                         />
                     </div>
                     {/* off white rhs */}
-                    <div className="flex-1 w-full md:w-1/2" style={{ backgroundColor: "#FBF9FF" }} />
+                    <div className="flex-1 w-full lg:w-1/2" style={{ backgroundColor: "#FBF9FF" }} />
                 </div>
 
                 {/* moon */}
@@ -34,15 +34,15 @@ export default function ContactPage() {
 
                 {/* content */}
                 <div
-                    className="relative flex flex-col md:flex-row w-full md:min-h-[680px]"
+                    className="relative flex flex-col lg:flex-row w-full lg:min-h-[680px]"
                     style={{ zIndex: 2 }}
                 >
                     {/* hero */}
-                    <div className="w-full md:w-1/2 h-[50vh] md:h-auto">
+                    <div className="w-full lg:w-1/2 h-[50vh] lg:h-auto">
                         <Hero />
                     </div>
                     {/* form */}
-                    <div className="w-full md:w-1/2 flex items-center">
+                    <div className="w-full lg:w-1/2 flex items-center">
                         <Contact />
                     </div>
                 </div>

@@ -330,13 +330,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* moon: centered at horizontal line on mobile */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .contact-moon {
     width: 92%;
     bottom: auto;
     top: 50vh;
     transform: translateX(-50%) translateY(-100%);
   }
+}
+
+@media (max-width: 1024px) and (max-height: 750px) {
+  .contact-moon {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
 
   /* hero */
   .contact-hero-content {
@@ -349,6 +358,7 @@ h1, h2, h3, h4, h5, h6 {
   .contact-hero-content p {
     max-width: 100% !important;
     text-align: center !important;
+    font-size: 15px !important;
   }
 
   /*form */
