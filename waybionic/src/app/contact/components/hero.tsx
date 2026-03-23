@@ -11,19 +11,13 @@ export default function Hero() {
 
       {/* + contact bubble */}
       <div
+        className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 mb-6 text-[11px] font-semibold tracking-widest uppercase"
         style={{
-          display: "inline-flex",
-          alignItems: "center",
-          backgroundColor: "rgba(255,255,255,0.18)",
-          border: "1px solid rgba(255,255,255,0.35)",
-          borderRadius: "999px",
-          padding: "4px 14px",
-          marginBottom: "28px",
-          width: "fit-content",
-          fontSize: "11px",
-          letterSpacing: "0.05em",
-          color: "white",
+          background: "rgba(255,255,255,0.1)",
+          border: "1px solid rgba(255,255,255,0.18)",
+          color: "rgba(220,210,245,0.85)",
           fontFamily: "var(--font-dm-sans), sans-serif",
+          width: "fit-content",
         }}
       >
         + CONTACT
