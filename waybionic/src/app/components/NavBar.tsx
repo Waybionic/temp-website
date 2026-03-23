@@ -6,6 +6,7 @@ import Image from "next/image";
 const pages = [
   { name: "About", href: "/about" },
   { name: "Our Team", href: "/team" },
+  { name: "Sponsors", href: "/sponsors" },
   { name: "Contact Us", href: "/contact" },
 ];
 
