@@ -13,16 +13,18 @@ export default function PdfViewer({ file }: { file: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    let cancelled = false;
+
     if (window.pdfjsLib) {
       render();
-      return;
+      return () => { cancelled = true; };
     }
 
     const script = document.createElement("script");
     script.src = `${PDFJS_CDN}/pdf.min.js`;
     script.onload = () => {
       window.pdfjsLib.GlobalWorkerOptions.workerSrc = `${PDFJS_CDN}/pdf.worker.min.js`;
-      render();
+      if (!cancelled) render();
     };
     document.head.appendChild(script);
 
@@ -30,9 +32,11 @@ export default function PdfViewer({ file }: { file: string }) {
       if (!containerRef.current) return;
       const lib = window.pdfjsLib;
       const pdf = await lib.getDocument(file).promise;
+      if (cancelled || !containerRef.current) return;
       containerRef.current.innerHTML = "";
 
       for (let i = 1; i <= pdf.numPages; i++) {
+        if (cancelled || !containerRef.current) return;
         const page = await pdf.getPage(i);
         // render at 2x for sharpness, scale down w/ css
         const viewport = page.getViewport({ scale: 2 });
@@ -52,6 +56,8 @@ export default function PdfViewer({ file }: { file: string }) {
         await page.render({ canvasContext: canvas.getContext("2d"), viewport }).promise;
       }
     }
+
+    return () => { cancelled = true; };
   }, [file]);
 
   return <div ref={containerRef} style={{ width: "100%" }} />;
