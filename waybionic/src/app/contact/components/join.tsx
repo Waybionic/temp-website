@@ -8,13 +8,13 @@ const hiring: boolean = false;
 export default function Join() {
   return (
     <section
-      className="w-full flex justify-center items-center py-20 px-6"
+      className="w-full flex justify-center items-center py-4 px-6"
       style={{
         background: "linear-gradient(135deg, #e8c4d8 0%, #d4c8f0 100%)",
       }}
       id="join"
     >
-      <div className="bg-white rounded-3xl shadow-lg p-10 w-full max-w-xl text-center">
+      <div className="bg-white rounded-3xl shadow-lg p-16 w-full max-w-3xl text-center">
         <h2 className="text-3xl font-bold mb-4" style={{ color: "#25223b" }}>
           Join Our Team
         </h2>

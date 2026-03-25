@@ -23,7 +23,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "WAYBIONIC 🦾",
+  title: "WAYBIONIC",
   description: "Website for WAYBIONIC",
 };
 

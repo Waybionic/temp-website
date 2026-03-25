@@ -42,6 +42,8 @@ export default function Package() {
           potential partnerships!
         </p>
 
+        <br />
+
         {/* sponsorship package embed */}
         <div
           className="mx-auto overflow-y-auto overflow-x-hidden h-[600px] sm:h-[970px]"
@@ -51,14 +53,14 @@ export default function Package() {
         </div>
 
         {/* download button */}
-        <div className="flex justify-center sm:justify-end mt-4" style={{ width: "90%", margin: "16px auto 0" }}>
+        <div className="flex justify-center mt-4" style={{ width: "90%", margin: "16px auto 0" }}>
           <a
             href="/sponsors/sponsorship-package.pdf"
             download
             style={{
               backgroundColor: "#B9AFD2",
               color: "white",
-              padding: "12px 48px",
+              padding: "12px 96px",
               borderRadius: "12px",
               fontFamily: "var(--font-dm-sans), sans-serif",
               fontWeight: 700,
@@ -67,7 +69,10 @@ export default function Package() {
               display: "inline-block",
             }}
           >
-            download package
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 3v13M7 11l5 5 5-5"/>
+              <path d="M5 21h14"/>
+            </svg>
           </a>
         </div>
 
