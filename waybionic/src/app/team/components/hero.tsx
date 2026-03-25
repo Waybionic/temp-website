@@ -14,11 +14,31 @@ type Person = {
   image?: string;
 };
 
+/** Simple laptop glyph for Software team (stroke inherits `currentColor`). */
+function LaptopTeamIcon() {
+  return (
+    <svg
+      width={22}
+      height={22}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.75}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <rect x="3" y="4" width="18" height="12" rx="1.5" />
+      <path d="M2 18h20" />
+    </svg>
+  );
+}
+
 type Team = {
   id: string;
   name: string;
-  /** symbol rendered inside the icon square in the card header */
-  icon?: string;
+  /** symbol or small graphic in the icon square in the card header */
+  icon?: string | React.ReactNode;
   /** font-weight override for the icon symbol (default 400) */
   iconWeight?: number;
   /** color used for the icon square in the card header */
@@ -145,7 +165,7 @@ const teams: Team[] = [
   {
     id: "software",
     name: "Software Team",
-    icon: "♫",
+    icon: <LaptopTeamIcon />,
     iconColor: "#A4C5C7",
     leadCircleColor: "#A4C5C7",
     memberCircleColor: "#B9AFD2",
@@ -305,20 +325,37 @@ function TeamCard({ team }: { team: Team }) {
   const hasJrLeads = (team.jrLeads?.length ?? 0) > 0;
 
   return (
-    <div id={team.id} className="rounded-2xl overflow-hidden shadow-md mb-10 bg-white">
+    <div
+      id={team.id}
+      className="rounded-2xl overflow-hidden shadow-md mb-10 bg-white"
+      style={{ scrollMarginTop: "calc(var(--navbar-height) + 12px)" }}
+    >
       {/* ── card header ── */}
       <div
         className="flex items-center gap-3 px-4 sm:px-5"
         style={{ background: "#1D0F33", height: 84 }}
       >
         <div
-          className="w-10 h-10 flex-shrink-0 flex items-center justify-center"
+          className="w-10 h-10 flex-shrink-0 flex items-center justify-center text-white"
           style={{ borderRadius: 13, background: team.iconColor }}
         >
-          {team.icon && (
-            <span style={{ color: "white", fontSize: 24, lineHeight: 1, userSelect: "none", fontWeight: team.iconWeight ?? 400 }}>
-              {team.icon}
-            </span>
+          {team.icon != null && team.icon !== "" && (
+            typeof team.icon === "string" ? (
+              <span
+                style={{
+                  fontSize: 24,
+                  lineHeight: 1,
+                  userSelect: "none",
+                  fontWeight: team.iconWeight ?? 400,
+                }}
+              >
+                {team.icon}
+              </span>
+            ) : (
+              <span className="flex items-center justify-center [&_svg]:shrink-0">
+                {team.icon}
+              </span>
+            )
           )}
         </div>
         <span
@@ -506,10 +543,20 @@ export default function Hero() {
                   onMouseEnter={() => setHoveredIndex(i)}
                   onMouseLeave={() => setHoveredIndex(null)}
                   onClick={() => {
+                    if (!s.targetId) return;
                     const el = document.getElementById(s.targetId);
                     if (!el) return;
-                    const top = el.getBoundingClientRect().top + window.scrollY - (window.innerHeight / 2 - el.offsetHeight / 2);
-                    window.scrollTo({ top, behavior: "smooth" });
+                    // Align the top of the team card under the fixed nav — not vertically
+                    // center the whole card (tall cards would land with Jr. Leads at top).
+                    const root = document.documentElement;
+                    const navRaw = getComputedStyle(root).getPropertyValue("--navbar-height").trim();
+                    const navPx =
+                      navRaw.endsWith("px")
+                        ? parseFloat(navRaw)
+                        : parseFloat(navRaw) || 80;
+                    const gap = 12;
+                    const y = el.getBoundingClientRect().top + window.scrollY - navPx - gap;
+                    window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
                   }}
                   style={{
                     background: "rgba(255,255,255,0.13)",
