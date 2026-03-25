@@ -318,6 +318,27 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ── contact page responsive ── */
 
+/* Viewport fill below fixed nav (main already offsets content with padding-top). */
+.contact-hero-viewport {
+  min-height: calc(100vh - var(--navbar-height));
+  min-height: calc(100svh - var(--navbar-height));
+}
+
+.contact-hero-content {
+  box-sizing: border-box;
+  padding: clamp(3rem, 10vw, 6rem) clamp(1.75rem, 5vw, 3rem) clamp(2rem, 5vh, 3rem)
+    clamp(2rem, 9vw, 6.875rem);
+}
+
+@media (min-width: 1025px) {
+  .contact-hero-content {
+    padding-top: clamp(4.5rem, 12vh, 10rem);
+    padding-right: clamp(2rem, 3vw, 3rem);
+    padding-bottom: clamp(2rem, 4vh, 3rem);
+    padding-left: clamp(2.5rem, 8vw, 6.875rem);
+  }
+}
+
 /* moon: centered on desktop */
 .contact-moon {
   position: absolute;
@@ -330,12 +351,12 @@ h1, h2, h3, h4, h5, h6 {
   pointer-events: none;
 }
 
-/* moon: centered at horizontal line on mobile */
+/* moon: centered at horizontal line on mobile (match stacked hero band) */
 @media (max-width: 1024px) {
   .contact-moon {
     width: 92%;
     bottom: auto;
-    top: 50vh;
+    top: min(50svh, 28rem);
     transform: translateX(-50%) translateY(-100%);
   }
 }
@@ -350,7 +371,7 @@ h1, h2, h3, h4, h5, h6 {
 
   /* hero */
   .contact-hero-content {
-    padding: 48px 28px 56px !important;
+    padding: clamp(2.5rem, 8vw, 3rem) clamp(1.25rem, 5vw, 1.75rem) clamp(2.5rem, 7vw, 3.5rem) !important;
     align-items: center !important;
     justify-content: flex-start !important;
     text-align: center !important;

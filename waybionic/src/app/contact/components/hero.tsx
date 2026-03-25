@@ -2,7 +2,9 @@
 
 export default function Hero() {
   return (
-    <div className="contact-hero-content" style={{ padding: "160px 48px 48px 110px", display: "flex", flexDirection: "column", height: "100%", position: "relative", zIndex: 10 }}>
+    <div
+      className="contact-hero-content relative z-10 flex h-full min-h-0 flex-1 flex-col"
+    >
       {/* sparkle decos */}
       <div className="absolute top-8 right-10 text-white/60 text-2xl select-none">✦</div>
       <div className="absolute top-14 right-20 text-white/30 text-sm select-none">✦</div>
