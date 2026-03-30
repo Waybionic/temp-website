@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 interface CADViewerProps {
   modelPath: string;
@@ -16,25 +17,30 @@ export default function CADViewer({ modelPath }: CADViewerProps) {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    while (containerRef.current.firstChild) { //clear existing content
+    while (containerRef.current.firstChild) { //clear existing/leftover canvases
       containerRef.current.removeChild(containerRef.current.firstChild);
     }
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xfce7f3); //light pink background
+    scene.background = new THREE.Color(0xfce7f3); //light pink
     sceneRef.current = scene;
 
-    const camera = new THREE.PerspectiveCamera(75, containerRef.current.clientWidth / containerRef.current.clientHeight, 0.1, 1000);
-    camera.position.set(3, 3, 3);
+    const camera = new THREE.PerspectiveCamera(50, containerRef.current.clientWidth / containerRef.current.clientHeight, 0.1, 1000);
+    camera.position.set(0, 0, 4);
 
     //renderder setup
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.0;
     containerRef.current.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
-    //lighting
+    //env map used for the glass/clear look on the model
+    const pmremGenerator = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmremGenerator.fromScene(new RoomEnvironment(), 0.04).texture;
+
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
     scene.add(ambientLight);
 
@@ -60,21 +66,73 @@ export default function CADViewer({ modelPath }: CADViewerProps) {
       modelPath,
       (gltf) => {
         const model = gltf.scene;
-        
-        const box = new THREE.Box3().setFromObject(model);
-        const center = box.getCenter(new THREE.Vector3());
-        const size = box.getSize(new THREE.Vector3());
-        
-        const maxDim = Math.max(size.x, size.y, size.z);
-        const scale = 4 / maxDim;
-        model.scale.multiplyScalar(scale);
-        
-        model.position.sub(center.multiplyScalar(scale));
-        
         scene.add(model);
+
+        model.traverse((child) => {
+          if (child instanceof THREE.Mesh) {
+            child.visible = false;
+          }
+        });
+
+        //bounds filter
+        const ARM_BOUNDS = {
+          x: [0.5, 2.2],
+          y: [0.5, 2.4],
+          z: [1.2, 2.1],
+        };
+
+        const visibleBox = new THREE.Box3();
+        let visibleCount = 0;
+
+        // anything outside bounds is a stray part (was used to hide floating screws)
+        model.traverse((child) => {
+          if (child instanceof THREE.Mesh) {
+            const meshBox = new THREE.Box3().setFromObject(child);
+            const center = meshBox.getCenter(new THREE.Vector3());
+
+            const inBounds =
+              center.x >= ARM_BOUNDS.x[0] && center.x <= ARM_BOUNDS.x[1] &&
+              center.y >= ARM_BOUNDS.y[0] && center.y <= ARM_BOUNDS.y[1] &&
+              center.z >= ARM_BOUNDS.z[0] && center.z <= ARM_BOUNDS.z[1];
+
+            if (inBounds) {
+              child.visible = true;
+              visibleBox.union(meshBox);
+              visibleCount++;
+
+              //transparency and material effects
+              child.material = new THREE.MeshPhysicalMaterial({
+                color: 0x3a2066, //purple
+                metalness: 0.0,
+                roughness: 0.05,
+                transmission: 0.92,
+                thickness: 1.5,
+                ior: 2,
+                transparent: true,
+                opacity: 0.7,
+                envMapIntensity: 1.2,
+              });
+            }
+          }
+        });
+
+        console.log(`Showing ${visibleCount} meshes in arm bounds`);
+
+        //centering around midpoint of arm
+        const center = visibleBox.getCenter(new THREE.Vector3());
+        const size = visibleBox.getSize(new THREE.Vector3());
+        const maxDim = Math.max(size.x, size.y, size.z);
+
+        model.position.set(-center.x, -center.y, -center.z);
+
+        const fitDistance = (maxDim / 2) / Math.tan((Math.PI * 50) / 360) * 1.4;
+        camera.position.set(0, 0, fitDistance);
+
+        controls.target.set(0, 0, 0);
+        controls.update();
       },
       (progress) => {
-        console.log('Loading model...', (progress.loaded / progress.total * 100) + '%');
+        console.log('Loading...', (progress.loaded / progress.total * 100).toFixed(1) + '%');
       },
       (error) => {
         console.error('Error loading model:', error);
