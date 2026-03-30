@@ -50,7 +50,7 @@ export default function Hero() {
             </div>
           </div>
           <Image
-            src="/images/moon.png"
+            src="/images/hero_moon.png"
             alt="Moon"
             width={400}
             height={400}
