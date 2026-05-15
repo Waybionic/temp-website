@@ -133,7 +133,7 @@ const teams: Team[] = [
       { name: "Mahavir Desai",          image: "/images/team/mahavir-desai.jpg" },
       { name: "Utsav Ojha",          image: "/images/team/utsav-ojha.jpg" },
       { name: "Haziq Munir",          image: "/images/team/haziq-munir.jpg" },
-      { name: "Khanh Mai Le",          image: "" },
+      { name: "Mai Le",          image: "/images/team/mai-le.jpg" },
       { name: "Jad Wehbi",          image: "" },
       { name: "Saad Subhani",          image: "" },
       { name: "Gebrael Gebrael",          image: "" },
