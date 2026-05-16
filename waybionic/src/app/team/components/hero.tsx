@@ -103,7 +103,7 @@ const teams: Team[] = [
       { name: "Ahmad Sawalha",        image: "" },
       { name: "Meagan Zimmel", image: "" },
       { name: "Hady Fouda",        image: "" },
-      { name: "Humam Hameed",        image: "/images/team/humam-hameed.jpg" },
+      { name: "Humam Hameed",        image: "/images/team/humam-hameed.JPG" },
       { name: "Zara Daudi",        image: "" },
       { name: "Shahmeen Sarmad",        image: "/images/team/shahmeen-sarmad.png" },
       { name: "Md Samiu",       image: "/images/team/md-samiu.jpg" },
@@ -157,7 +157,7 @@ const teams: Team[] = [
       { name: "Maaz Saleh",     role: "JR. LEAD", image: "" },
     ],
     members: [
-      { name: "Bridget Benedek-Koteles",  image: "/images/team/bridget-benedek-koteles.jpeg" },
+      { name: "Bridget Benedek-Koteles",  image: "/images/team/bridget-benedek-koteles.JPEG" },
       { name: "Abdul Waase Qureshi",      image: "" },
       { name: "Julie Guirguis",  image: "" },
       { name: "Hannah Nguyen",           image: "" },
