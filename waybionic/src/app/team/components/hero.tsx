@@ -53,6 +53,7 @@ type Team = {
   vps?: Person[];
   leads?: Person[];
   jrLeads?: Person[];
+  advisors?: Person[];
   members: Person[];
 };
 
@@ -89,8 +90,8 @@ const teams: Team[] = [
     leadCircleColor: "#FBB6C9",
     memberCircleColor: "#B9AFD2",
     leads: [
-      { name: "Abdul Tinwala",  role: "TEAM LEAD", image: "/images/team/abdul-tinwala.jpg" },
-      { name: "Zayd Charanek", role: "TEAM LEAD", image: "/images/team/zayd-charanek.jpg" },
+      { name: "Abdul Tinwala",  role: "TEAM LEAD", image: "/images/team/abdul-tinwala.JPG" },
+      { name: "Zayd Charanek", role: "TEAM LEAD", image: "/images/team/zayd-charanek.JPG" },
     ],
     jrLeads: [
       { name: "Noah Fischer", role: "JR. LEAD", image: "/images/team/noah-fischer.jpg" },
@@ -319,10 +320,12 @@ function TeamCard({ team }: { team: Team }) {
     (team.vps?.length ?? 0) +
     (team.leads?.length ?? 0) +
     (team.jrLeads?.length ?? 0) +
+    (team.advisors?.length ?? 0) +
     team.members.length;
 
-  const hasLeads   = (team.leads?.length ?? 0)   > 0;
-  const hasJrLeads = (team.jrLeads?.length ?? 0) > 0;
+  const hasLeads    = (team.leads?.length ?? 0)    > 0;
+  const hasJrLeads  = (team.jrLeads?.length ?? 0)  > 0;
+  const hasAdvisors = (team.advisors?.length ?? 0) > 0;
 
   return (
     <div
@@ -398,8 +401,8 @@ function TeamCard({ team }: { team: Team }) {
           />
         )}
 
-        {/* team & jr leads */}
-        {(hasLeads || hasJrLeads) && (
+        {/* team leads, jr leads & advisors */}
+        {(hasLeads || hasJrLeads || hasAdvisors) && (
           <div className="flex flex-col sm:flex-row gap-6">
             {hasLeads && (
               <div className="min-w-[260px]">
@@ -416,6 +419,16 @@ function TeamCard({ team }: { team: Team }) {
                 <SectionRow
                   label="Jr. Leads"
                   people={team.jrLeads!}
+                  circleColor={team.leadCircleColor}
+                  useGrid
+                />
+              </div>
+            )}
+            {hasAdvisors && (
+              <div className="min-w-[260px]">
+                <SectionRow
+                  label="Advisors"
+                  people={team.advisors!}
                   circleColor={team.leadCircleColor}
                   useGrid
                 />
