@@ -6,6 +6,7 @@ import Image from "next/image";
 const pages = [
   { name: "About", href: "/about" },
   { name: "Our Team", href: "/team" },
+  { name: "Sponsors", href: "/sponsors" },
   { name: "Contact Us", href: "/contact" },
 ];
 
@@ -14,17 +15,18 @@ export default function NavBar() {
 
   return (
     <nav
-      className="fixed top-0 left-0 w-full z-50 bg-[var(--color-pink)] pt-[env(safe-area-inset-top)]"
+      className="fixed top-0 left-0 w-full z-50 bg-white pt-[env(safe-area-inset-top)]"
       style={{ height: "var(--navbar-height)" }}
     >
-      <div className="relative flex items-center justify-between px-4 py-4 h-full">
+      <div className="relative flex items-center justify-between px-4 py-2 h-full">
         {/* Hamburger Button (visible on small screens) */}
         <button
-          className="md:hidden p-2 text-white"
+          className="md:hidden p-2"
+          style={{ color: "var(--color-dark-purple)" }}
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle Menu"
         >
-          <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+          <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
             {isOpen ? (
               <path
                 fillRule="evenodd"
@@ -52,36 +54,38 @@ export default function NavBar() {
         </button>
 
         {/* Logo and Brand Name */}
-        <div className="absolute left-1/2 -translate-x-1/2 md:relative md:left-0 md:translate-x-0 flex items-center gap-2">
+        <div className="absolute left-1/2 -translate-x-1/2 md:relative md:left-0 md:translate-x-0 md:ml-2 flex items-center gap-2">
           <a href="/" className="flex items-center gap-2">
             <Image
               src="/images/logo.png"
               alt="Logo"
-              width={80}
-              height={80}
+              width={48}
+              height={48}
               className="object-contain"
             />
             <span
-              className="text-2xl font-bold hidden md:block"
+              className="hidden md:block"
               style={{
                 color: "var(--color-dark-purple)",
                 fontFamily: "LemonMilk, sans-serif",
+                fontWeight: 700,
+                fontSize: 18,
               }}
             >
-              Waybionic
+              WAYBIONIC
             </span>
           </a>
         </div>
 
         {/* Desktop Nav Links (visible on md and up) */}
-        <div className="hidden md:flex items-center space-x-10 mr-20">
+        <div className="hidden md:flex items-center space-x-8 mr-12">
           {pages.map((page) => (
             <Link href={page.href} key={page.name}>
               <span
-                className="text-2xl hover:text-gray-200 transition"
-                style={{ color: "var(--color-dark-purple)" }}
+                className="hover:opacity-70 transition"
+                style={{ color: "var(--color-dark-purple)", fontFamily: "Arimo, sans-serif", fontWeight: 700, fontSize: 18 }}
               >
-                <b>{page.name}</b>
+                {page.name}
               </span>
             </Link>
           ))}
@@ -90,7 +94,7 @@ export default function NavBar() {
 
       {/* Mobile Menu (shown when isOpen = true) */}
       <div
-        className={`md:hidden fixed left-0 right-0 top-[var(--navbar-height)] z-40 flex flex-col items-start space-y-4 px-6 pt-6 pb-6 bg-[var(--color-pink)] rounded-b-xl transition-opacity duration-500 ${
+        className={`md:hidden fixed left-0 right-0 top-[var(--navbar-height)] z-40 flex flex-col items-start space-y-4 px-6 pt-6 pb-6 bg-white rounded-b-xl transition-opacity duration-500 ${
           isOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
@@ -104,10 +108,10 @@ export default function NavBar() {
             onClick={() => setIsOpen(false)}
           >
             <span
-              className="text-2xl hover:text-gray-200 transition"
-              style={{ color: "var(--color-dark-purple)" }}
+              className="hover:opacity-70 transition"
+              style={{ color: "var(--color-dark-purple)", fontFamily: "Arimo, sans-serif", fontWeight: 700, fontSize: 18 }}
             >
-              <b>{page.name}</b>
+              {page.name}
             </span>
           </Link>
         ))}

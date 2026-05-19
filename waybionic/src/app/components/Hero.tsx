@@ -4,11 +4,10 @@ import React from "react";
 export default function Hero() {
   return (
     <section
-      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-no-repeat bg-cover bg-top"
+      className="relative w-full h-[90vh] flex items-center justify-center overflow-hidden bg-no-repeat bg-cover bg-top"
       style={{
-        backgroundImage: "url('/images/hero-bg.svg')",
+        backgroundImage: "url('/images/hero-bg2.png')",
         backgroundColor: "var(--color-deep-purple)",
-        minHeight: "calc(100vh - var(--navbar-height))",
       }}
       id="hero"
     >
@@ -16,7 +15,7 @@ export default function Hero() {
         1) A "scaling container" with max-w so it doesn't become huge on large screens.
         2) px-4 adds a bit of padding on small screens.
       */}
-      <div className="relative w-full max-w-[95%] sm:max-w-[640px] md:max-w-[768px] lg:max-w-[1200px] xl:max-w-[1200px] 2xl:max-w-[1600px] px-4 flex justify-center translate-y-[-15%] sm:translate-y-0">
+      <div className="relative w-full max-w-[85%] sm:max-w-[540px] md:max-w-[650px] lg:max-w-[850px] xl:max-w-[850px] 2xl:max-w-[1000px] px-4 flex justify-center translate-y-[-15%] sm:translate-y-0">
         <div className="relative w-full sm:w-fit flex justify-center">
           {/*
             2) Paper note centered horizontally and scaled to fit container.
@@ -28,7 +27,7 @@ export default function Hero() {
             width={5120}
             height={5120}
             priority
-            className="relative z-10 w-full sm:w-[600px] md:w-[700px] lg:w-[1000px] xl:w-[1296px] 2xl:w-[1200px] h-auto"
+            className="relative z-10 w-full sm:w-[420px] md:w-[500px] lg:w-[680px] xl:w-[750px] 2xl:w-[850px] h-auto"
           />
 
           {/*
@@ -50,11 +49,14 @@ export default function Hero() {
               <div className="flame-outer" />
             </div>
           </div>
-
-          {/*
-            3) Mascot, absolutely positioned and sized in % so it scales
-               with the container. Adjust 'left', 'top', 'w-[X%]' to taste.
-          */}
+          <Image
+            src="/images/hero_moon.png"
+            alt="Moon"
+            width={400}
+            height={400}
+            className="absolute z-5 left-[-18%] top-[80%] w-[50%] h-[70%]"
+            priority
+          />
           <Image
             src="/images/gear-temp.svg"
             alt="Gear"

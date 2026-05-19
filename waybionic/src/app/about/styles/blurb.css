@@ -2,9 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #FFB6C1; /* Pink from brand */
-  width: 100%;
-  min-height: 800px;
+  background-color: var(--color-light-purple);
+  min-height: 600px;
   padding: 100px 40px;
   position: relative;
   overflow: hidden;

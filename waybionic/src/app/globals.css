@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --navbar-height: 95px;
+  --navbar-height: 80px;
   --background: #ffffff;
   --foreground: #171717;
   --color-peach: #ffdca0;
   --color-dark-purple: #443b75;
   --color-deep-purple: #3d336a;
-  --color-pink: #fc92b0;
-  --color-light-purple: #a18fe7;
+  --color-pink: #f3b5c5;
+  --color-light-purple: #D7C5E2;
   --color-mint: #a6e6ca;
 }
 
@@ -22,7 +22,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #ffffff;
   }
 }
 
@@ -42,13 +42,20 @@
 
 
 html, body {
-  font-family: 'Arimo', sans-serif; 
+  font-family: 'Arimo', sans-serif;
   height: 100%;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
 }
 
 section {
   width: 100%;
-  min-height: 100vh; /* each section spans at least one viewport height */
+  min-height: 90vh; /* each section spans at least one viewport height */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -256,6 +263,137 @@ h1, h2, h3, h4, h5, h6 {
     background-size: auto 100% !important;
     background-repeat: repeat-x !important;
     background-position: top center !important;
+  }
+}
+
+/* ── team page hero responsive ── */
+
+@media (max-width: 1024px) {
+  .team-hero-container {
+    min-height: unset !important;
+  }
+}
+
+.team-stats-grid {
+  display: grid;
+  gap: 10px;
+  z-index: 10;
+  grid-template-columns: 339px 339px;
+  grid-template-rows: 133px 133px 133px;
+}
+
+@media (max-width: 1024px) {
+  .team-stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(3, 110px);
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .team-stat-number {
+    font-size: 44px !important;
+  }
+
+  .team-stat-label {
+    font-size: 15px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .team-stats-grid {
+    max-width: 100%;
+    grid-template-rows: repeat(3, 96px);
+  }
+
+  .team-stat-number {
+    font-size: 36px !important;
+  }
+
+  .team-stat-label {
+    font-size: 10px !important;
+    letter-spacing: 0.01em !important;
+    margin-top: 4px !important;
+  }
+}
+
+/* ── contact page responsive ── */
+
+/* Viewport fill below fixed nav (main already offsets content with padding-top). */
+.contact-hero-viewport {
+  min-height: calc(100vh - var(--navbar-height));
+  min-height: calc(100svh - var(--navbar-height));
+}
+
+.contact-hero-content {
+  box-sizing: border-box;
+  padding: clamp(3rem, 10vw, 6rem) clamp(1.75rem, 5vw, 3rem) clamp(2rem, 5vh, 3rem)
+    clamp(2rem, 9vw, 6.875rem);
+}
+
+@media (min-width: 1025px) {
+  .contact-hero-content {
+    padding-top: clamp(4.5rem, 12vh, 10rem);
+    padding-right: clamp(2rem, 3vw, 3rem);
+    padding-bottom: clamp(2rem, 4vh, 3rem);
+    padding-left: clamp(2.5rem, 8vw, 6.875rem);
+  }
+}
+
+/* moon: centered on desktop */
+.contact-moon {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 63%;
+  max-width: 1210px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* moon: centered at horizontal line on mobile (match stacked hero band) */
+@media (max-width: 1024px) {
+  .contact-moon {
+    width: 92%;
+    bottom: auto;
+    top: min(50svh, 28rem);
+    transform: translateX(-50%) translateY(-100%);
+  }
+}
+
+@media (max-width: 1024px) and (max-height: 750px) {
+  .contact-moon {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+
+  /* hero */
+  .contact-hero-content {
+    padding: clamp(2.5rem, 8vw, 3rem) clamp(1.25rem, 5vw, 1.75rem) clamp(2.5rem, 7vw, 3.5rem) !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    text-align: center !important;
+  }
+
+  .contact-hero-content p {
+    max-width: 100% !important;
+    text-align: center !important;
+    font-size: 15px !important;
+  }
+
+  /*form */
+  .contact-form-wrapper {
+    padding: 48px 24px 36px !important;
+  }
+
+  .contact-name-row {
+    flex-direction: column !important;
+  }
+
+  .contact-submit-row {
+    justify-content: center !important;
   }
 }
 
