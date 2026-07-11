@@ -174,17 +174,11 @@ const teams: Team[] = [
       { name: "Mujtaba Zia",   role: "TEAM LEAD", image: "" },
     ],
     jrLeads: [
-      { name: "Talha Zafar", role: "JR. LEAD", image: "" },
       { name: "Gianna Kong", role: "JR. LEAD", image: "/images/team/gianna-kong.jpg" },
     ],
     members: [
-      { name: "Alan Bach",   image: "" },
       { name: "Richard Nguyen",    image: "" },
       { name: "Harold Kim",        image: "/images/team/harold-kim.jpg" },
-      { name: "Adekorede Odebode", image: "" },
-      { name: "Tanvi Mahalwar",      image: "" },
-      { name: "Fatma Alzubaidi",   image: "/images/team/fatma-alzubaidi.jpg" },
-      { name: "Arham Tahir",             image: "" },
       { name: "Khuzaymah Haris",             image: "/images/team/khuzaymah-haris.png" }
     ],
   },
@@ -207,14 +201,41 @@ const teams: Team[] = [
   },
 ];
 
-// stats shown in the hero (i hope these are right..)
+// count everyone on a team (president, VPs, leads, jr. leads, and members)
+function countPeople(teamId: string): number {
+  const team = teams.find((t) => t.id === teamId);
+  if (!team) return 0;
+  return (
+    (team.president?.length ?? 0) +
+    (team.vps?.length ?? 0) +
+    (team.leads?.length ?? 0) +
+    (team.jrLeads?.length ?? 0) +
+    team.members.length
+  );
+}
+
+// stats shown in the hero — counts are derived from the team data above so they stay accurate
+const statTeams = [
+  { label: "BIOMEDICAL",          filled: false, targetId: "biomedical" },
+  { label: "MECHANICAL",          filled: true,  targetId: "mechanical" },
+  { label: "ELECTRICAL",          filled: true,  targetId: "electrical" },
+  { label: "SOFTWARE",            filled: false, targetId: "software"   },
+  { label: "MARKETING & FINANCE", filled: false, targetId: "finance"    },
+];
+
+const teamStats = statTeams.map((s) => ({
+  count: String(countPeople(s.targetId)),
+  label: s.label,
+  filled: s.filled,
+  targetId: s.targetId,
+}));
+
+// total members = everyone across the five teams above
+const totalMembers = teamStats.reduce((sum, s) => sum + Number(s.count), 0);
+
 const stats = [
-  { count: "8",   label: "BIOMEDICAL",          filled: false, targetId: "biomedical" },
-  { count: "11",  label: "MECHANICAL",          filled: true,  targetId: "mechanical" },
-  { count: "16",  label: "ELECTRICAL",          filled: true,  targetId: "electrical" },
-  { count: "12",  label: "SOFTWARE",            filled: false, targetId: "software"   },
-  { count: "5",   label: "MARKETING & FINANCE", filled: false, targetId: "finance"    },
-  { count: "55+", label: "MEMBERS",             filled: true,  targetId: ""           },
+  ...teamStats,
+  { count: String(totalMembers), label: "MEMBERS", filled: true, targetId: "" },
 ];
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
