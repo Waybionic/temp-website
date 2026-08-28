@@ -579,8 +579,8 @@ export default function Hero() {
             </h1>
 
             <p
-              className="text-m leading-relaxed font-semibold"
-              style={{ color: "#DAD4E3", fontFamily: "var(--font-dm-sans), sans-serif", maxWidth: 400 }}
+              className="text-lg leading-relaxed font-semibold"
+              style={{ color: "#DAD4E3", fontFamily: "var(--font-dm-sans), sans-serif", maxWidth: 450 }}
             >
               Since 2024, WayBionic has been driven by passionate innovators
               pushing boundaries in tech and medicine. We&apos;re always looking
