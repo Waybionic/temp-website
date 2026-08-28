@@ -397,6 +397,24 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.pdf-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(68, 59, 114, 0.5) transparent;
+}
+
+.pdf-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.pdf-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.pdf-scroll::-webkit-scrollbar-thumb {
+  background: rgba(68, 59, 114, 0.5);
+  border-radius: 3px;
+}
+
 .glow-emoji {
   filter: drop-shadow(0 0 8px #fff200) drop-shadow(0 0 16px #fff200);
   animation: glow-pulse 1.5s infinite alternate;

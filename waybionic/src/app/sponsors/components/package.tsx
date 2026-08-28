@@ -46,10 +46,15 @@ export default function Package() {
 
         {/* sponsorship package embed */}
         <div
-          className="mx-auto overflow-y-auto overflow-x-hidden h-[600px] sm:h-[970px]"
-          style={{ borderRadius: "12px", width: "90%", scrollbarWidth: "none" }}
+          className="mx-auto"
+          style={{ borderRadius: "12px", width: "90%", overflow: "hidden" }}
         >
-          <PdfViewer file="/sponsors/sponsorship-package.pdf" />
+          <div
+            className="pdf-scroll overflow-y-auto overflow-x-hidden h-[600px] sm:h-[970px]"
+            style={{ marginRight: "0px" }}
+          >
+            <PdfViewer file="/sponsors/sponsorship-package.pdf" />
+          </div>
         </div>
 
         {/* download button */}
