@@ -73,14 +73,18 @@ const teams: Team[] = [
       { name: "Lina Dahou", role: "FOUNDER & PRESIDENT", image: "" },
     ],
     vps: [
-      { name: "Taylor Le",       role: "VP EXTERNAL &\n OPERATIONS",    image: "/images/team/taylor-le.jpg" },
-      { name: "Ariel Lee",       role: "VP INTERNAL &\n ACQUISITION",   image: "" },
-      { name: "Arwa Almousawi",  role: "VP BRAND &\nSOFTWARE",        image: "" },
-      { name: "Phillip Quimson", role: "VP MARKETING &\n FINANCE",     image: "/images/team/phillip-quimson.jpg" },
-      { name: "Yahya Elmadhoun", role: "VP MECHANICAL &\n BIOMEDICAL",  image: "/images/team/yahya-elmadhoun.jpg" },
+      { name: "Arwa Al Mousawi",  role: "VP MARKETING &\nSOFTWARE",        image: "" },
+      { name: "Ariel Lee",       role: "VP EXTERNAL &\n ACQUISITION",   image: "" },
+      { name: "Noor Ali",        role: "VP INTERNAL",   image: "/images/team/noor-ali.jpg" },
+      { name: "Abnoor Chattha",  role: "JR. VP INTERNAL",   image: "/images/team/abnoor-chattha.jpg" },
+      { name: "Yahya Elmadhoun", role: "VP FINANCE",  image: "/images/team/yahya-elmadhoun.jpg" },
+    ],
+    advisors: [
+      { name: "Sana Wahab", role: "ADVISOR", image: "" },
     ],
     members: [],
   },
+
   {
     id: "mechanical",
     name: "Mechanical Team",
@@ -90,23 +94,16 @@ const teams: Team[] = [
     leadCircleColor: "#FBB6C9",
     memberCircleColor: "#B9AFD2",
     leads: [
-      { name: "Abdul Tinwala",  role: "TEAM LEAD", image: "/images/team/abdul-tinwala.JPG" },
-      { name: "Zayd Charanek", role: "TEAM LEAD", image: "/images/team/zayd-charanek.JPG" },
-    ],
-    jrLeads: [
-      { name: "Noah Fischer", role: "JR. LEAD", image: "/images/team/noah-fischer.jpg" },
-      { name: "David Caranay",      role: "JR. LEAD", image: "/images/team/david-caranay.jpg" },
-
+      { name: "Noah Fischer", role: "TEAM LEAD", image: "/images/team/noah-fischer.jpg" },
+      { name: "David Caranay",      role: "TEAM LEAD", image: "/images/team/david-caranay.jpg" },
     ],
     members: [
       { name: "Hailey Tran",        image: "" },
-      { name: "Ahmad Sawalha",        image: "" },
-      { name: "Meagan Zimmel", image: "" },
-      { name: "Hady Fouda",        image: "" },
-      { name: "Humam Hameed",        image: "/images/team/humam-hameed.JPG" },
+      { name: "Jaspreet Dhanoa",        image: "" },
+      { name: "Safaa Asif",        image: "/images/team/safaa-asif.jpg" },
       { name: "Zara Daudi",        image: "" },
+      { name: "Meagan Zimmel", image: "" },
       { name: "Shahmeen Sarmad",        image: "/images/team/shahmeen-sarmad.png" },
-      { name: "Md Samiu",       image: "/images/team/md-samiu.jpg" },
     ],
   },
   {
@@ -118,27 +115,20 @@ const teams: Team[] = [
     leadCircleColor: "#FBD896",
     memberCircleColor: "#B9AFD2",
     leads: [
-      { name: "Yash Dhillon",    role: "TEAM LEAD", image: "/images/team/yash-dhillon.jpg" },
-      { name: "Samipya Rijal", role: "TEAM LEAD", image: "/images/team/samipya-rijal.jpg" },
+      { name: "Conrad Brabec", role: "TEAM LEAD", image: "/images/team/conrad-brabec.jpg" },
     ],
     jrLeads: [
-      { name: "Conrad Brabec", role: "JR. LEAD", image: "/images/team/conrad-brabec.jpg" },
-      { name: "Daljit Nijjar",      role: "JR. LEAD", image: "/images/team/daljit-nijjar.jpg" },
-
+      { name: "Haziq Munir", role: "JR. LEAD", image: "/images/team/haziq-munir.jpg" },
     ],
     members: [
-      { name: "Ahmad Kohistani",  image: "/images/team/ahmad-kohistani.jpg" },
-      { name: "Julia Tran",            image: "" },
-      { name: "Arjun Mannan",            image: "" },
-      { name: "Rashveer Sandhu",  image: "/images/team/rashveer-sandhu.jpg" },
+      { name: "Abdul Qureshi",            image: "" },
+      { name: "Aryan Al-Adani",            image: "/images/team/aryan-al-adani.jpg" },
+      { name: "Ava Jones",            image: "" },
+      { name: "Kristen Powell",            image: "" },
+      { name: "Daniel Mogylevets",            image: "" },
+      { name: "Luke Zenha",            image: "/images/team/luke-zenha.JPG" },
       { name: "Mahavir Desai",          image: "/images/team/mahavir-desai.jpg" },
       { name: "Utsav Ojha",          image: "/images/team/utsav-ojha.jpg" },
-      { name: "Haziq Munir",          image: "/images/team/haziq-munir.jpg" },
-      { name: "Khanh Mai Le",          image: "" },
-      { name: "Jad Wehbi",          image: "" },
-      { name: "Saad Subhani",          image: "" },
-      { name: "Gebrael Gebrael",          image: "" },
-      { name: "Arsalan Khan",          image: "/images/team/arsalan-khan.jpg" },
     ],
   },
   {
@@ -149,18 +139,17 @@ const teams: Team[] = [
     leadCircleColor: "#BEDBAC",
     memberCircleColor: "#B9AFD2",
     leads: [
-      { name: "Abdul Karim Qureshi",  role: "TEAM LEAD", image: "" },
       { name: "Ahmeel Pablo", role: "TEAM LEAD", image: "" },
     ],
     jrLeads: [
       { name: "Moumita Murshed", role: "JR. LEAD", image: "" },
-      { name: "Maaz Saleh",     role: "JR. LEAD", image: "" },
     ],
     members: [
       { name: "Bridget Benedek-Koteles",  image: "/images/team/bridget-benedek-koteles.JPEG" },
-      { name: "Abdul Waase Qureshi",      image: "" },
       { name: "Julie Guirguis",  image: "" },
-      { name: "Hannah Nguyen",           image: "" },
+      { name: "Hannah Nguyen",           image: "/images/team/hannah-nguyen.JPG" },
+      { name: "Anahat Sidhu",           image: "/images/team/anahat-sidhu.jpg" },
+      { name: "Amena Katawazi",           image: "/images/team/amena-katawazi.JPG" },
     ],
   },
   {
@@ -172,15 +161,19 @@ const teams: Team[] = [
     memberCircleColor: "#B9AFD2",
     leads: [
       { name: "Yassin Soliman", role: "TEAM LEAD", image: "" },
-      { name: "Mujtaba Zia",   role: "TEAM LEAD", image: "" },
+      { name: "Mujtaba Zia",   role: "TEAM LEAD", image: "/images/team/mujtaba-zia.jpeg" },
     ],
     jrLeads: [
       { name: "Gianna Kong", role: "JR. LEAD", image: "/images/team/gianna-kong.jpg" },
     ],
     members: [
-      { name: "Richard Nguyen",    image: "" },
+      { name: "Richard Nguyen",    image: "/images/team/richard-nguyen.png" },
       { name: "Harold Kim",        image: "/images/team/harold-kim.jpg" },
-      { name: "Khuzaymah Haris",             image: "/images/team/khuzaymah-haris.png" }
+      { name: "Khuzaymah Haris",             image: "/images/team/khuzaymah-haris.png" },
+      { name: "Ajmal Khidri",      image: "" },
+      { name: "Abdullah Sheikh",      image: "/images/team/abdullah-sheikh.jpeg" },
+      { name: "Al Malik Mahdivikar",      image: "" },
+
     ],
   },
   {
@@ -191,12 +184,13 @@ const teams: Team[] = [
     leadCircleColor: "#6E6C78",
     memberCircleColor: "#B9AFD2",
     leads: [
-      { name: "Taylor Le", role: "TEAM LEAD", image: "/images/team/taylor-le.jpg" },
+      { name: "Lina Dahou", role: "TEAM LEAD", image: "" },
+      { name: "Arwa Al Mousawi", role: "TEAM LEAD", image: "" },
     ],
     members: [
       { name: "Jade Cosmilla",         image: "" },
       { name: "Noor Ali", image: "/images/team/noor-ali.jpg" },
-      { name: "Abnoor Chattha", image: "" },
+      { name: "Abnoor Chattha", image: "/images/team/abnoor-chattha.jpg" },
       { name: "Cris Wen", image: "/images/team/cris-wen.jpg" },
     ],
   },
@@ -231,8 +225,9 @@ const teamStats = statTeams.map((s) => ({
   targetId: s.targetId,
 }));
 
-// total members = everyone across the five teams above
-const totalMembers = teamStats.reduce((sum, s) => sum + Number(s.count), 0);
+// total members = unique people across the five teams above (some people,
+// e.g. exec VPs who also lead Finance & Marketing, are on more than one team)
+const totalMembers = countUniquePeople();
 
 const stats = [
   ...teamStats,
@@ -249,6 +244,32 @@ function getInitials(name: string): string {
     .slice(0, 2)
     .toUpperCase();
 }
+
+
+// some people are listed on more than one team, count each person once for the org-wide total
+function countUniquePeople(): number {
+  const names = new Set<string>();
+  teams.forEach((t) => getAllPeople(t).forEach((p) => names.add(normalizeName(p.name))));
+  return names.size;
+}
+
+
+// collapse a name to letters-only/lowercase 
+function normalizeName(name: string): string {
+  return name.toLowerCase().replace(/[^a-z]/g, "");
+}
+
+function getAllPeople(team: Team): Person[] {
+  return [
+    ...(team.president ?? []),
+    ...(team.vps ?? []),
+    ...(team.leads ?? []),
+    ...(team.jrLeads ?? []),
+    ...(team.advisors ?? []),
+    ...team.members,
+  ];
+}
+
 
 // ─── COMPONENTS ──────────────────────────────────────────────────────────────
 
@@ -558,8 +579,8 @@ export default function Hero() {
             </h1>
 
             <p
-              className="text-sm leading-relaxed font-semibold"
-              style={{ color: "#DAD4E3", fontFamily: "var(--font-dm-sans), sans-serif", maxWidth: 340 }}
+              className="text-lg leading-relaxed font-semibold"
+              style={{ color: "#DAD4E3", fontFamily: "var(--font-dm-sans), sans-serif", maxWidth: 450 }}
             >
               Since 2024, WayBionic has been driven by passionate innovators
               pushing boundaries in tech and medicine. We&apos;re always looking

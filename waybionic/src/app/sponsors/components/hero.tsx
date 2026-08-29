@@ -97,7 +97,7 @@ export default function Hero() {
 
         {/* subtext */}
         <p
-          className="text-sm leading-relaxed font-semibold max-w-[500px]"
+          className="text-lg leading-relaxed font-semibold max-w-[700px]"
           style={{ color: "#DAD4E3", fontFamily: "var(--font-dm-sans), sans-serif" }}
         >
           Here at WayBionic, we&apos;re committed to expanding access to{" "}
