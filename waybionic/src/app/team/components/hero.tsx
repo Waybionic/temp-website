@@ -98,7 +98,7 @@ const teams: Team[] = [
       { name: "David Caranay",      role: "TEAM LEAD", image: "/images/team/david-caranay.jpg" },
     ],
     members: [
-      { name: "Hailey Tran",        image: "/images/team/hailey-tran.jpg" },
+      { name: "Hailey Tran",        image: "/images/team/hailey-tran.JPG" },
       { name: "Jaspreet Dhanoa",        image: "" },
       { name: "Safaa Asif",        image: "/images/team/safaa-asif.jpg" },
       { name: "Zara Daudi",        image: "" },
