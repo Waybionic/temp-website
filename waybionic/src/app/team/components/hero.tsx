@@ -98,7 +98,7 @@ const teams: Team[] = [
       { name: "David Caranay",      role: "TEAM LEAD", image: "/images/team/david-caranay.jpg" },
     ],
     members: [
-      { name: "Hailey Tran",        image: "" },
+      { name: "Hailey Tran",        image: "/images/team/hailey-tran.jpg" },
       { name: "Jaspreet Dhanoa",        image: "" },
       { name: "Safaa Asif",        image: "/images/team/safaa-asif.jpg" },
       { name: "Zara Daudi",        image: "" },
@@ -169,10 +169,10 @@ const teams: Team[] = [
     members: [
       { name: "Richard Nguyen",    image: "/images/team/richard-nguyen.png" },
       { name: "Harold Kim",        image: "/images/team/harold-kim.jpeg" },
-      { name: "Khuzaymah Haris",             image: "/images/team/khuzaymah-haris.png" },
+      { name: "Khuzaymah Bin Haris",             image: "/images/team/khuzaymah-haris.png" },
       { name: "Ajmal Khidri",      image: "/images/team/ajmal-khidri.jpg" },
       { name: "Abdullah Sheikh",      image: "/images/team/abdullah-sheikh.jpeg" },
-      { name: "Al Malik Mahdivikar",      image: "" },
+      { name: "Malik Mahdivika",      image: "/images/team/malik-mahdivika.jpg" },
 
     ],
   },
